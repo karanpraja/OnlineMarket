@@ -1,0 +1,2 @@
+1. If you want to add file directly to git repository the use git pull
+
