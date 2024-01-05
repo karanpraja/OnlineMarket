@@ -16,16 +16,46 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { fetchAllProductsAsync, selectProducts } from "../ProductSlice";
+import { fetchAllProductsAsync, fetchProductsbyFilterAsync, fetchProductsbySortAsync, selectProducts } from "../ProductSlice";
 
 const sortOptions = [
-  { name: "Most Popular", href: "#", current: true },
-  { name: "Best Rating", href: "#", current: false },
-  { name: "Newest", href: "#", current: false },
-  { name: "Price: Low to High", href: "#", current: false },
-  { name: "Price: High to Low", href: "#", current: false },
+  { _sort: "Best Rating", _order: "asc", current: false },
+  { _sort: "Price: Low to High", _order: "asc", current: false },
+  { _sort: "Price: High to Low", _order: "asc", current: false },
 ];
 const filters = [
+  {
+    id: "category",
+    name: "Category",
+    options: [ { value: 'smartphones', label: 'smartphones', checked: false },
+    { value: 'laptops', label: 'laptops', checked: false },
+    { value: 'fragrances', label: 'fragrances', checked: false },
+    { value: 'skincare', label: 'skincare', checked: false },
+    { value: 'groceries', label: 'groceries', checked: false },
+    { value: 'home-decoration',
+      label: 'home decoration',
+      checked: false },
+    { value: 'furniture', label: 'furniture', checked: false },
+    { value: 'tops', label: 'tops', checked: false },
+    { value: 'womens-dresses',
+      label: 'womens dresses',
+      checked: false },
+    { value: 'womens-shoes', label: 'womens shoes', checked: false },
+    { value: 'mens-shirts', label: 'mens shirts', checked: false },
+    { value: 'mens-shoes', label: 'mens shoes', checked: false },
+    { value: 'mens-watches', label: 'mens watches', checked: false },
+    { value: 'womens-watches',
+      label: 'womens watches',
+      checked: false },
+    { value: 'womens-bags', label: 'womens bags', checked: false },
+    { value: 'womens-jewellery',
+      label: 'womens jewellery',
+      checked: false },
+    { value: 'sunglasses', label: 'sunglasses', checked: false },
+    { value: 'automotive', label: 'automotive', checked: false },
+    { value: 'motorcycle', label: 'motorcycle', checked: false },
+    { value: 'lighting', label: 'lighting', checked: false } ],
+  },
   {
     id: "brand",
     name: "Brand",
@@ -178,50 +208,8 @@ const filters = [
     { value: 'DADAWU', label: 'DADAWU', checked: false },
     { value: 'YIOSI', label: 'YIOSI', checked: false } ],
   },
-  {
-    id: "category",
-    name: "Category",
-    options: [ { value: 'smartphones', label: 'smartphones', checked: false },
-    { value: 'laptops', label: 'laptops', checked: false },
-    { value: 'fragrances', label: 'fragrances', checked: false },
-    { value: 'skincare', label: 'skincare', checked: false },
-    { value: 'groceries', label: 'groceries', checked: false },
-    { value: 'home-decoration',
-      label: 'home decoration',
-      checked: false },
-    { value: 'furniture', label: 'furniture', checked: false },
-    { value: 'tops', label: 'tops', checked: false },
-    { value: 'womens-dresses',
-      label: 'womens dresses',
-      checked: false },
-    { value: 'womens-shoes', label: 'womens shoes', checked: false },
-    { value: 'mens-shirts', label: 'mens shirts', checked: false },
-    { value: 'mens-shoes', label: 'mens shoes', checked: false },
-    { value: 'mens-watches', label: 'mens watches', checked: false },
-    { value: 'womens-watches',
-      label: 'womens watches',
-      checked: false },
-    { value: 'womens-bags', label: 'womens bags', checked: false },
-    { value: 'womens-jewellery',
-      label: 'womens jewellery',
-      checked: false },
-    { value: 'sunglasses', label: 'sunglasses', checked: false },
-    { value: 'automotive', label: 'automotive', checked: false },
-    { value: 'motorcycle', label: 'motorcycle', checked: false },
-    { value: 'lighting', label: 'lighting', checked: false } ],
-  },
-  {
-    id: "size",
-    name: "Size",
-    options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
-    ],
-  },
+  
+
 ];
 
 
@@ -268,10 +256,21 @@ function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 const products=useSelector(selectProducts)
+const [filter,setFilter]=useState(filters)/////
  
 useEffect(()=>{
   dispatch(fetchAllProductsAsync())
 },[])
+
+const handleFilter=(e,section,option)=>{
+  console.log(section.name,option.value)
+  const newfilter={...filter,[section.id]:option.value}/////
+  setFilter(newfilter)/////
+  dispatch(fetchProductsbyFilterAsync(newfilter))/////
+}
+const sortHandler=(e,option)=>{
+  dispatch(fetchProductsbySortAsync(option._sort))
+}
   return (
     <div>
       <div>
@@ -365,6 +364,7 @@ useEffect(()=>{
                                             id={`filter-mobile-${section.id}-${optionIdx}`}
                                             name={`${section.id}[]`}
                                             defaultValue={option.value}
+                                            onChange={e=>handleFilter(e,section,option)}
                                             type="checkbox"
                                             defaultChecked={option.checked}
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
@@ -421,10 +421,11 @@ useEffect(()=>{
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="py-1">
                           {sortOptions.map((option) => (
-                            <Menu.Item key={option.name}>
+                            <Menu.Item key={option._sort}>
                               {({ active }) => (
                                 <a
                                   href={option.href}
+                                  onChange={e=>sortHandler(e,option)}
                                   className={classNames(
                                     option.current
                                       ? "font-medium text-gray-900"
@@ -433,7 +434,7 @@ useEffect(()=>{
                                     "block px-4 py-2 text-sm"
                                   )}
                                 >
-                                  {option.name}
+                                  {option._sort}
                                 </a>
                               )}
                             </Menu.Item>
@@ -513,6 +514,7 @@ useEffect(()=>{
                                       id={`filter-${section.id}-${optionIdx}`}
                                       name={`${section.id}[]`}
                                       defaultValue={option.value}
+                                      onChange={e=>(handleFilter(e,section,option))}
                                       type="checkbox"
                                       defaultChecked={option.checked}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"

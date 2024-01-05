@@ -1834,8 +1834,24 @@ const products = [
   }
 ]
 
-const brands =  [...new Set([...products.map(p=>p.brand)])]
-console.log(brands)
+// const brands =  [...new Set([...products.map(p=>p.brand)])]
+// console.log(brands)
 
-let x=brands.map(c=>({value:c, label:c.split('-').join(' '),checked:false}))
-console.log(x)
+// let x=brands.map(c=>({value:c, label:c.split('-').join(' '),checked:false}))
+// console.log(x)
+
+const filters = [
+  {
+    id: "brand",
+    name: "Brand",
+    options: [ { value: 'Apple', label: 'Apple', checked: false },
+    { value: 'Samsung', label: 'Samsung', checked: false },
+    { value: 'OPPO', label: 'OPPO', checked: false }]},
+    {
+    id: "category",
+    name: "Category",
+    options: [ { value: 'smartphones', label: 'smartphones', checked: false },
+    { value: 'laptops', label: 'laptops', checked: false },
+    { value: 'fragrances', label: 'fragrances', checked: false }]}]
+  const filter={...filters,['sdaf']:'x'}
+console.log(filter)
