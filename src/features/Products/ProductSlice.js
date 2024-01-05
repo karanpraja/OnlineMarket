@@ -20,14 +20,14 @@ export const fetchAllProductsAsync= createAsyncThunk(
     return response.data;
   }
 );
-export const fetchProductsbySortAsync= createAsyncThunk(
-  'Products/fetchProductsbySort',
-  async (sort) => {
-    const response = await fetchProductsbySort(sort);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
-  }
-);
+// export const fetchProductsbySortAsync= createAsyncThunk(
+//   'Products/fetchProductsbySort',
+//   async (sort) => {
+//     const response = await fetchProductsbySort(sort);
+//     // The value we return becomes the `fulfilled` action payload
+//     return response.data;
+//   }
+// );
 export const fetchProductsbyFilterAsync= createAsyncThunk(
   'Products/fetchProductsbyFilter',
   async (filter) => {
@@ -72,13 +72,13 @@ export const productSlice = createSlice({
         state.status = 'idle';
         state.products = action.payload;
       })
-      .addCase(fetchProductsbySortAsync.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchProductsbySortAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.products = action.payload;
-      });
+      // .addCase(fetchProductsbySortAsync.pending, (state) => {
+      //   state.status = 'loading';
+      // })
+      // .addCase(fetchProductsbySortAsync.fulfilled, (state, action) => {
+      //   state.status = 'idle';
+      //   state.products = action.payload;
+      // });
   },
 });
 
