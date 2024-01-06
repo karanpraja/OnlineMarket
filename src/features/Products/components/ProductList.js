@@ -16,7 +16,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { fetchAllProductsAsync, fetchProductsbyFilterAsync, fetchProductsbySortAsync, selectProducts } from "../ProductSlice";
+import { fetchAllProductsAsync, fetchProductsbyFilterAsync, fetchProductsbySortAsync, selectProducts, selecttotalItems, } from "../ProductSlice";
+import { ITEMS_PER_PAGE } from "../../../const";
 
 const sortOptions = [
   { name: "Best Rating",_sort: "rating", _order: "desc", current: false },
@@ -222,8 +223,10 @@ function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 const products=useSelector(selectProducts)
+const totalItems=useSelector(selecttotalItems)
 const [filter,setFilter]=useState({})/////
 const [sort,setSort]=useState({})/////
+const [page,setPage]=useState(1)
 
 const handleFilter=(e,section,option)=>{
   console.log(section.id,option.value)
@@ -261,12 +264,18 @@ const sortHandler=(e,option)=>{
   setSort(newSort)
   // dispatch(fetchProductsbyFilterAsync(newSort))/////
 } 
+const pageHandler=(e,page)=>{
+  console.log(page)
+  setPage(page)
+}
+
 
 useEffect(()=>{
   // dispatch(fetchAllProductsAsync(filter))
-  dispatch(fetchProductsbyFilterAsync({filter,sort}))/////
+  const pagination={_page:page,_limit:ITEMS_PER_PAGE}
+  dispatch(fetchProductsbyFilterAsync({filter,sort,pagination}))/////
 
-},[dispatch,filter,sort])
+},[dispatch,filter,sort,page])
 
   return (
     <div>
@@ -281,7 +290,7 @@ useEffect(()=>{
           </div>
         </div>
         {/* pagination */}
-        <Pagination/>
+        <Pagination pageHandler={pageHandler} ITEMS_PER_PAGE={ITEMS_PER_PAGE} page={page} totalItems={totalItems}/>
       </div>
     </div>
   );
@@ -617,7 +626,7 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,sortHandler})=
             </div>
   )
 }
-const Pagination=()=>{
+const Pagination=({pageHandler,ITEMS_PER_PAGE,page,totalItems})=>{
 return(
   <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
@@ -637,9 +646,9 @@ return(
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700">
-                Showing <span className="font-medium">1</span> to{" "}
-                <span className="font-medium">10</span> of{" "}
-                <span className="font-medium">97</span> results
+                Showing <span className="font-medium">{(page-1)*ITEMS_PER_PAGE+1}</span> to{" "}
+                <span className="font-medium">{ITEMS_PER_PAGE}</span> of{" "}
+                <span className="font-medium">{totalItems}</span> results
               </p>
             </div>
             <div>
@@ -655,13 +664,18 @@ return(
                   <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                 </a>
                 {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-                <a
-                  href="#"
-                  aria-current="page"
-                  className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  1
-                </a>
+               
+                 { Array.from( {length:Math.ceil(totalItems/ITEMS_PER_PAGE)}).map((el, index) => (
+                    <div
+                    onClick={e=>pageHandler(e,index+1)}
+                    aria-current="page"
+                    className={`relative z-10 inline-flex items-center ${page===(index+1)?'bg-indigo-600 text-white':''} cursor-pointer px-4 py-2 text-sm font-semibold  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                  >
+                    {index+1}
+                    </div>
+                  )) }
+                
+                {/*
                 <a
                   href="#"
                   className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
@@ -694,7 +708,7 @@ return(
                   className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                 >
                   10
-                </a>
+                </a> */}
                 <a
                   href="#"
                   className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"

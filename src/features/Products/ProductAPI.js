@@ -10,7 +10,7 @@ export function fetchAllProducts() {
   );
 }
 
-export function fetchProductsbyFilter({filter,sort}) {///\
+export function fetchProductsbyFilter({filter,sort,pagination}) {///\
   //filter=['category':{'smartphones','laptops'}]
   console.log('api')
 
@@ -30,12 +30,17 @@ export function fetchProductsbyFilter({filter,sort}) {///\
   {
   queryString+=`${key}=${sort[key]}&`
   }
+  for(let key in pagination)
+  {
+    queryString+=`${key}=${pagination[key]}`
+  }
 
 
   return new Promise(async(resolve) =>{
     const response=await fetch('http://localhost:8080/products?'+queryString)
     const data=await response.json()
-    resolve({data})//how to keep data in resolve
+    const totalItems= await response.headers.get('X-Total-Count')
+    resolve({data:{products:data,totalItems:+totalItems}})//how to keep data in resolve
         
   }
     // setTimeout(() => resolve({ data: amount }), 500)
