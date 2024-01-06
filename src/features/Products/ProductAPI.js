@@ -10,17 +10,28 @@ export function fetchAllProducts() {
   );
 }
 
-export function fetchProductsbyFilter(filter) {
+export function fetchProductsbyFilter({filter,sort}) {///\
+  //filter=['category':{'smartphones','laptops'}]
+  console.log('api')
+
   let queryString=''
-  // if(data.filter!=null){
-    // const filter=data.filter
+  
   for(let key in filter)
   {
-    queryString+=`${key}=${filter[key]}&`
+    const category=filter[key]
+    if(category.length){
+    const lastCategoryValue=category[category.length-1]
+
+    console.log(lastCategoryValue+"lkjkl")
+    queryString+=`${key}=${lastCategoryValue}&`
+    }
   }
-// }else{
-    // queryString+=`sort=${data._sort}&${data._order}&`}
-  // console.log(queryString)
+  for(let key in sort)
+  {
+  queryString+=`${key}=${sort[key]}&`
+  }
+
+
   return new Promise(async(resolve) =>{
     const response=await fetch('http://localhost:8080/products?'+queryString)
     const data=await response.json()

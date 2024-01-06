@@ -223,21 +223,51 @@ function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 const products=useSelector(selectProducts)
 const [filter,setFilter]=useState({})/////
-useEffect(()=>{
-  dispatch(fetchAllProductsAsync())
-},[])
+const [sort,setSort]=useState({})/////
+
 const handleFilter=(e,section,option)=>{
-  console.log(section.name,option.value)
-  const newfilter={...filter,[section.id]:option.value}/////
+  console.log(section.id,option.value)
+  let newfilter={...filter}/////
+  console.log('1')
+
+  if(e.target.checked)
+  {
+         if(newfilter[section.id]){
+  console.log('2')
+        //  newfilter[section.id].push(option.value)
+        console.log(option.value)
+        newfilter[section.id].push(option.value)
+  console.log('3')
+
+         }else{
+  console.log('4')
+
+         //in this way array=>{}=>{{id:value}}
+         newfilter[section.id]=[option.value]
+         }
+  }else{
+        const index=newfilter[section.id].findIndex((el)=>(el===option.value))
+        newfilter[section.id].splice(index,1)//please use your brain properly 
+        //newfilter={c:{},d:{} but newfilter[section.id] is different
+      }
+  
+  console.log(newfilter)
   setFilter(newfilter)/////
-  dispatch(fetchProductsbyFilterAsync(newfilter))/////
+  // dispatch(fetchProductsbyFilterAsync(newfilter))/////
 }
 const sortHandler=(e,option)=>{
   console.log(option._sort,option._order)
-  const newfilter={...filter,_sort:option._sort,_order:option._order}/////
-  setFilter(newfilter)
-  dispatch(fetchProductsbyFilterAsync(newfilter))/////
+  const newSort={_sort:option._sort,_order:option._order}/////
+  setSort(newSort)
+  // dispatch(fetchProductsbyFilterAsync(newSort))/////
 } 
+
+useEffect(()=>{
+  // dispatch(fetchAllProductsAsync(filter))
+  dispatch(fetchProductsbyFilterAsync({filter,sort}))/////
+
+},[dispatch,filter,sort])
+
   return (
     <div>
       <div>
