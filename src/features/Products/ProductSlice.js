@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts, fetchProductsbyFilter, fetchProductsbySort } from './ProductAPI';
+import { fetchAllProducts, fetchBrands, fetchCategories, fetchProductsbyFilter, fetchProductsbySort } from './ProductAPI';
 
 
 const initialState = {
   products: [],
+  categories:[],
+  brands:[],
   status: 'idle',
   totalItems:null
 };
@@ -37,6 +39,24 @@ export const fetchProductsbyFilterAsync= createAsyncThunk(
     return response.data;
   }
 );
+export const fetchCategoriesAsync= createAsyncThunk(
+  'Products/fetchCategories',
+  async () => {
+    const response = await fetchCategories();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+export const fetchBrandsAsync= createAsyncThunk(
+  'Products/fetchBrands',
+  async () => {
+    const response = await fetchBrands();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+
 
 export const productSlice = createSlice({
   name: 'products',
@@ -74,6 +94,23 @@ export const productSlice = createSlice({
         state.products = action.payload.products;
         state.totalItems=action.payload.totalItems;
       })
+      .addCase(fetchCategoriesAsync.pending,(state)=>{
+        state.status='loading';
+        
+      })
+      .addCase(fetchCategoriesAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.categories=action.payload;
+      })
+      .addCase(fetchBrandsAsync.pending,(state)=>{
+        state.status='loading';
+        
+      })
+      .addCase(fetchBrandsAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.brands=action.payload;
+      })
+    
       // .addCase(fetchProductsbySortAsync.pending, (state) => {
       //   state.status = 'loading';
       // })
@@ -88,4 +125,7 @@ export const { increment, decrement} = productSlice.actions;
 
 export const selectProducts = (state) => state.productxyz.products;
 export const selecttotalItems=(state)=>state.productxyz.totalItems;
+export const selectCategories=(state)=>state.productxyz.categories;
+export const selectBrands=(state)=>state.productxyz.brands;
+
 export default productSlice.reducer;
