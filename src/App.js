@@ -15,6 +15,7 @@ import Cart from './features/cart/Cart';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
+import Protected from './features/auth/components/Protected';
 
 const router = createBrowserRouter([
   {
@@ -30,15 +31,11 @@ const router = createBrowserRouter([
     element: <SignUpPage/>,
   },
   {
-    path: "login",
-    element: <LoginPage/>,
-  },
-  {
     path:"cart",
-    element:<CartPage/>
+    element:<Protected><CartPage/></Protected>
   },
   {path:'checkout',
-  element:<CheckoutPage/>
+  element:<Protected><CheckoutPage/></Protected>
   },
   {path:'productdetail/:id',
   element:<ProductDetailPage/>

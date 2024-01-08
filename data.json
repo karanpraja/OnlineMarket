@@ -1,10 +1,9 @@
 {
-  "products": 
-  [
+  "products": [
     {
       "id": 1,
       "name": "iPhone 9",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "An apple mobile which is nothing like apple",
       "price": 549,
       "discountPercentage": 12.96,
@@ -24,7 +23,7 @@
     {
       "id": 2,
       "name": "iPhone X",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
       "price": 899,
       "discountPercentage": 17.94,
@@ -43,7 +42,7 @@
     {
       "id": 3,
       "name": "Samsung Universe 9",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Samsung's new variant which goes beyond Galaxy to the Universe",
       "price": 1249,
       "discountPercentage": 15.46,
@@ -52,12 +51,14 @@
       "brand": "Samsung",
       "category": "smartphones",
       "imageSrc": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-      "images": ["https://cdn.dummyjson.com/product-images/3/1.jpg"]
+      "images": [
+        "https://cdn.dummyjson.com/product-images/3/1.jpg"
+      ]
     },
     {
       "id": 4,
       "name": "OPPOF19",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "OPPO F19 is officially announced on April 2021.",
       "price": 280,
       "discountPercentage": 17.91,
@@ -77,7 +78,7 @@
     {
       "id": 5,
       "name": "Huawei P30",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
       "price": 499,
       "discountPercentage": 10.58,
@@ -95,7 +96,7 @@
     {
       "id": 6,
       "name": "MacBook Pro",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "MacBook Pro 2021 with mini-LED display may launch between September, November",
       "price": 1749,
       "discountPercentage": 11.02,
@@ -114,7 +115,7 @@
     {
       "id": 7,
       "name": "Samsung Galaxy Book",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
       "price": 1499,
       "discountPercentage": 4.15,
@@ -133,7 +134,7 @@
     {
       "id": 8,
       "name": "Microsoft Surface Laptop 4",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
       "price": 1499,
       "discountPercentage": 10.23,
@@ -153,7 +154,7 @@
     {
       "id": 9,
       "name": "Infinix INBOOK",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
       "price": 1099,
       "discountPercentage": 11.83,
@@ -173,7 +174,7 @@
     {
       "id": 10,
       "name": "HP Pavilion 15-DK1056WM",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
       "price": 1099,
       "discountPercentage": 6.18,
@@ -192,7 +193,7 @@
     {
       "id": 11,
       "name": "perfume Oil",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
       "price": 13,
       "discountPercentage": 8.4,
@@ -211,7 +212,7 @@
     {
       "id": 12,
       "name": "Brown Perfume",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
       "price": 40,
       "discountPercentage": 15.66,
@@ -231,7 +232,7 @@
     {
       "id": 13,
       "name": "Fog Scent Xpressio Perfume",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Product details of Best Fog Scent Xpressio Perfume 100ml For Men cool long lasting perfumes for Men",
       "price": 13,
       "discountPercentage": 8.14,
@@ -251,7 +252,7 @@
     {
       "id": 14,
       "name": "Non-Alcoholic Concentrated Perfume Oil",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Original Al Munakh® by Mahal Al Musk | Our Impression of Climate | 6ml Non-Alcoholic Concentrated Perfume Oil",
       "price": 120,
       "discountPercentage": 15.6,
@@ -270,7 +271,7 @@
     {
       "id": 15,
       "name": "Eau De Perfume Spray",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
       "price": 30,
       "discountPercentage": 10.99,
@@ -290,7 +291,7 @@
     {
       "id": 16,
       "name": "Hyaluronic Acid Serum",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid",
       "price": 19,
       "discountPercentage": 13.31,
@@ -310,7 +311,7 @@
     {
       "id": 17,
       "name": "Tree Oil 30ml",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Tea tree oil contains a number of compounds, including terpinen-4-ol, that have been shown to kill certain bacteria,",
       "price": 12,
       "discountPercentage": 4.09,
@@ -329,7 +330,7 @@
     {
       "id": 18,
       "name": "Oil Free Moisturizer 100ml",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Dermive Oil Free Moisturizer with SPF 20 is specifically formulated with ceramides, hyaluronic acid & sunscreen.",
       "price": 40,
       "discountPercentage": 13.1,
@@ -349,7 +350,7 @@
     {
       "id": 19,
       "name": "Skin Beauty Serum.",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Product name: rorec collagen hyaluronic acid white face serum riceNet weight: 15 m",
       "price": 46,
       "discountPercentage": 10.68,
@@ -368,7 +369,7 @@
     {
       "id": 20,
       "name": "Freckle Treatment Cream- 15gm",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fair & Clear is Pakistan's only pure Freckle cream which helpsfade Freckles, Darkspots and pigments. Mercury level is 0%, so there are no side effects.",
       "price": 70,
       "discountPercentage": 16.99,
@@ -388,7 +389,7 @@
     {
       "id": 21,
       "name": "- Daal Masoor 500 grams",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fine quality Branded Product Keep in a cool and dry place",
       "price": 20,
       "discountPercentage": 4.81,
@@ -406,7 +407,7 @@
     {
       "id": 22,
       "name": "Elbow Macaroni - 400 gm",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Product details of Bake Parlor Big Elbow Macaroni - 400 gm",
       "price": 14,
       "discountPercentage": 15.58,
@@ -424,7 +425,7 @@
     {
       "id": 23,
       "name": "Orange Essence Food Flavou",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Specifications of Orange Essence Food Flavour For Cakes and Baking Food Item",
       "price": 14,
       "discountPercentage": 8.04,
@@ -444,7 +445,7 @@
     {
       "id": 24,
       "name": "cereals muesli fruit nuts",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "original fauji cereal muesli 250gm box pack original fauji cereals muesli fruit nuts flakes breakfast cereal break fast faujicereals cerels cerel foji fouji",
       "price": 46,
       "discountPercentage": 16.8,
@@ -464,7 +465,7 @@
     {
       "id": 25,
       "name": "Gulab Powder 50 Gram",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Dry Rose Flower Powder Gulab Powder 50 Gram • Treats Wounds",
       "price": 70,
       "discountPercentage": 13.58,
@@ -484,7 +485,7 @@
     {
       "id": 26,
       "name": "Plant Hanger For Home",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf",
       "price": 41,
       "discountPercentage": 17.86,
@@ -505,7 +506,7 @@
     {
       "id": 27,
       "name": "Flying Wooden Bird",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
       "price": 51,
       "discountPercentage": 15.58,
@@ -525,7 +526,7 @@
     {
       "id": 28,
       "name": "3D Embellishment Art Lamp",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
       "price": 20,
       "discountPercentage": 16.49,
@@ -545,7 +546,7 @@
     {
       "id": 29,
       "name": "Handcraft Chinese style",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
       "price": 60,
       "discountPercentage": 15.34,
@@ -565,7 +566,7 @@
     {
       "id": 30,
       "name": "Key Holder",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
       "price": 30,
       "discountPercentage": 2.92,
@@ -584,7 +585,7 @@
     {
       "id": 31,
       "name": "Mornadi Velvet Bed",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Mornadi Velvet Bed Base with Headboard Slats Support Classic Style Bedroom Furniture Bed Set",
       "price": 40,
       "discountPercentage": 17,
@@ -604,7 +605,7 @@
     {
       "id": 32,
       "name": "Sofa for Coffe Cafe",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe",
       "price": 50,
       "discountPercentage": 15.59,
@@ -623,7 +624,7 @@
     {
       "id": 33,
       "name": "3 Tier Corner Shelves",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf",
       "price": 700,
       "discountPercentage": 17,
@@ -643,7 +644,7 @@
     {
       "id": 34,
       "name": "Plastic Table",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "V﻿ery good quality plastic table for multi purpose now in reasonable price",
       "price": 50,
       "discountPercentage": 4,
@@ -663,7 +664,7 @@
     {
       "id": 35,
       "name": "3 DOOR PORTABLE",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Material: Stainless Steel and Fabric  Item Size: 110 cm x 45 cm x 175 cm Package Contents: 1 Storage Wardrobe",
       "price": 41,
       "discountPercentage": 7.98,
@@ -683,7 +684,7 @@
     {
       "id": 36,
       "name": "Sleeve Shirt Womens",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Cotton Solid Color Professional Wear Sleeve Shirt Womens Work Blouses Wholesale Clothing Casual Plain Custom Top OEM Customized",
       "price": 90,
       "discountPercentage": 10.89,
@@ -703,7 +704,7 @@
     {
       "id": 37,
       "name": "ank Tops for Womens/Girls",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "PACK OF 3 CAMISOLES ,VERY COMFORTABLE SOFT COTTON STUFF, COMFORTABLE IN ALL FOUR SEASONS",
       "price": 50,
       "discountPercentage": 12.05,
@@ -723,7 +724,7 @@
     {
       "id": 38,
       "name": "sublimation plain kids tank",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "sublimation plain kids tank tops wholesale",
       "price": 100,
       "discountPercentage": 11.12,
@@ -742,7 +743,7 @@
     {
       "id": 39,
       "name": "Women Sweaters Wool",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "2021 Custom Winter Fall Zebra Knit Crop Top Women Sweaters Wool Mohair Cos Customize Crew Neck Women' S Crop Top Sweater",
       "price": 600,
       "discountPercentage": 17.2,
@@ -762,7 +763,7 @@
     {
       "id": 40,
       "name": "women winter clothes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "women winter clothes thick fleece hoodie top with sweat pantjogger women sweatsuit set joggers pants two piece pants set",
       "price": 57,
       "discountPercentage": 13.39,
@@ -779,7 +780,7 @@
     {
       "id": 41,
       "name": "NIGHT SUIT",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "NIGHT SUIT RED MICKY MOUSE..  For Girls. Fantastic Suits.",
       "price": 55,
       "discountPercentage": 15.05,
@@ -799,7 +800,7 @@
     {
       "id": 42,
       "name": "Stiched Kurta plus trouser",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN",
       "price": 80,
       "discountPercentage": 15.37,
@@ -819,7 +820,7 @@
     {
       "id": 43,
       "name": "frock gold printed",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Ghazi fabric long frock gold printed ready to wear stitched collection (G992)",
       "price": 600,
       "discountPercentage": 15.55,
@@ -839,7 +840,7 @@
     {
       "id": 44,
       "name": "Ladies Multicolored Dress",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "This classy shirt for women gives you a gorgeous look on everyday wear and specially for semi-casual wears.",
       "price": 79,
       "discountPercentage": 16.88,
@@ -859,7 +860,7 @@
     {
       "id": 45,
       "name": "Malai Maxi Dress",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Ready to wear, Unique design according to modern standard fashion, Best fitting ,Imported stuff",
       "price": 50,
       "discountPercentage": 5.07,
@@ -879,7 +880,7 @@
     {
       "id": 46,
       "name": "women's shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber",
       "price": 40,
       "discountPercentage": 16.96,
@@ -899,7 +900,7 @@
     {
       "id": 47,
       "name": "Sneaker shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women",
       "price": 120,
       "discountPercentage": 10.37,
@@ -918,7 +919,7 @@
     {
       "id": 48,
       "name": "Women Strip Heel",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped",
       "price": 40,
       "discountPercentage": 10.83,
@@ -938,7 +939,7 @@
     {
       "id": 49,
       "name": "Chappals & Shoe Ladies Metallic",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Womens Chappals & Shoe Ladies Metallic Tong Thong Sandal Flat Summer 2020 Maasai Sandals",
       "price": 23,
       "discountPercentage": 2.62,
@@ -957,7 +958,7 @@
     {
       "id": 50,
       "name": "Women Shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes",
       "price": 36,
       "discountPercentage": 16.87,
@@ -975,7 +976,7 @@
     {
       "id": 51,
       "name": "half sleeves T shirts",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Many store is creating new designs and trend every month and every year. Daraz.pk have a beautiful range of men fashion brands",
       "price": 23,
       "discountPercentage": 12.76,
@@ -994,7 +995,7 @@
     {
       "id": 52,
       "name": "FREE FIRE T Shirt",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "quality and professional print - It doesn't just look high quality, it is high quality.",
       "price": 10,
       "discountPercentage": 14.72,
@@ -1014,7 +1015,7 @@
     {
       "id": 53,
       "name": "printed high quality T shirts",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Brand: vintage Apparel ,Export quality",
       "price": 35,
       "discountPercentage": 7.54,
@@ -1034,7 +1035,7 @@
     {
       "id": 54,
       "name": "Pubg Printed Graphic T-Shirt",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Product Description Features: 100% Ultra soft Polyester Jersey. Vibrant & colorful printing on front. Feels soft as cotton without ever cracking",
       "price": 46,
       "discountPercentage": 16.44,
@@ -1054,7 +1055,7 @@
     {
       "id": 55,
       "name": "Money Heist Printed Summer T Shirts",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fabric Jercy, Size: M & L Wear Stylish Dual Stiched",
       "price": 66,
       "discountPercentage": 15.97,
@@ -1074,7 +1075,7 @@
     {
       "id": 56,
       "name": "Sneakers Joggers Shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New",
       "price": 40,
       "discountPercentage": 12.57,
@@ -1095,7 +1096,7 @@
     {
       "id": 57,
       "name": "Loafers for men",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Moccassion - Pure Nylon (Rubber) Expot Quality.",
       "price": 47,
       "discountPercentage": 10.91,
@@ -1115,7 +1116,7 @@
     {
       "id": 58,
       "name": "formal offices shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Pattern Type: Solid, Material: PU, Toe Shape: Pointed Toe ,Outsole Material: Rubber",
       "price": 57,
       "discountPercentage": 12,
@@ -1135,7 +1136,7 @@
     {
       "id": 59,
       "name": "Spring and summershoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;",
       "price": 20,
       "discountPercentage": 8.71,
@@ -1155,7 +1156,7 @@
     {
       "id": 60,
       "name": "Stylish Casual Jeans Shoes",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable",
       "price": 58,
       "discountPercentage": 7.55,
@@ -1174,7 +1175,7 @@
     {
       "id": 61,
       "name": "Leather Straps Wristwatch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Style:Sport ,Clasp:Buckles ,Water Resistance Depth:3Bar",
       "price": 120,
       "discountPercentage": 7.14,
@@ -1192,7 +1193,7 @@
     {
       "id": 62,
       "name": "Waterproof Leather Brand Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Watch Crown With Environmental IPS Bronze Electroplating; Display system of 12 hours",
       "price": 46,
       "discountPercentage": 3.15,
@@ -1209,7 +1210,7 @@
     {
       "id": 63,
       "name": "Royal Blue Premium Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Men Silver Chain Royal Blue Premium Watch Latest Analog Watch",
       "price": 50,
       "discountPercentage": 2.56,
@@ -1228,7 +1229,7 @@
     {
       "id": 64,
       "name": "Leather Strap Skeleton Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Leather Strap Skeleton Watch for Men - Stylish and Latest Design",
       "price": 46,
       "discountPercentage": 10.2,
@@ -1247,7 +1248,7 @@
     {
       "id": 65,
       "name": "Stainless Steel Wrist Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Stylish Watch For Man (Luxury) Classy Men's Stainless Steel Wrist Watch - Box Packed",
       "price": 47,
       "discountPercentage": 17.79,
@@ -1267,7 +1268,7 @@
     {
       "id": 66,
       "name": "Steel Analog Couple Watches",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Elegant design, Stylish ,Unique & Trendy,Comfortable wear",
       "price": 35,
       "discountPercentage": 3.23,
@@ -1287,7 +1288,7 @@
     {
       "id": 67,
       "name": "Fashion Magnetic Wrist Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Buy this awesome  The product is originally manufactured by the company and it's a top selling product with a very reasonable",
       "price": 60,
       "discountPercentage": 16.69,
@@ -1307,7 +1308,7 @@
     {
       "id": 68,
       "name": "Stylish Luxury Digital Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Stylish Luxury Digital Watch For Girls / Women - Led Smart Ladies Watches For Girls",
       "price": 57,
       "discountPercentage": 9.03,
@@ -1324,7 +1325,7 @@
     {
       "id": 69,
       "name": "Golden Watch Pearls Bracelet Watch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Product details of Golden Watch Pearls Bracelet Watch For Girls - Golden Chain Ladies Bracelate Watch for Women",
       "price": 47,
       "discountPercentage": 17.55,
@@ -1344,7 +1345,7 @@
     {
       "id": 70,
       "name": "Stainless Steel Women",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fashion Skmei 1830 Shell Dial Stainless Steel Women Wrist Watch Lady Bracelet Watch Quartz Watches Ladies",
       "price": 35,
       "discountPercentage": 8.98,
@@ -1362,7 +1363,7 @@
     {
       "id": 71,
       "name": "Women Shoulder Bags",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "LouisWill Women Shoulder Bags Long Clutches Cross Body Bags Phone Bags PU Leather Hand Bags Large Capacity Card Holders Zipper Coin Purses Fashion Crossbody Bags for Girls Ladies",
       "price": 46,
       "discountPercentage": 14.65,
@@ -1381,7 +1382,7 @@
     {
       "id": 72,
       "name": "Handbag For Girls",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "This fashion is designed to add a charming effect to your casual outfit. This Bag is made of synthetic leather.",
       "price": 23,
       "discountPercentage": 17.5,
@@ -1401,7 +1402,7 @@
     {
       "id": 73,
       "name": "Fancy hand clutch",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "This fashion is designed to add a charming effect to your casual outfit. This Bag is made of synthetic leather.",
       "price": 44,
       "discountPercentage": 10.39,
@@ -1420,7 +1421,7 @@
     {
       "id": 74,
       "name": "Leather Hand Bag",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "It features an attractive design that makes it a must have accessory in your collection. We sell different kind of bags for boys, kids, women, girls and also for unisex.",
       "price": 57,
       "discountPercentage": 11.19,
@@ -1440,7 +1441,7 @@
     {
       "id": 75,
       "name": "Seven Pocket Women Bag",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Seven Pocket Women Bag Handbags Lady Shoulder Crossbody Bag Female Purse Seven Pocket Bag",
       "price": 68,
       "discountPercentage": 14.87,
@@ -1459,7 +1460,7 @@
     {
       "id": 76,
       "name": "Silver Ring Set Women",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Jewelry Type:RingsCertificate Type:NonePlating:Silver PlatedShapeattern:noneStyle:CLASSICReligious",
       "price": 70,
       "discountPercentage": 13.57,
@@ -1477,7 +1478,7 @@
     {
       "id": 77,
       "name": "Rose Ring",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Brand: The Greetings Flower Colour: RedRing Colour: GoldenSize: Adjustable",
       "price": 100,
       "discountPercentage": 3.22,
@@ -1496,7 +1497,7 @@
     {
       "id": 78,
       "name": "Rhinestone Korean Style Open Rings",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fashion Jewellery 3Pcs Adjustable Pearl Rhinestone Korean Style Open Rings For Women",
       "price": 30,
       "discountPercentage": 8.02,
@@ -1505,12 +1506,14 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "imageSrc": "https://cdn.dummyjson.com/product-images/78/thumbnail.jpg",
-      "images": ["https://cdn.dummyjson.com/product-images/78/thumbnail.jpg"]
+      "images": [
+        "https://cdn.dummyjson.com/product-images/78/thumbnail.jpg"
+      ]
     },
     {
       "id": 79,
       "name": "Elegant Female Pearl Earrings",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Elegant Female Pearl Earrings Set Zircon Pearl Earings Women Party Accessories 9 Pairs/Set",
       "price": 30,
       "discountPercentage": 12.8,
@@ -1519,12 +1522,14 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "imageSrc": "https://cdn.dummyjson.com/product-images/79/thumbnail.jpg",
-      "images": ["https://cdn.dummyjson.com/product-images/79/1.jpg"]
+      "images": [
+        "https://cdn.dummyjson.com/product-images/79/1.jpg"
+      ]
     },
     {
       "id": 80,
       "name": "Chain Pin Tassel Earrings",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Pair Of Ear Cuff Butterfly Long Chain Pin Tassel Earrings - Silver ( Long Life Quality Product)",
       "price": 45,
       "discountPercentage": 17.75,
@@ -1544,7 +1549,7 @@
     {
       "id": 81,
       "name": "Round Silver Frame Sun Glasses",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "A pair of sunglasses can protect your eyes from being hurt. For car driving, vacation travel, outdoor activities, social gatherings,",
       "price": 19,
       "discountPercentage": 10.1,
@@ -1564,7 +1569,7 @@
     {
       "id": 82,
       "name": "Kabir Singh Square Sunglass",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Orignal Metal Kabir Singh design 2020 Sunglasses Men Brand Designer Sun Glasses Kabir Singh Square Sunglass",
       "price": 50,
       "discountPercentage": 15.6,
@@ -1584,7 +1589,7 @@
     {
       "id": 83,
       "name": "Wiley X Night Vision Yellow Glasses",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Wiley X Night Vision Yellow Glasses for Riders - Night Vision Anti Fog Driving Glasses - Free Night Glass Cover - Shield Eyes From Dust and Virus- For Night Sport Matches",
       "price": 30,
       "discountPercentage": 6.33,
@@ -1604,7 +1609,7 @@
     {
       "id": 84,
       "name": "Square Sunglasses",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Fashion Oversized Square Sunglasses Retro Gradient Big Frame Sunglasses For Women One Piece Gafas Shade Mirror Clear Lens 17059",
       "price": 28,
       "discountPercentage": 13.89,
@@ -1622,7 +1627,7 @@
     {
       "id": 85,
       "name": "LouisWill Men Sunglasses",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "LouisWill Men Sunglasses Polarized Sunglasses UV400 Sunglasses Day Night Dual Use Safety Driving Night Vision Eyewear AL-MG Frame Sun Glasses with Free Box for Drivers",
       "price": 50,
       "discountPercentage": 11.27,
@@ -1640,7 +1645,7 @@
     {
       "id": 86,
       "name": "Bluetooth Aux",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Bluetooth Aux Bluetooth Car Aux Car Bluetooth Transmitter Aux Audio Receiver Handfree Car Bluetooth Music Receiver Universal 3.5mm Streaming A2DP Wireless Auto AUX Audio Adapter With Mic For Phone MP3",
       "price": 25,
       "discountPercentage": 10.56,
@@ -1660,7 +1665,7 @@
     {
       "id": 87,
       "name": "t Temperature Controller Incubator Controller",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Both Heat and Cool Purpose, Temperature control range; -50 to +110, Temperature measurement accuracy; 0.1, Control accuracy; 0.1",
       "price": 40,
       "discountPercentage": 11.3,
@@ -1680,7 +1685,7 @@
     {
       "id": 88,
       "name": "TC Reusable Silicone Magic Washing Gloves",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "TC Reusable Silicone Magic Washing Gloves with Scrubber, Cleaning Brush Scrubber Gloves Heat Resistant Pair for Cleaning of Kitchen, Dishes, Vegetables and Fruits, Bathroom, Car Wash, Pet Care and Multipurpose",
       "price": 29,
       "discountPercentage": 3.19,
@@ -1700,7 +1705,7 @@
     {
       "id": 89,
       "name": "Qualcomm original Car Charger",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "best Quality CHarger , Highly Recommended to all best Quality CHarger , Highly Recommended to all",
       "price": 40,
       "discountPercentage": 17.53,
@@ -1720,7 +1725,7 @@
     {
       "id": 90,
       "name": "Cycle Bike Glow",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Universal fitment and easy to install no special wires, can be easily installed and removed. Fits most standard tyre air stem valves of road, mountain bicycles, motocycles and cars.Bright led will turn on w",
       "price": 35,
       "discountPercentage": 11.08,
@@ -1740,7 +1745,7 @@
     {
       "id": 91,
       "name": "Black Motorbike",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Engine Type:Wet sump, Single Cylinder, Four Stroke, Two Valves, Air Cooled with SOHC (Single Over Head Cam) Chain Drive Bore & Stroke:47.0 x 49.5 MM",
       "price": 569,
       "discountPercentage": 13.63,
@@ -1760,7 +1765,7 @@
     {
       "id": 92,
       "name": "HOT SALE IN EUROPE electric racing motorcycle",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "HOT SALE IN EUROPE electric racing motorcycle electric motorcycle for sale adult electric motorcycles",
       "price": 920,
       "discountPercentage": 14.4,
@@ -1779,7 +1784,7 @@
     {
       "id": 93,
       "name": "Automatic Motor Gas Motorcycles",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "150cc 4-Stroke Motorcycle Automatic Motor Gas Motorcycles Scooter motorcycles 150cc scooter",
       "price": 1050,
       "discountPercentage": 3.34,
@@ -1799,7 +1804,7 @@
     {
       "id": 94,
       "name": "new arrivals Fashion motocross goggles",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "new arrivals Fashion motocross goggles motorcycle motocross racing motorcycle",
       "price": 900,
       "discountPercentage": 3.85,
@@ -1818,7 +1823,7 @@
     {
       "id": 95,
       "name": "Wholesale cargo lashing Belt",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Wholesale cargo lashing Belt Tie Down end Ratchet strap customized strap 25mm motorcycle 1500kgs with rubber handle",
       "price": 930,
       "discountPercentage": 17.67,
@@ -1838,7 +1843,7 @@
     {
       "id": 96,
       "name": "lighting ceiling kitchen",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Wholesale slim hanging decorative kid room lighting ceiling kitchen chandeliers pendant light modern",
       "price": 30,
       "discountPercentage": 14.89,
@@ -1858,7 +1863,7 @@
     {
       "id": 97,
       "name": "Metal Ceramic Flower",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Metal Ceramic Flower Chandelier Home Lighting American Vintage Hanging Lighting Pendant Lamp",
       "price": 35,
       "discountPercentage": 10.94,
@@ -1878,7 +1883,7 @@
     {
       "id": 98,
       "name": "3 lights lndenpant kitchen islang",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "3 lights lndenpant kitchen islang dining room pendant rice paper chandelier contemporary led pendant light modern chandelier",
       "price": 34,
       "discountPercentage": 5.92,
@@ -1898,7 +1903,7 @@
     {
       "id": 99,
       "name": "American Vintage Wood Pendant Light",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "American Vintage Wood Pendant Light Farmhouse Antique Hanging Lamp Lampara Colgante",
       "price": 46,
       "discountPercentage": 8.84,
@@ -1918,7 +1923,7 @@
     {
       "id": 100,
       "name": "Crystal chandelier maria theresa for 12 light",
-      "href":"productdetail",
+      "href": "productdetail",
       "imagealt": "Crystal chandelier maria theresa for 12 light",
       "price": 47,
       "discountPercentage": 16,
@@ -1935,502 +1940,505 @@
       ]
     }
   ],
-  "categories":
-  [
-    
-      {
-        "value": "smartphones",
-        "label": "smartphones",
-        "checked": false
-      },
-      {
-        "value": "laptops",
-        "label": "laptops",
-        "checked": false
-      },
-      {
-        "value": "fragrances",
-        "label": "fragrances",
-        "checked": false
-      },
-      {
-        "value": "skincare",
-        "label": "skincare",
-        "checked": false
-      },
-      {
-        "value": "groceries",
-        "label": "groceries",
-        "checked": false
-      },
-      {
-        "value": "home-decoration",
-        "label": "home decoration",
-        "checked": false
-      },
-      {
-        "value": "furniture",
-        "label": "furniture",
-        "checked": false
-      },
-      {
-        "value": "tops",
-        "label": "tops",
-        "checked": false
-      },
-      {
-        "value": "womens-dresses",
-        "label": "womens dresses",
-        "checked": false
-      },
-      {
-        "value": "womens-shoes",
-        "label": "womens shoes",
-        "checked": false
-      },
-      {
-        "value": "mens-shirts",
-        "label": "mens shirts",
-        "checked": false
-      },
-      {
-        "value": "mens-shoes",
-        "label": "mens shoes",
-        "checked": false
-      },
-      {
-        "value": "mens-watches",
-        "label": "mens watches",
-        "checked": false
-      },
-      {
-        "value": "womens-watches",
-        "label": "womens watches",
-        "checked": false
-      },
-      {
-        "value": "womens-bags",
-        "label": "womens bags",
-        "checked": false
-      },
-      {
-        "value": "womens-jewellery",
-        "label": "womens jewellery",
-        "checked": false
-      },
-      {
-        "value": "sunglasses",
-        "label": "sunglasses",
-        "checked": false
-      },
-      {
-        "value": "automotive",
-        "label": "automotive",
-        "checked": false
-      },
-      {
-        "value": "motorcycle",
-        "label": "motorcycle",
-        "checked": false
-      },
-      {
-        "value": "lighting",
-        "label": "lighting",
-        "checked": false
-      }
+  "categories": [
+    {
+      "value": "smartphones",
+      "label": "smartphones",
+      "checked": false
+    },
+    {
+      "value": "laptops",
+      "label": "laptops",
+      "checked": false
+    },
+    {
+      "value": "fragrances",
+      "label": "fragrances",
+      "checked": false
+    },
+    {
+      "value": "skincare",
+      "label": "skincare",
+      "checked": false
+    },
+    {
+      "value": "groceries",
+      "label": "groceries",
+      "checked": false
+    },
+    {
+      "value": "home-decoration",
+      "label": "home decoration",
+      "checked": false
+    },
+    {
+      "value": "furniture",
+      "label": "furniture",
+      "checked": false
+    },
+    {
+      "value": "tops",
+      "label": "tops",
+      "checked": false
+    },
+    {
+      "value": "womens-dresses",
+      "label": "womens dresses",
+      "checked": false
+    },
+    {
+      "value": "womens-shoes",
+      "label": "womens shoes",
+      "checked": false
+    },
+    {
+      "value": "mens-shirts",
+      "label": "mens shirts",
+      "checked": false
+    },
+    {
+      "value": "mens-shoes",
+      "label": "mens shoes",
+      "checked": false
+    },
+    {
+      "value": "mens-watches",
+      "label": "mens watches",
+      "checked": false
+    },
+    {
+      "value": "womens-watches",
+      "label": "womens watches",
+      "checked": false
+    },
+    {
+      "value": "womens-bags",
+      "label": "womens bags",
+      "checked": false
+    },
+    {
+      "value": "womens-jewellery",
+      "label": "womens jewellery",
+      "checked": false
+    },
+    {
+      "value": "sunglasses",
+      "label": "sunglasses",
+      "checked": false
+    },
+    {
+      "value": "automotive",
+      "label": "automotive",
+      "checked": false
+    },
+    {
+      "value": "motorcycle",
+      "label": "motorcycle",
+      "checked": false
+    },
+    {
+      "value": "lighting",
+      "label": "lighting",
+      "checked": false
+    }
   ],
-    "brands": 
-     [
-      {
-        "value": "Apple",
-        "label": "Apple",
-        "checked": false
-      },
-      {
-        "value": "Samsung",
-        "label": "Samsung",
-        "checked": false
-      },
-      {
-        "value": "OPPO",
-        "label": "OPPO",
-        "checked": false
-      },
-      {
-        "value": "Huawei",
-        "label": "Huawei",
-        "checked": false
-      },
-      {
-        "value": "Microsoft Surface",
-        "label": "Microsoft Surface",
-        "checked": false
-      },
-      {
-        "value": "Infinix",
-        "label": "Infinix",
-        "checked": false
-      },
-      {
-        "value": "HP Pavilion",
-        "label": "HP Pavilion",
-        "checked": false
-      },
-      {
-        "value": "Impression of Acqua Di Gio",
-        "label": "Impression of Acqua Di Gio",
-        "checked": false
-      },
-      {
-        "value": "Royal_Mirage",
-        "label": "Royal_Mirage",
-        "checked": false
-      },
-      {
-        "value": "Fog Scent Xpressio",
-        "label": "Fog Scent Xpressio",
-        "checked": false
-      },
-      {
-        "value": "Al Munakh",
-        "label": "Al Munakh",
-        "checked": false
-      },
-      {
-        "value": "Lord - Al-Rehab",
-        "label": "Lord   Al Rehab",
-        "checked": false
-      },
-      {
-        "value": "L'Oreal Paris",
-        "label": "L'Oreal Paris",
-        "checked": false
-      },
-      {
-        "value": "Hemani Tea",
-        "label": "Hemani Tea",
-        "checked": false
-      },
-      {
-        "value": "Dermive",
-        "label": "Dermive",
-        "checked": false
-      },
-      {
-        "value": "ROREC White Rice",
-        "label": "ROREC White Rice",
-        "checked": false
-      },
-      {
-        "value": "Fair & Clear",
-        "label": "Fair & Clear",
-        "checked": false
-      },
-      {
-        "value": "Saaf & Khaas",
-        "label": "Saaf & Khaas",
-        "checked": false
-      },
-      {
-        "value": "Bake Parlor Big",
-        "label": "Bake Parlor Big",
-        "checked": false
-      },
-      {
-        "value": "Baking Food Items",
-        "label": "Baking Food Items",
-        "checked": false
-      },
-      {
-        "value": "fauji",
-        "label": "fauji",
-        "checked": false
-      },
-      {
-        "value": "Dry Rose",
-        "label": "Dry Rose",
-        "checked": false
-      },
-      {
-        "value": "Boho Decor",
-        "label": "Boho Decor",
-        "checked": false
-      },
-      {
-        "value": "Flying Wooden",
-        "label": "Flying Wooden",
-        "checked": false
-      },
-      {
-        "value": "LED Lights",
-        "label": "LED Lights",
-        "checked": false
-      },
-      {
-        "value": "luxury palace",
-        "label": "luxury palace",
-        "checked": false
-      },
-      {
-        "value": "Golden",
-        "label": "Golden",
-        "checked": false
-      },
-      {
-        "value": "Furniture Bed Set",
-        "label": "Furniture Bed Set",
-        "checked": false
-      },
-      {
-        "value": "Ratttan Outdoor",
-        "label": "Ratttan Outdoor",
-        "checked": false
-      },
-      {
-        "value": "Kitchen Shelf",
-        "label": "Kitchen Shelf",
-        "checked": false
-      },
-      {
-        "value": "Multi Purpose",
-        "label": "Multi Purpose",
-        "checked": false
-      },
-      {
-        "value": "AmnaMart",
-        "label": "AmnaMart",
-        "checked": false
-      },
-      {
-        "value": "Professional Wear",
-        "label": "Professional Wear",
-        "checked": false
-      },
-      {
-        "value": "Soft Cotton",
-        "label": "Soft Cotton",
-        "checked": false
-      },
-      {
-        "value": "Top Sweater",
-        "label": "Top Sweater",
-        "checked": false
-      },
-      {
-        "value": "RED MICKY MOUSE..",
-        "label": "RED MICKY MOUSE..",
-        "checked": false
-      },
-      {
-        "value": "Digital Printed",
-        "label": "Digital Printed",
-        "checked": false
-      },
-      {
-        "value": "Ghazi Fabric",
-        "label": "Ghazi Fabric",
-        "checked": false
-      },
-      {
-        "value": "IELGY",
-        "label": "IELGY",
-        "checked": false
-      },
-      {
-        "value": "IELGY fashion",
-        "label": "IELGY fashion",
-        "checked": false
-      },
-      {
-        "value": "Synthetic Leather",
-        "label": "Synthetic Leather",
-        "checked": false
-      },
-      {
-        "value": "Sandals Flip Flops",
-        "label": "Sandals Flip Flops",
-        "checked": false
-      },
-      {
-        "value": "Maasai Sandals",
-        "label": "Maasai Sandals",
-        "checked": false
-      },
-      {
-        "value": "Arrivals Genuine",
-        "label": "Arrivals Genuine",
-        "checked": false
-      },
-      {
-        "value": "Vintage Apparel",
-        "label": "Vintage Apparel",
-        "checked": false
-      },
-      {
-        "value": "FREE FIRE",
-        "label": "FREE FIRE",
-        "checked": false
-      },
-      {
-        "value": "The Warehouse",
-        "label": "The Warehouse",
-        "checked": false
-      },
-      {
-        "value": "Sneakers",
-        "label": "Sneakers",
-        "checked": false
-      },
-      {
-        "value": "Rubber",
-        "label": "Rubber",
-        "checked": false
-      },
-      {
-        "value": "Naviforce",
-        "label": "Naviforce",
-        "checked": false
-      },
-      {
-        "value": "SKMEI 9117",
-        "label": "SKMEI 9117",
-        "checked": false
-      },
-      {
-        "value": "Strap Skeleton",
-        "label": "Strap Skeleton",
-        "checked": false
-      },
-      {
-        "value": "Stainless",
-        "label": "Stainless",
-        "checked": false
-      },
-      {
-        "value": "Eastern Watches",
-        "label": "Eastern Watches",
-        "checked": false
-      },
-      {
-        "value": "Luxury Digital",
-        "label": "Luxury Digital",
-        "checked": false
-      },
-      {
-        "value": "Watch Pearls",
-        "label": "Watch Pearls",
-        "checked": false
-      },
-      {
-        "value": "Bracelet",
-        "label": "Bracelet",
-        "checked": false
-      },
-      {
-        "value": "LouisWill",
-        "label": "LouisWill",
-        "checked": false
-      },
-      {
-        "value": "Copenhagen Luxe",
-        "label": "Copenhagen Luxe",
-        "checked": false
-      },
-      {
-        "value": "Steal Frame",
-        "label": "Steal Frame",
-        "checked": false
-      },
-      {
-        "value": "Darojay",
-        "label": "Darojay",
-        "checked": false
-      },
-      {
-        "value": "Fashion Jewellery",
-        "label": "Fashion Jewellery",
-        "checked": false
-      },
-      {
-        "value": "Cuff Butterfly",
-        "label": "Cuff Butterfly",
-        "checked": false
-      },
-      {
-        "value": "Designer Sun Glasses",
-        "label": "Designer Sun Glasses",
-        "checked": false
-      },
-      {
-        "value": "mastar watch",
-        "label": "mastar watch",
-        "checked": false
-      },
-      {
-        "value": "Car Aux",
-        "label": "Car Aux",
-        "checked": false
-      },
-      {
-        "value": "W1209 DC12V",
-        "label": "W1209 DC12V",
-        "checked": false
-      },
-      {
-        "value": "TC Reusable",
-        "label": "TC Reusable",
-        "checked": false
-      },
-      {
-        "value": "Neon LED Light",
-        "label": "Neon LED Light",
-        "checked": false
-      },
-      {
-        "value": "METRO 70cc Motorcycle - MR70",
-        "label": "METRO 70cc Motorcycle   MR70",
-        "checked": false
-      },
-      {
-        "value": "BRAVE BULL",
-        "label": "BRAVE BULL",
-        "checked": false
-      },
-      {
-        "value": "shock absorber",
-        "label": "shock absorber",
-        "checked": false
-      },
-      {
-        "value": "JIEPOLLY",
-        "label": "JIEPOLLY",
-        "checked": false
-      },
-      {
-        "value": "Xiangle",
-        "label": "Xiangle",
-        "checked": false
-      },
-      {
-        "value": "lightingbrilliance",
-        "label": "lightingbrilliance",
-        "checked": false
-      },
-      {
-        "value": "Ifei Home",
-        "label": "Ifei Home",
-        "checked": false
-      },
-      {
-        "value": "DADAWU",
-        "label": "DADAWU",
-        "checked": false
-      },
-      {
-        "value": "YIOSI",
-        "label": "YIOSI",
-        "checked": false
-      }
-    ]
-  
+  "brands": [
+    {
+      "value": "Apple",
+      "label": "Apple",
+      "checked": false
+    },
+    {
+      "value": "Samsung",
+      "label": "Samsung",
+      "checked": false
+    },
+    {
+      "value": "OPPO",
+      "label": "OPPO",
+      "checked": false
+    },
+    {
+      "value": "Huawei",
+      "label": "Huawei",
+      "checked": false
+    },
+    {
+      "value": "Microsoft Surface",
+      "label": "Microsoft Surface",
+      "checked": false
+    },
+    {
+      "value": "Infinix",
+      "label": "Infinix",
+      "checked": false
+    },
+    {
+      "value": "HP Pavilion",
+      "label": "HP Pavilion",
+      "checked": false
+    },
+    {
+      "value": "Impression of Acqua Di Gio",
+      "label": "Impression of Acqua Di Gio",
+      "checked": false
+    },
+    {
+      "value": "Royal_Mirage",
+      "label": "Royal_Mirage",
+      "checked": false
+    },
+    {
+      "value": "Fog Scent Xpressio",
+      "label": "Fog Scent Xpressio",
+      "checked": false
+    },
+    {
+      "value": "Al Munakh",
+      "label": "Al Munakh",
+      "checked": false
+    },
+    {
+      "value": "Lord - Al-Rehab",
+      "label": "Lord   Al Rehab",
+      "checked": false
+    },
+    {
+      "value": "L'Oreal Paris",
+      "label": "L'Oreal Paris",
+      "checked": false
+    },
+    {
+      "value": "Hemani Tea",
+      "label": "Hemani Tea",
+      "checked": false
+    },
+    {
+      "value": "Dermive",
+      "label": "Dermive",
+      "checked": false
+    },
+    {
+      "value": "ROREC White Rice",
+      "label": "ROREC White Rice",
+      "checked": false
+    },
+    {
+      "value": "Fair & Clear",
+      "label": "Fair & Clear",
+      "checked": false
+    },
+    {
+      "value": "Saaf & Khaas",
+      "label": "Saaf & Khaas",
+      "checked": false
+    },
+    {
+      "value": "Bake Parlor Big",
+      "label": "Bake Parlor Big",
+      "checked": false
+    },
+    {
+      "value": "Baking Food Items",
+      "label": "Baking Food Items",
+      "checked": false
+    },
+    {
+      "value": "fauji",
+      "label": "fauji",
+      "checked": false
+    },
+    {
+      "value": "Dry Rose",
+      "label": "Dry Rose",
+      "checked": false
+    },
+    {
+      "value": "Boho Decor",
+      "label": "Boho Decor",
+      "checked": false
+    },
+    {
+      "value": "Flying Wooden",
+      "label": "Flying Wooden",
+      "checked": false
+    },
+    {
+      "value": "LED Lights",
+      "label": "LED Lights",
+      "checked": false
+    },
+    {
+      "value": "luxury palace",
+      "label": "luxury palace",
+      "checked": false
+    },
+    {
+      "value": "Golden",
+      "label": "Golden",
+      "checked": false
+    },
+    {
+      "value": "Furniture Bed Set",
+      "label": "Furniture Bed Set",
+      "checked": false
+    },
+    {
+      "value": "Ratttan Outdoor",
+      "label": "Ratttan Outdoor",
+      "checked": false
+    },
+    {
+      "value": "Kitchen Shelf",
+      "label": "Kitchen Shelf",
+      "checked": false
+    },
+    {
+      "value": "Multi Purpose",
+      "label": "Multi Purpose",
+      "checked": false
+    },
+    {
+      "value": "AmnaMart",
+      "label": "AmnaMart",
+      "checked": false
+    },
+    {
+      "value": "Professional Wear",
+      "label": "Professional Wear",
+      "checked": false
+    },
+    {
+      "value": "Soft Cotton",
+      "label": "Soft Cotton",
+      "checked": false
+    },
+    {
+      "value": "Top Sweater",
+      "label": "Top Sweater",
+      "checked": false
+    },
+    {
+      "value": "RED MICKY MOUSE..",
+      "label": "RED MICKY MOUSE..",
+      "checked": false
+    },
+    {
+      "value": "Digital Printed",
+      "label": "Digital Printed",
+      "checked": false
+    },
+    {
+      "value": "Ghazi Fabric",
+      "label": "Ghazi Fabric",
+      "checked": false
+    },
+    {
+      "value": "IELGY",
+      "label": "IELGY",
+      "checked": false
+    },
+    {
+      "value": "IELGY fashion",
+      "label": "IELGY fashion",
+      "checked": false
+    },
+    {
+      "value": "Synthetic Leather",
+      "label": "Synthetic Leather",
+      "checked": false
+    },
+    {
+      "value": "Sandals Flip Flops",
+      "label": "Sandals Flip Flops",
+      "checked": false
+    },
+    {
+      "value": "Maasai Sandals",
+      "label": "Maasai Sandals",
+      "checked": false
+    },
+    {
+      "value": "Arrivals Genuine",
+      "label": "Arrivals Genuine",
+      "checked": false
+    },
+    {
+      "value": "Vintage Apparel",
+      "label": "Vintage Apparel",
+      "checked": false
+    },
+    {
+      "value": "FREE FIRE",
+      "label": "FREE FIRE",
+      "checked": false
+    },
+    {
+      "value": "The Warehouse",
+      "label": "The Warehouse",
+      "checked": false
+    },
+    {
+      "value": "Sneakers",
+      "label": "Sneakers",
+      "checked": false
+    },
+    {
+      "value": "Rubber",
+      "label": "Rubber",
+      "checked": false
+    },
+    {
+      "value": "Naviforce",
+      "label": "Naviforce",
+      "checked": false
+    },
+    {
+      "value": "SKMEI 9117",
+      "label": "SKMEI 9117",
+      "checked": false
+    },
+    {
+      "value": "Strap Skeleton",
+      "label": "Strap Skeleton",
+      "checked": false
+    },
+    {
+      "value": "Stainless",
+      "label": "Stainless",
+      "checked": false
+    },
+    {
+      "value": "Eastern Watches",
+      "label": "Eastern Watches",
+      "checked": false
+    },
+    {
+      "value": "Luxury Digital",
+      "label": "Luxury Digital",
+      "checked": false
+    },
+    {
+      "value": "Watch Pearls",
+      "label": "Watch Pearls",
+      "checked": false
+    },
+    {
+      "value": "Bracelet",
+      "label": "Bracelet",
+      "checked": false
+    },
+    {
+      "value": "LouisWill",
+      "label": "LouisWill",
+      "checked": false
+    },
+    {
+      "value": "Copenhagen Luxe",
+      "label": "Copenhagen Luxe",
+      "checked": false
+    },
+    {
+      "value": "Steal Frame",
+      "label": "Steal Frame",
+      "checked": false
+    },
+    {
+      "value": "Darojay",
+      "label": "Darojay",
+      "checked": false
+    },
+    {
+      "value": "Fashion Jewellery",
+      "label": "Fashion Jewellery",
+      "checked": false
+    },
+    {
+      "value": "Cuff Butterfly",
+      "label": "Cuff Butterfly",
+      "checked": false
+    },
+    {
+      "value": "Designer Sun Glasses",
+      "label": "Designer Sun Glasses",
+      "checked": false
+    },
+    {
+      "value": "mastar watch",
+      "label": "mastar watch",
+      "checked": false
+    },
+    {
+      "value": "Car Aux",
+      "label": "Car Aux",
+      "checked": false
+    },
+    {
+      "value": "W1209 DC12V",
+      "label": "W1209 DC12V",
+      "checked": false
+    },
+    {
+      "value": "TC Reusable",
+      "label": "TC Reusable",
+      "checked": false
+    },
+    {
+      "value": "Neon LED Light",
+      "label": "Neon LED Light",
+      "checked": false
+    },
+    {
+      "value": "METRO 70cc Motorcycle - MR70",
+      "label": "METRO 70cc Motorcycle   MR70",
+      "checked": false
+    },
+    {
+      "value": "BRAVE BULL",
+      "label": "BRAVE BULL",
+      "checked": false
+    },
+    {
+      "value": "shock absorber",
+      "label": "shock absorber",
+      "checked": false
+    },
+    {
+      "value": "JIEPOLLY",
+      "label": "JIEPOLLY",
+      "checked": false
+    },
+    {
+      "value": "Xiangle",
+      "label": "Xiangle",
+      "checked": false
+    },
+    {
+      "value": "lightingbrilliance",
+      "label": "lightingbrilliance",
+      "checked": false
+    },
+    {
+      "value": "Ifei Home",
+      "label": "Ifei Home",
+      "checked": false
+    },
+    {
+      "value": "DADAWU",
+      "label": "DADAWU",
+      "checked": false
+    },
+    {
+      "value": "YIOSI",
+      "label": "YIOSI",
+      "checked": false
+    }
+  ],
+  "users": [
+    {
+      "email": "karan@gmail.com",
+      "password": "Prajapat@2003",
+      "id": 1
+    }
+  ]
 }
