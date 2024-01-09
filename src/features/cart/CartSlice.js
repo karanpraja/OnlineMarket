@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './counterAPI';
+import { addToCart, fetchCartItemsByUserId } from './CartAPI';
 
 const initialState = {
-  value: 0,
+  items: [],
   status: 'idle',
 };
 
@@ -11,17 +11,25 @@ const initialState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const incrementAsync= createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
+export const addToCartAsync= createAsyncThunk(
+  'cart/addToCart',
+  async (cart) => {
+    const response = await addToCart(cart);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+export const fetchCartItemsByUserIdAsync= createAsyncThunk(
+  'cart/fetchItemsByUserId',
+  async (user) => {
+    const response = await fetchCartItemsByUserId(user);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const cartSlice = createSlice({
+  name: 'cart',
   initialState,
   reducers: {
     increment: (state) => {
@@ -41,17 +49,26 @@ export const counterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(addToCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.items.push( action.payload);
+      })
+      .addCase(fetchCartItemsByUserIdAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCartItemsByUserIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.items= action.payload;
+        console.log(state.items)
       });
   },
 });
 
-export const { increment, decrement} = counterSlice.actions;
 
-export const selectCount = (state) => state.counter.value;
-export default counterSlice.reducer;
+export const selectCart = (state) => state.cart.cart;
+export const selectItems = (state) => state.cart.items;
+
+export default cartSlice.reducer;
