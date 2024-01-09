@@ -19,18 +19,19 @@ export function fetchUserData(user) {
 export function fetchLoggedInUserData(user) {
   const email=user.email
   const password=user.password
-  return new Promise(async(resolve,rejected) =>{
+  return new Promise(async(resolve,reject) =>{
     const response=await fetch('http://localhost:8080/users?email='+email)
     const data=await response.json()
     console.log(data)
-    if(data.email){
-if(data.password==password){
-resolve({data})
-}else{
-rejected({message:"wrong password"})
-}
+    console.log(data[0].password)
+    if(data[0].email){
+         if(data[0].password==password){
+        resolve({data})
+         }else{
+        reject({message:"wrong password"})
+         }
     }else{
-      rejected({message:"Wrong credentials"})
+      reject({message:"Wrong credentials"})
     }
   //how to keep data in resolve
   }

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchLoggedInUserData, fetchUserData } from './AuthAPI';
 
 const initialState = {
-  user: [],
+  user: null,
   status: 'idle',
   error:null
 };
@@ -22,8 +22,9 @@ export const fetchUserDataAsync= createAsyncThunk(
 );
 export const fetchLoggedInUserDataAsync= createAsyncThunk(
   'counter/fetchLoggedInUserData',
-  async () => {
-    const response = await fetchLoggedInUserData();
+  async (user) => {
+    
+    const response = await fetchLoggedInUserData(user);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -66,11 +67,12 @@ export const authSlice = createSlice({
       })
       .addCase(fetchLoggedInUserDataAsync.rejected, (state, action) => {
         state.status = 'idle';
-        state.error = action.payload.message;
+        state.error = action.error;
       })
   },
 });
 
 
 export const selectLoggedInUser = (state) => state.auth.user;
+export const selectError=(state)=>state.auth.error
 export default authSlice.reducer;

@@ -58,16 +58,13 @@ export function fetchBrands() {
     const response=await fetch('http://localhost:8080/brands')
     const data=await response.json()
     resolve({data})//how to keep data in resolve    
-}
-  );
+}  );
 }
 export function fetchProductbyId(id) {
-  console.log(id+'api'+id)
   return new Promise(async(resolve) =>{
     const response=await fetch(`http://localhost:8080/products/${id}`)
     
     const data=await response.json()
-  console.log(data)
     resolve({data})//how to keep data in resolve    
 }
   );

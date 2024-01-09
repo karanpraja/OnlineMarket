@@ -4,6 +4,8 @@ import { RadioGroup } from '@headlessui/react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductbyIdAsync, selectProduct } from '../ProductSlice'
+import { addToCartAsync } from '../../cart/CartSlice'
+import { selectLoggedInUser } from '../../auth/AuthSlice'
 // import { fetchProductbyId } from '../ProductAPI'
 const  colors=[
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -36,16 +38,23 @@ function classNames(...classes) {
   const [selectedColor, setSelectedColor] = useState(colors[1])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const product=useSelector(selectProduct)
+  const user=useSelector(selectLoggedInUser)
 
   const dispatch=useDispatch()
 const params=useParams()
   useEffect(()=>{
     dispatch(fetchProductbyIdAsync(params.id))
-    console.log("useEffect")
  },[dispatch,params.id])
-  console.log(product)
-console.log(params.id)
-console.log()
+  
+ const handleSubmit=(event)=>{
+  event.preventDefault()
+  console.log(user)
+  if(user){
+  dispatch(addToCartAsync({...product,user:user[0].id,quantity:1}))
+  }
+  console.log('event')
+ }
+
 
   return (
     <div className="bg-white">
@@ -248,6 +257,7 @@ console.log()
 
               <button
                 type="submit"
+                onClick={handleSubmit}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Add to Cart

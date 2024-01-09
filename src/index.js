@@ -8,6 +8,7 @@ import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+export const serverjsx='http://localhost:8080'
 
 root.render(
   <React.StrictMode>

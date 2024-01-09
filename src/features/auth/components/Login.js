@@ -1,14 +1,23 @@
 import { Link, Navigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
-import { fetchLoggedInUserDataAsync } from "../AuthSlice";
+import { fetchLoggedInUserDataAsync, selectError, selectLoggedInUser } from "../AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login=()=>{
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const dispatch=useDispatch()
+  const error=useSelector(selectError)
+  const user=useSelector(selectLoggedInUser)
   const onSubmit=data=>{
-    fetchLoggedInUserDataAsync({email:data.email,password:data.password})
+    console.log('logindata')
+    console.log(data)
+    dispatch(fetchLoggedInUserDataAsync({email:data.email,password:data.password}))
   }
+  console.log(error)
   
 return(
+  <>
+  {user&&<Navigate to='/'></Navigate>}
     <div>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -40,6 +49,8 @@ return(
                 {errors.email?.message}
 
                 </p>
+                
+
               </div>
             </div>
 
@@ -66,6 +77,10 @@ return(
                 {errors.password?.message}
 
                 </p>
+                {error&&<p className="text-red-500 flex items-center justify-between">
+                {error.message}
+
+                </p>}
               </div>
             </div>
 <div>
@@ -98,6 +113,7 @@ return(
         </div>
       </div> 
     </div>
+    </>
 )
 }
 export default Login
