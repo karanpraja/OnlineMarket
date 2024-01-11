@@ -9,12 +9,12 @@ export function addToCart(product) {
       method:"POST",
       body:JSON.stringify(product),
       headers:{
-        "Content-Type":"application/json"
-      }
+        'content-type': 'application/json'      }
     })
     const data=await response.json()
     resolve({data})//how to keep data in resolve
   });}
+
 
   export function fetchCartItemsByUserId(user) {
     console.log("fetchCartItemsByUserId")
@@ -25,11 +25,11 @@ export function addToCart(product) {
       const data=await response.json()
       resolve({data})//how to keep data in resolve
     });}
-  // export function updateCart(product) {
+  // export function updateCartItem(user) {
   //   return new Promise(async(resolve) =>{
-  //     const response=await fetch(`http://localhost:8080/cart?user.email=${product.user.email}`,{
+  //     const response=await fetch(`http://localhost:8080/cart?user=${user}`,{
   //       method:"PATCH",
-  //       body:JSON.stringify(product),
+  //       body:JSON.stringify(user),
   //       headers:{
   //         "Content-Type":"application/json"
   //       }
@@ -37,3 +37,50 @@ export function addToCart(product) {
   //     const data=await response.json()
   //     resolve({data})//how to keep data in resolve
   //   });}
+
+export function updateCart(item) {
+  console.log(serverjsx)
+  console.log("updateCart")
+  console.log(item)
+  return new Promise(async(resolve) =>{
+    const response=await fetch(`${serverjsx}/cart/${item.id}`,{
+      method:"PATCH",
+      body:JSON.stringify(item),
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    const data=await response.json()
+    resolve({data})//how to keep data in resolve
+  });}
+
+  
+
+  export function updateCartUser(data1) {
+    console.log(data1)
+    return new Promise(async(resolve) =>{
+      const response=await fetch(`${serverjsx}/users/${data1.user[0].id}`,{
+        method:"PATCH",
+        body:JSON.stringify(data1.addresses),
+        headers:{
+          'content-type': 'application/json'
+        }
+      })
+      const data=await response.json()
+      resolve({data})//how to keep data in resolve
+    });}
+  
+export function deleteItemFromCart(id) {
+  return new Promise(async(resolve) =>{
+    const response=await fetch(`${serverjsx}/cart/${id}`,{
+      method:"DELETE",
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    // const data=await response.json()
+    resolve({data:{id:id}})//how to keep data in resolve
+  });}
+
+  
+

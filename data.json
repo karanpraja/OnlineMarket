@@ -2438,7 +2438,18 @@
     {
       "email": "karan@gmail.com",
       "password": "Prajapat@2003",
-      "id": 1
+      "id": 1,
+      "addresses": [
+        {
+          "fullname": "kkKSAD",
+          "email": "JLKSD",
+          "country": "United States",
+          "streetaddress": "LKJSA",
+          "city": "LJKDS",
+          "region": "KJLSDJ",
+          "postalcode": "KLKJ"
+        }
+      ]
     },
     {
       "email": "demo@mail.com",
@@ -2449,71 +2460,103 @@
       "email": "karan2@gmail.com",
       "password": "Prajapat@2003",
       "id": 3
+    },
+    {
+      "email": "karan3@gmail.com",
+      "password": "Prajapat@2003",
+      "id": 4,
+      "addresses": [
+        {
+          "fullname": "AKSDJFklj",
+          "email": "jksdajfklj",
+          "country": "United States",
+          "streetaddress": "kljsdkjf",
+          "city": "lkjsdfklj",
+          "region": "`kljskldjf",
+          "postalcode": "lkjsdfkjf"
+        },
+        {
+          "fullname": "f",
+          "email": "f",
+          "country": "United States",
+          "streetaddress": "f",
+          "city": "f",
+          "region": "f",
+          "postalcode": "f"
+        },
+        {
+          "fullname": "h",
+          "email": "h",
+          "country": "United States",
+          "streetaddress": "h",
+          "city": "h",
+          "region": "h",
+          "postalcode": "h"
+        },
+        {
+          "fullname": "Karan Prajpat",
+          "email": "karan@gmail.com",
+          "country": "United States",
+          "streetaddress": "basni benda ",
+          "city": "jodhpur",
+          "region": "Rajasthan",
+          "postalcode": "117008"
+        },
+        {
+          "fullname": "sdgfa",
+          "email": "asdgf",
+          "country": "United States",
+          "streetaddress": "sdfQ",
+          "city": "SDFG",
+          "region": "DFS",
+          "postalcode": "DSAFG"
+        },
+        {
+          "fullname": "asfd",
+          "email": "dsfg",
+          "country": "United States",
+          "streetaddress": "sd",
+          "city": "dsf",
+          "region": "sfd",
+          "postalcode": "fd"
+        },
+        {
+          "fullname": "asfd",
+          "email": "dsfgasdf",
+          "country": "Mexico",
+          "streetaddress": "sdasdf",
+          "city": "dsfasdf",
+          "region": "sfdasdf",
+          "postalcode": "fdsadfasdf"
+        }
+      ]
+    },
+    {
+      "email": "karan4@gmail.com",
+      "password": "Prajapat@2003",
+      "id": 5
     }
   ],
   "cart": [
     {
-      "id": 2,
-      "name": "iPhone X",
+      "id": 7,
+      "name": "Samsung Galaxy Book",
       "href": "productdetail",
-      "imagealt": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
-      "brand": "Apple",
-      "category": "smartphones",
-      "imageSrc": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/2/1.jpg",
-        "https://cdn.dummyjson.com/product-images/2/2.jpg",
-        "https://cdn.dummyjson.com/product-images/2/3.jpg",
-        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-      ],
-      "user": 3,
-      "quantity": 1
-    },
-    {
-      "id": 6,
-      "name": "MacBook Pro",
-      "href": "productdetail",
-      "imagealt": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-      "price": 1749,
-      "discountPercentage": 11.02,
-      "rating": 4.57,
-      "stock": 83,
-      "brand": "Apple",
-      "category": "laptops",
-      "imageSrc": "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/6/1.png",
-        "https://cdn.dummyjson.com/product-images/6/2.jpg",
-        "https://cdn.dummyjson.com/product-images/6/3.png",
-        "https://cdn.dummyjson.com/product-images/6/4.jpg"
-      ],
-      "user": 3,
-      "quantity": 1
-    },
-    {
-      "id": 8,
-      "name": "Microsoft Surface Laptop 4",
-      "href": "productdetail",
-      "imagealt": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+      "imagealt": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
       "price": 1499,
-      "discountPercentage": 10.23,
-      "rating": 4.43,
-      "stock": 68,
-      "brand": "Microsoft Surface",
+      "discountPercentage": 4.15,
+      "rating": 4.25,
+      "stock": 50,
+      "brand": "Samsung",
       "category": "laptops",
-      "imageSrc": "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg",
+      "imageSrc": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
       "images": [
-        "https://cdn.dummyjson.com/product-images/8/1.jpg",
-        "https://cdn.dummyjson.com/product-images/8/2.jpg",
-        "https://cdn.dummyjson.com/product-images/8/3.jpg",
-        "https://cdn.dummyjson.com/product-images/8/4.jpg",
-        "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"
+        "https://cdn.dummyjson.com/product-images/7/1.jpg",
+        "https://cdn.dummyjson.com/product-images/7/2.jpg",
+        "https://cdn.dummyjson.com/product-images/7/3.jpg",
+        "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
       ],
-      "user": 3,
+      "user": 1,
       "quantity": 1
     },
     {
@@ -2539,42 +2582,45 @@
       "quantity": 1
     },
     {
-      "id": 3,
-      "name": "Samsung Universe 9",
+      "id": 2,
+      "name": "iPhone X",
       "href": "productdetail",
-      "imagealt": "Samsung's new variant which goes beyond Galaxy to the Universe",
-      "price": 1249,
-      "discountPercentage": 15.46,
-      "rating": 4.09,
-      "stock": 36,
-      "brand": "Samsung",
+      "imagealt": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
       "category": "smartphones",
-      "imageSrc": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+      "imageSrc": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
       "images": [
-        "https://cdn.dummyjson.com/product-images/3/1.jpg"
+        "https://cdn.dummyjson.com/product-images/2/1.jpg",
+        "https://cdn.dummyjson.com/product-images/2/2.jpg",
+        "https://cdn.dummyjson.com/product-images/2/3.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
       ],
-      "user": 1,
+      "user": 4,
       "quantity": 1
     },
     {
-      "id": 7,
-      "name": "Samsung Galaxy Book",
+      "id": 6,
+      "name": "MacBook Pro",
       "href": "productdetail",
-      "imagealt": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-      "price": 1499,
-      "discountPercentage": 4.15,
-      "rating": 4.25,
-      "stock": 50,
-      "brand": "Samsung",
+      "imagealt": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      "price": 1749,
+      "discountPercentage": 11.02,
+      "rating": 4.57,
+      "stock": 83,
+      "brand": "Apple",
       "category": "laptops",
-      "imageSrc": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
+      "imageSrc": "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
       "images": [
-        "https://cdn.dummyjson.com/product-images/7/1.jpg",
-        "https://cdn.dummyjson.com/product-images/7/2.jpg",
-        "https://cdn.dummyjson.com/product-images/7/3.jpg",
-        "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+        "https://cdn.dummyjson.com/product-images/6/1.png",
+        "https://cdn.dummyjson.com/product-images/6/2.jpg",
+        "https://cdn.dummyjson.com/product-images/6/3.png",
+        "https://cdn.dummyjson.com/product-images/6/4.jpg"
       ],
-      "user": 1,
+      "user": 4,
       "quantity": 1
     }
   ]

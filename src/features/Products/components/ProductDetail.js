@@ -49,8 +49,10 @@ const params=useParams()
  const handleSubmit=(event)=>{
   event.preventDefault()
   console.log(user)
+  const newProduct=product
+  delete newProduct[newProduct.id]
   if(user){
-  dispatch(addToCartAsync({...product,user:user[0].id,quantity:1}))
+  dispatch(addToCartAsync({...newProduct,user:user[0].id,quantity:1}))
   }
   console.log('event')
  }
