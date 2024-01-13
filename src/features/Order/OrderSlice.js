@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './counterAPI';
+import { OrderItemsbyUser, resetCart } from './OrderApi';
+import { deleteItemFromCart } from '../cart/CartAPI';
 
 const initialState = {
-  value: 0,
+  orderStatus: null,
   status: 'idle',
+  resetMessage:null
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -11,17 +13,21 @@ const initialState = {
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
-export const incrementAsync= createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
+export const OrderItemsbyUserAsync=createAsyncThunk(
+  "order/OrderItemsbyUser",async(order)=>{
+const response=await OrderItemsbyUser(order)
+// const data=await response.json()
+return response.data
   }
-);
+)
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const resetCartAsync=createAsyncThunk(
+  'order/resetCart',async(id)=>{
+    const response=await resetCart(id)
+    return response.data
+  })
+export const orderSlice = createSlice({
+  name: 'order',
   initialState,
   reducers: {
     increment: (state) => {
@@ -41,17 +47,23 @@ export const counterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(OrderItemsbyUserAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(OrderItemsbyUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
-      });
+        state.orderStatus=action.payload;
+      })
+      .addCase(resetCartAsync.pending,(state)=>{
+        state.status='loading';
+      })
+      .addCase(resetCartAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.resetMessage=action.payload
+        console.log(action.payload)
+      })
   },
 });
 
-export const { increment, decrement} = counterSlice.actions;
-
-export const selectCount = (state) => state.counter.value;
-export default counterSlice.reducer;
+export  const selectOrderStatus=state=>state.order.orderStatus
+export default orderSlice.reducer;

@@ -4,7 +4,8 @@ import { fetchLoggedInUserData, fetchUserData } from './AuthAPI';
 const initialState = {
   user: null,
   status: 'idle',
-  error:null
+  error:null,
+  addresses:null
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -68,6 +69,8 @@ export const authSlice = createSlice({
       .addCase(fetchLoggedInUserDataAsync.rejected, (state, action) => {
         state.status = 'idle';
         state.error = action.error;
+        state.addresses=action.payload.addresses;
+        console.log(action.payload.addresses)
       })
   },
 });
@@ -75,4 +78,5 @@ export const authSlice = createSlice({
 
 export const selectLoggedInUser = (state) => state.auth.user;
 export const selectError=(state)=>state.auth.error
+export const selectAddresses=(state)=>state.auth.addresses
 export default authSlice.reducer;
