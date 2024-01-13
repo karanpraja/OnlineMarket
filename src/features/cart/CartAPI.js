@@ -16,12 +16,13 @@ export function addToCart(product) {
   });}
 
 
-  export function fetchCartItemsByUserId(user) {
+  export function fetchCartItemsByUserId(id) {
     console.log("fetchCartItemsByUserId")
+    console.log(id)
     return new Promise(async(resolve) =>{
       
-      console.log([user,'fetchCartItemsByUserId'])
-      const response=await fetch(`${serverjsx}/cart?user=${user}`)
+      console.log([id,'fetchCartItemsByUserId'])
+      const response=await fetch(`${serverjsx}/cart?user=${id}`)
       const data=await response.json()
       resolve({data})//how to keep data in resolve
     });}
@@ -81,6 +82,16 @@ export function deleteItemFromCart(id) {
     // const data=await response.json()
     resolve({data:{id:id}})//how to keep data in resolve
   });}
-
+  export function deleteAddressfromUser(id) {
+    return new Promise(async(resolve) =>{
+      const response=await fetch(`${serverjsx}/users?${id}`,{
+        method:"DELETE",
+        headers:{
+          'content-type': 'application/json'
+        }
+      })
+      // const data=await response.json()
+      resolve({data:{id:id}})//how to keep data in resolve
+    });}
   
 

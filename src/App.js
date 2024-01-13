@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLoggedInUserDataAsync, selectLoggedInUser } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserId } from './features/cart/CartAPI';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
+import OrderPage from './pages/CheckOrderPage';
+import { selectProducts } from './features/Products/ProductSlice';
 
 const router = createBrowserRouter([
   {
@@ -43,13 +45,18 @@ const router = createBrowserRouter([
   },
   {path:'productdetail/:id',
   element:<ProductDetailPage/>
+  },
+  {path:'checkorder/:id',
+  element:<OrderPage/>
   }
+
 
 ]);
 
 function App() {
   // const user=useSelector(selectLoggedInUser)
   const dispatch=useDispatch()
+  const items=useSelector(selectProducts)
   useEffect(()=>{
     // console.log([user,'app'])
   //   if(user){
@@ -60,7 +67,7 @@ function App() {
     
   dispatch(fetchCartItemsByUserIdAsync(id))
     
-},[dispatch,
+},[dispatch,items
   // user
 ])
   return (

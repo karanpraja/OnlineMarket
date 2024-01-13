@@ -2,12 +2,18 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteItemFromCartAsync, selectItems, updateCartUserAsync } from "../features/cart/CartSlice"
-import { fetchLoggedInUserDataAsync, selectAddresses, selectLoggedInUser } from "../features/auth/AuthSlice"
+import {  selectItems, updateCartUserAsync } from "../features/cart/CartSlice"
+import { fetchLoggedInUserDataAsync, selectLoggedInUser } from "../features/auth/AuthSlice"
+import { useEffect, useState } from "react"
+import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
 
 const CheckoutPage=()=>{
-  const navigate=useNavigate()
   const dispatch=useDispatch()
+
+  useEffect(()=>{
+    dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+  },[dispatch])
+
     const {
       register,
       handleSubmit,
@@ -17,30 +23,48 @@ const CheckoutPage=()=>{
     const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
     const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*item.price+amount,0)
    const user=useSelector(selectLoggedInUser)
+   const [paymentMethod,setPaymentMethod]=useState('cash')
+   const [selectedAddress,setSelectedAddress]=useState(null)
    const addresses=user[0].addresses
    console.log(addresses)
+   console.log(user[0])
 
     const deleteItem=(e,id)=>{
-     dispatch( deleteItemFromCartAsync(id))
+      dispatch(updateCartUserAsync({user:user,addresses:{addresses:addresses}}))
     }
+  
     const updateUser=(data)=>{
       console.log(data)
       console.log(user[0])
       if(user[0].addresses){
         const addresses=[...user[0].addresses,data]
         dispatch(updateCartUserAsync({user:user,addresses:{addresses:addresses}}))
-        console.log("lkajsdfl")
         console.log(user[0].addresses)
         
       }else{ 
           dispatch(updateCartUserAsync({...user[0],addresses:[data]}))
       }
-  dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+      dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+
     }
+    const handleAddress=(e,index)=>{
+      setSelectedAddress(index)
+    }
+    const handlePayment=(e)=>{
+      setPaymentMethod(e.target.value)
+    }
+    const handlerOrder=(e)=>{
+      console.log('order')
+dispatch(OrderItemsbyUserAsync({user,Items,selectedAddress,paymentMethod,totalAmount,totalItems}))
+
+    }
+    const orderStatus=useSelector(selectOrderStatus)
+    console.log(orderStatus)
 return(
   <>
-  {Items<1&&<Navigate to='/'></Navigate>}
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  {orderStatus&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
+  {Items<1&&<Navigate to='/'></Navigate>} 
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
       
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
                 <div className="lg:col-span-3 ">
@@ -176,6 +200,22 @@ return(
 
               </div>
             </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+                Phone No.
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  {...register('phone',{required:'Please enter phone'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.phone&&<p className="text-red-500">{errors.phone.message}</p>}
+
+              </div>
+            </div>
           </div>
 
 
@@ -215,13 +255,14 @@ return(
                 
                 {/* <div className="relative flex gap-x-3"> */}
                 <ul role="list"  className="mt-3">
-      {addresses&&addresses.map((address) => (
-        <li key={address.region} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
+      {addresses&&addresses.map((address,index) => (
+        <li key={index} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
           <div className="flex min-w-0 gap-x-4 ">
             {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={address.imageUrl} alt="" /> */}
             <input
                     id="name"
-                    name="payments"
+                    name="addresses"
+                    onChange={e=>handleAddress(e,index)}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -233,8 +274,17 @@ return(
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p className="text-sm leading-6 text-gray-900">{address.city}</p>
             <p className="text-sm leading-6 text-gray-900">{address.postalcode}</p>
+            <button
+        type="button"
+        className="font-medium text-indigo-600 hover:text-indigo-500"
+      >
+        Remove
+      </button>
           </div>
+          
         </li>
+        
+    
       ))}
     </ul>
                 
@@ -248,6 +298,9 @@ return(
                   <input
                     id="cash"
                     name="payments"
+                    value={paymentMethod}
+                    onChange={e=>handlePayment(e)}
+                    checked={paymentMethod==='cash'}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -259,6 +312,10 @@ return(
                   <input
                     id="online"
                     name="payments"
+                    value='online'
+                    checked={paymentMethod==='online'}
+
+                    onChange={e=>handlePayment(e)}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -343,7 +400,7 @@ return(
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                    <div className="flex justify-between text-base font-medium text-gray-900">
+                      <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
                         <p>${totalAmount}</p>
                       </div>
@@ -353,14 +410,15 @@ return(
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <Link
-                          to="checkout"
+                        <div
+                        onClick={e=>handlerOrder(e)}
+                          // to="checkout"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                          Order and Pay
-                        </Link>
+                        </div>
                       </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         
                       </div>
                     </div>
