@@ -37,15 +37,13 @@ function classNames(...classes) {
  function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[1])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
-  const product=useSelector(selectProduct)
   const user=useSelector(selectLoggedInUser)
-
   const dispatch=useDispatch()
 const params=useParams()
   useEffect(()=>{
     dispatch(fetchProductbyIdAsync(params.id))
  },[dispatch,params.id])
-  
+ const product=useSelector(selectProduct)
  const handleSubmit=(event)=>{
   event.preventDefault()
   console.log(user)
@@ -54,7 +52,7 @@ const params=useParams()
   if(user){
   dispatch(addToCartAsync({...newProduct,user:user[0].id,quantity:1}))
   }
-  console.log('event')
+  
  }
 
 

@@ -17,11 +17,14 @@ import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLoggedInUserDataAsync, selectLoggedInUser } from './features/auth/AuthSlice';
-import { fetchCartItemsByUserId } from './features/cart/CartAPI';
+import {  loginUserAsync, selectLoggedInUser } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
 import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
+import UserOrderPage from './pages/UserOrderPage';
+import UserProfilePage from './pages/UserProfilePage';
+import { fetchLoggedInUserOrders } from './features/User/UserApi';
+import { fetchLoggedInUserDataAsync, fetchLoggedInUserOrdersAsync } from './features/User/UserSlice';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +51,14 @@ const router = createBrowserRouter([
   },
   {path:'checkorder/:id',
   element:<OrderPage/>
+  },
+  {
+    path:'userorders',
+    element:<UserOrderPage/>
+  },
+  {
+    path:'userprofile',
+    element:<UserProfilePage/>
   }
 
 
@@ -62,10 +73,14 @@ function App() {
   //   if(user){
   // dispatch(fetchCartItemsByUserIdAsync(user[0].id))
   //   }
-    const id='4'
-  dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
-    
+    const id=4
+    // console.log([user,'app'])
+
+  dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+    dispatch(fetchLoggedInUserOrdersAsync(id))
   dispatch(fetchCartItemsByUserIdAsync(id))
+  dispatch(fetchLoggedInUserDataAsync(id))
+
     
 },[dispatch,items
   // user

@@ -60,6 +60,7 @@ export const orderSlice = createSlice({
       .addCase(resetCartAsync.fulfilled,(state,action)=>{
         state.status='idle';
         state.resetMessage=action.payload
+        state.orderStatus=null
         console.log(action.payload)
       })
   },

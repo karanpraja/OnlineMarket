@@ -19,8 +19,8 @@ const navigation = [
   { name: 'Reports', href: '#', current: false },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '/checkout' },
-  { name: 'Settings', href: '/checkout' },
+  { name: 'Your Profile', href: '/userprofile' },
+  { name: 'Your Orders', href: '/userorders' },
   { name: 'Sign out', href: '/login' },
 ]
 
@@ -28,7 +28,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navbar=({children})=>{
+const Navbar=({children,data})=>{
   const Items=useSelector(selectItems)
   let totalItems
   if(Items){
@@ -164,7 +164,7 @@ return(
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt=""/>
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
@@ -204,7 +204,7 @@ return(
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+           { <h1 className="text-3xl font-bold tracking-tight text-gray-900">{data?data:'Dashboard'}</h1>}
           </div>
         </header>
         <main>

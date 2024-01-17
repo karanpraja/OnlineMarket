@@ -9,14 +9,16 @@ let orderStatus=useSelector(selectOrderStatus)
 const params=useParams()
 const dispatch=useDispatch()
 const user=useSelector(selectLoggedInUser)
+console.log(user)
 const resetMessage=useSelector(selectOrderStatus)
 const id=params.id
  
-useEffect(()=>{
-  dispatch(resetCartAsync(user[0].id))
-  console.log(resetMessage)
-  
-},[dispatch])
+
+const handleReset=()=>{
+ // reset cart
+ dispatch(resetCartAsync(user[0].id))
+ // reset currentOrder
+}
 return(
     <>
 {!params.id&&<Navigate to='/'></Navigate>}
@@ -29,6 +31,7 @@ return(
           <Link
             to="/"
             className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={handleReset}
           >
             Go back home
           </Link>

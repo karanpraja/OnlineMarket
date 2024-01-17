@@ -9,7 +9,7 @@ export function addToCart(product) {
       method:"POST",
       body:JSON.stringify(product),
       headers:{
-        'content-type': 'application/json'      }
+        'Content-Type': 'application/json'      }
     })
     const data=await response.json()
     resolve({data})//how to keep data in resolve
@@ -17,11 +17,7 @@ export function addToCart(product) {
 
 
   export function fetchCartItemsByUserId(id) {
-    console.log("fetchCartItemsByUserId")
-    console.log(id)
     return new Promise(async(resolve) =>{
-      
-      console.log([id,'fetchCartItemsByUserId'])
       const response=await fetch(`${serverjsx}/cart?user=${id}`)
       const data=await response.json()
       resolve({data})//how to keep data in resolve
@@ -48,7 +44,7 @@ export function updateCart(item) {
       method:"PATCH",
       body:JSON.stringify(item),
       headers:{
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     })
     const data=await response.json()
@@ -64,7 +60,7 @@ export function updateCart(item) {
         method:"PATCH",
         body:JSON.stringify(data1.addresses),
         headers:{
-          'content-type': 'application/json'
+          'Content-Type': 'application/json'
         }
       })
       const data=await response.json()
@@ -76,9 +72,10 @@ export function deleteItemFromCart(id) {
     const response=await fetch(`${serverjsx}/cart/${id}`,{
       method:"DELETE",
       headers:{
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     })
+    
     // const data=await response.json()
     resolve({data:{id:id}})//how to keep data in resolve
   });}

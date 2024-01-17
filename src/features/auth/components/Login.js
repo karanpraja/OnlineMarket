@@ -1,6 +1,6 @@
 import { Link, Navigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
-import { fetchLoggedInUserDataAsync, selectError, selectLoggedInUser } from "../AuthSlice";
+import { loginUserAsync, selectError, selectLoggedInUser } from "../AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login=()=>{
@@ -11,7 +11,7 @@ const Login=()=>{
   const onSubmit=data=>{
     console.log('logindata')
     console.log(data)
-    dispatch(fetchLoggedInUserDataAsync({email:data.email,password:data.password}))
+    dispatch(loginUserAsync({email:data.email,password:data.password}))
   }
   console.log(error)
   

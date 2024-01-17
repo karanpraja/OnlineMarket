@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchLoggedInUserData, fetchUserData } from './AuthAPI';
+import {  fetchUserData, loginUser } from './AuthAPI';
 
 const initialState = {
   user: null,
   status: 'idle',
   error:null,
-  addresses:null
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -21,11 +20,11 @@ export const fetchUserDataAsync= createAsyncThunk(
     return response.data;
   }
 );
-export const fetchLoggedInUserDataAsync= createAsyncThunk(
+export const loginUserAsync= createAsyncThunk(
   'counter/fetchLoggedInUserData',
   async (user) => {
     
-    const response = await fetchLoggedInUserData(user);
+    const response = await loginUser(user);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -59,18 +58,16 @@ export const authSlice = createSlice({
         state.status = 'idle';
         state.user = action.payload;
       })
-      .addCase(fetchLoggedInUserDataAsync.pending, (state) => {
+      .addCase(loginUserAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchLoggedInUserDataAsync.fulfilled, (state, action) => {
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.user = action.payload;
       })
-      .addCase(fetchLoggedInUserDataAsync.rejected, (state, action) => {
+      .addCase(loginUserAsync.rejected, (state, action) => {
         state.status = 'idle';
         state.error = action.error;
-        state.addresses=action.payload.addresses;
-        console.log(action.payload.addresses)
       })
   },
 });
