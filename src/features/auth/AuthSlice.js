@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {  fetchUserData, loginUser } from './AuthAPI';
+import {  fetchUserData, loginUser, logoutUser } from './AuthAPI';
+import { updateCart } from '../cart/CartAPI';
 
 const initialState = {
   user: null,
@@ -13,15 +14,16 @@ const initialState = {
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const fetchUserDataAsync= createAsyncThunk(
-  'counter/fetchUser',
+  'auth/fetchUser',
   async (user) => {
     const response = await fetchUserData(user);
     // The value we return becomes the `fulfilled` action payload
+    // const response2=await updateCart()
     return response.data;
   }
 );
 export const loginUserAsync= createAsyncThunk(
-  'counter/fetchLoggedInUserData',
+  'auth/fetchLoggedInUserData',
   async (user) => {
     
     const response = await loginUser(user);
@@ -29,7 +31,16 @@ export const loginUserAsync= createAsyncThunk(
     return response.data;
   }
 );
-
+export const logoutUserAsync= createAsyncThunk(
+  'auth/logoutUser',
+  async (user) => {
+    
+    const response = await logoutUser(user);
+    // const data="Logged out successfully"
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -69,6 +80,15 @@ export const authSlice = createSlice({
         state.status = 'idle';
         state.error = action.error;
       })
+      .addCase(logoutUserAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(logoutUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.user = null;
+      })
+
+
   },
 });
 

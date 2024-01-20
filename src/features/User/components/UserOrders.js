@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {  selectLoggedInUser } from "../../auth/AuthSlice"
 import { fetchLoggedInUserDataAsync, fetchLoggedInUserOrdersAsync, selectOrderbyLoggedInUser } from "../UserSlice"
 import { selectItems } from "../../cart/CartSlice"
+import { Navigate } from "react-router-dom"
 
 const UserOrders=(props)=>{
   const dispatch=useDispatch()
@@ -17,7 +18,7 @@ const UserOrders=(props)=>{
     
     console.log(orders)
     
-return(
+return(<>                                                                                                  {!orders&&<Navigate to='/'></Navigate>}            
               <div className="flex  flex-col overflow-y-scroll overflow-hidden  bg-white shadow-xl">
                 <div className="flex-1 overflow-y-auto  overflow-hidden px-4 py-6  sm:px-6">
                   <div className="flex items-start justify-between">
@@ -60,7 +61,7 @@ return(
 
                             <div >
                               
-                              {/* {order.user[0].addresses[order.selectedAddress].map((address,index) => ( */}
+                              {/* {order.addresses[order.selectedAddress].map((address,index) => ( */}
     
       {/* ))} */}
                               </div>
@@ -86,13 +87,13 @@ return(
             {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={address.imageUrl} alt="" /> */}
             {/* <input  id="name" name="addresses"  type="radio"  className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"/> */}
             <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{order.user[0].addresses[order.selectedAddress].fullname}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{order.user[0].addresses[order.selectedAddress].country}</p>
+              <p className="text-sm font-semibold leading-6 text-gray-900">{order.addresses[order.selectedAddress].fullname}</p>
+              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{order.addresses[order.selectedAddress].country}</p>
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p className="text-sm leading-6 text-gray-900">{order.user[0].addresses[order.selectedAddress].city}</p>
-            <p className="text-sm leading-6 text-gray-900">{order.user[0].addresses[order.selectedAddress].postalcode}</p>
+            <p className="text-sm leading-6 text-gray-900">{order.addresses[order.selectedAddress].city}</p>
+            <p className="text-sm leading-6 text-gray-900">{order.addresses[order.selectedAddress].postalcode}</p>
           </div>
         </li>
                           </li>
@@ -108,7 +109,8 @@ return(
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   </div>
                 </div>
-              </div>)
+              </div>
+              </>)
 
 }
 export default UserOrders;

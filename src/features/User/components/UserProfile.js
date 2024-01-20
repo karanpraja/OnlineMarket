@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {  selectLoggedInUser } from "../../auth/AuthSlice"
 // import { fetchLoggedInUserData, fetchLoggedInUserOrders, fetchUpdateLoggedInUserData } from "../UserApi"
 import {  fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../UserSlice"
+import { Navigate } from "react-router-dom"
 
 
 const UserProfile=()=>{
@@ -11,11 +12,14 @@ const UserProfile=()=>{
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm()
     const dispatch=useDispatch()
     const user=useSelector(selectUserInfo)
+    console.log(user)
     const [selectedAddressIndex,setSelectedAddressIndex]=useState(-1)
+    const [showAddress,setShowAddress]=useState(false)
     const removeHandler=(e,index)=>{
 const newAddress={...user,addresses:[...user.addresses]}//
 newAddress.addresses.splice(index,1)
@@ -45,6 +49,16 @@ setValue('phone',address.phone)
       dispatch(fetchUpdateLoggedInUserDataAsync(newAddress)) 
       setSelectedAddressIndex(-1)
     }
+    const handleAddAddress=(data)=>{
+      const newAddress={...user,addresses:[...user.addresses]}//
+      newAddress.addresses.push(data)
+      console.log(newAddress)
+      dispatch(fetchUpdateLoggedInUserDataAsync(newAddress)) 
+      setShowAddress(false)
+      reset({
+        data
+      })
+    }
     
 return(<>
              {user&& <div className="flex  flex-col h-full overflow-y-scroll overflow-hidden  bg-white shadow-xl">
@@ -56,12 +70,193 @@ return(<>
 
                   <div className="mt-8">
                     <div className="flow-root my-10">
+                   {!showAddress  && <div className="flex">
+                    <button
+          onClick={e=>{setShowAddress(true)}}
+          className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Add Address
+        </button> 
+        </div>}
+        <div>
+        {showAddress&&   <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit((data)=>{handleAddAddress(data)
+        })} >
+      {/* <div className="space-y-12 my-10 "> */}
+        
+        <div className="border-b border-gray-900/10 pb-12">
+          <h2 className="text-2xl font-semibold leading-7 -gray-900 ">Add Address</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p> 
 
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="sm:col-span-4">
+              <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                Full Name
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  {...register('fullname',{required:'Please enter full name'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.fullname&&<p className="text-red-500">{errors.fullname.message}</p>}
+              </div>
+            </div>
+
+
+            <div className="sm:col-span-4">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                Email address
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  {...register('email',{required:'Please enter email'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.email&&<p className="text-red-500">{errors.email.message}</p>}
+
+              </div>
+            </div>
+
+            <div className="sm:col-span-3">
+              <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                Country
+              </label>
+              <div className="mt-2">
+                <select
+                  id="country"
+                  name="country"
+                  {...register('country',{required:'Please select country'})}
+
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>Mexico</option>
+                </select>
+                {errors.country&&<p className="text-red-500">{errors.country.message}</p>}
+
+              </div>
+            </div>
+
+            <div className="col-span-full">
+              <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
+                Street address
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="street-address"
+                  id="street-address"
+                  {...register('streetaddress',{required:'Please enter streetaddress'})}
+
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.streetaddress&&<p className="text-red-500">{errors.streetaddress.message}</p>}
+
+              </div>
+            </div>
+
+            <div className="sm:col-span-2 sm:col-start-1">
+              <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
+                City
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  {...register('city',{required:'Please enter city'})}
+                  autoComplete="address-level2"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.city&&<p className="text-red-500">{errors.city.message}</p>}
+
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
+                State / Province
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="region"
+                  id="region"
+                  {...register('region',{required:'Please enter region'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.region&&<p className="text-red-500">{errors.region.message}</p>}
+                
+              </div>
+            </div>
+
+            <div className="sm:col-span-2">
+              <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+                ZIP / Postal code
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="postal-code"
+                  id="postalcode"
+                  {...register('postalcode',{required:'Please enter postalcode'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.postalcode&&<p className="text-red-500">{errors.postalcode.message}</p>}
+
+              </div>
+            </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+                Phone No.
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  {...register('phone',{required:'Please enter phone'})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.phone&&<p className="text-red-500">{errors.phone.message}</p>}
+
+              </div>
+            </div>
+          </div>
+
+
+          <div className="mt-6 flex items-center justify-end gap-x-6">
+        <button 
+        type="button" 
+        onClick={e=>{setShowAddress(false)}}
+        className="text-sm font-semibold leading-6 text-gray-900">
+          Cancel
+        </button>
+        <button
+          type="submit"
+// onClick={e=>setShowAddress(false)}
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Add Address
+        </button>
+      </div>
+        </div>
+      {/* </div> */}
+
+     
+                   </form>}
+                   </div>
+       
                     <div className="flex justify-between">
   <h2>Saved Addresses</h2>
 </div>
                       <ul role="list" className=" divide-gray-200">
-                        {user.addresses.length>0?user.addresses.map((address,index) => (  <div>
+                        {(user.addresses.length>0)?(user.addresses.map((address,index) => (  <div>
                         {selectedAddressIndex===index&&  <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit((data)=>{editForm(data,index)})} >
       <div className="space-y-12 my-10 ">
         
@@ -243,7 +438,8 @@ return(<>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p className="text-sm leading-6 text-gray-900">{address.city}</p>
-            <p className="text-sm leading-6 text-gray-900">{address.postalcode}</p>
+            <p className="text-sm leading-6 text-gray-900">{address.phone}</p>
+
             <div className="flex gap-5">
                                       <button
                                       onClick={e=>removeHandler(e,index)}
@@ -263,7 +459,7 @@ return(<>
                                </div>
                          </li>
                          </div>                           
-                        )):<p>Please add address</p>}
+                        ))):(<p>Please add address</p>)}
                       </ul>
                     </div>
                   </div>

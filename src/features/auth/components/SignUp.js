@@ -8,7 +8,7 @@ const SignUp=()=>{
   const user=useSelector(selectLoggedInUser)
   const dispatch=useDispatch()
   const onSubmit = data => {
-dispatch(fetchUserDataAsync({email:data.email,password:data.password}))
+dispatch(fetchUserDataAsync({email:data.email,password:data.password, addresses:[]}))
     console.log(data)
   };
 
@@ -24,7 +24,7 @@ return(
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+           Create a new account
           </h2>
         </div>
 
@@ -108,10 +108,10 @@ return(
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
+            Already have account?{' '}
+            <Link to='/login' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+             Sign in
+            </Link>
           </p>
         </div>
       </div> 

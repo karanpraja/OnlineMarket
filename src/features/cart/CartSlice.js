@@ -57,6 +57,12 @@ export const updateCartUserAsync= createAsyncThunk(
     return response.data;
   }
 );
+export const resetCartItemsAsync=createAsyncThunk('cart/resetCart',
+  async()=>{
+    const data="reset cart"
+return data
+  }
+)
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -119,6 +125,15 @@ export const cartSlice = createSlice({
         state.addresses=action.payload
         console.log(state.user)
       })
+      .addCase(resetCartItemsAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(resetCartItemsAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.items=null
+        console.log(state.user)
+      })
+
   },
 });
 

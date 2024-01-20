@@ -36,4 +36,18 @@ export function loginUser(user) {
     // setTimeout(() => resolve({ data: amount }), 500)
   );
 }
+export function logoutUser(user) {
+  const email=user.email
+  const password=user.password
+  return new Promise(async(resolve,reject) =>{
+    const response=await fetch('http://localhost:8080/users/'+user[0].id)
+    const data=await response.json()
+  resolve({data:"User logged Out"})
+  //how to keep data in resolve
+  }
+    // setTimeout(() => resolve({ data: amount }), 500)
+  );
+}
+
+
 

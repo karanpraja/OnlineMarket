@@ -1938,6 +1938,42 @@
         "https://cdn.dummyjson.com/product-images/100/3.jpg",
         "https://cdn.dummyjson.com/product-images/100/thumbnail.jpg"
       ]
+    },
+    {
+      "name": "lkj",
+      "imagealt": "lkj",
+      "price": "123",
+      "discountPercentage": "87",
+      "stock": "78",
+      "imageSrc": "786",
+      "href": "productdetail",
+      "brand": "Apple",
+      "category": "smartphones",
+      "images": [
+        "7678",
+        "6876",
+        "767",
+        "6786"
+      ],
+      "id": 101
+    },
+    {
+      "name": "Samsung Universe",
+      "imagealt": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": "1249",
+      "discountPercentage": "15.46",
+      "stock": "36",
+      "imageSrc": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+      "href": "productdetail",
+      "brand": "Apple",
+      "category": "smartphones",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/3/1.jpg",
+        "https://cdn.dummyjson.com/product-images/3/1.jpg",
+        "https://cdn.dummyjson.com/product-images/3/1.jpg",
+        "https://cdn.dummyjson.com/product-images/3/1.jpg"
+      ],
+      "id": 102
     }
   ],
   "categories": [
@@ -2475,6 +2511,17 @@
           "region": "Raj",
           "postalcode": "110079",
           "phone": "2121212121"
+        },
+        {
+          "data": "test",
+          "fullname": "Karan",
+          "email": "Prajapat@gmail.com",
+          "country": "United States",
+          "streetaddress": "xyz",
+          "city": "abc",
+          "region": "raj",
+          "postalcode": "342032",
+          "phone": "2121212121"
         }
       ]
     },
@@ -2482,9 +2529,85 @@
       "email": "karan4@gmail.com",
       "password": "Prajapat@2003",
       "id": 5
+    },
+    {
+      "email": "karan5@gmail.com",
+      "password": "Prajapat@2003",
+      "addresses": [],
+      "id": 6
+    },
+    {
+      "email": "karan6@gmail.com",
+      "password": "Prajapat@2003",
+      "addresses": [],
+      "id": 7
+    },
+    {
+      "email": "karan8@gmail.com",
+      "password": "Prajapat@2003",
+      "addresses": [
+        {
+          "fullname": "Karan",
+          "email": "abc",
+          "country": "United States",
+          "streetaddress": "ijk",
+          "city": "lmn",
+          "region": "op",
+          "postalcode": "qrs",
+          "phone": "tu"
+        },
+        {
+          "fullname": "abcdefghijkl",
+          "email": "m",
+          "country": "United States",
+          "streetaddress": "o",
+          "city": "pq",
+          "region": "r",
+          "postalcode": "s",
+          "phone": "t"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "email": "karan9@gmail.com",
+      "password": "Prajapat@2003",
+      "addresses": [
+        {
+          "fullname": "abc",
+          "email": "h",
+          "country": "United States",
+          "streetaddress": "h",
+          "city": "h",
+          "region": "h",
+          "postalcode": "h",
+          "phone": "h"
+        }
+      ],
+      "id": 9,
+      "role": "admin"
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": 3,
+      "name": "Samsung Universe 9",
+      "href": "productdetail",
+      "imagealt": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": 1249,
+      "discountPercentage": 15.46,
+      "rating": 4.09,
+      "stock": 36,
+      "brand": "Samsung",
+      "category": "smartphones",
+      "imageSrc": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/3/1.jpg"
+      ],
+      "user": 9,
+      "quantity": 1
+    }
+  ],
   "orders": [
     {
       "user": [
@@ -2838,26 +2961,7 @@
       "id": 4
     },
     {
-      "user": [
-        {
-          "email": "karan3@gmail.com",
-          "password": "Prajapat@2003",
-          "id": 4,
-          "addresses": [
-            {},
-            {
-              "fullname": "jLJL",
-              "email": "lkjkl",
-              "country": "United States",
-              "streetaddress": "kljkl",
-              "city": "jkj",
-              "region": "klj",
-              "postalcode": "kljkl",
-              "phone": "j"
-            }
-          ]
-        }
-      ],
+      "user": 8,
       "status": "pending",
       "Items": [
         {
@@ -2878,108 +2982,7 @@
             "https://cdn.dummyjson.com/product-images/2/3.jpg",
             "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
           ],
-          "user": 4,
-          "quantity": 1
-        }
-      ],
-      "selectedAddress": 1,
-      "paymentMethod": "cash",
-      "totalAmount": 899,
-      "totalItems": 1,
-      "id": 5
-    },
-    {
-      "user": [
-        {
-          "email": "karan3@gmail.com",
-          "password": "Prajapat@2003",
-          "id": 4,
-          "addresses": [
-            {},
-            {
-              "fullname": "jLJL",
-              "email": "lkjkl",
-              "country": "United States",
-              "streetaddress": "kljkl",
-              "city": "jkj",
-              "region": "klj",
-              "postalcode": "kljkl",
-              "phone": "j"
-            }
-          ]
-        }
-      ],
-      "status": "pending",
-      "Items": [
-        {
-          "id": 2,
-          "name": "iPhone X",
-          "href": "productdetail",
-          "imagealt": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-          "price": 899,
-          "discountPercentage": 17.94,
-          "rating": 4.44,
-          "stock": 34,
-          "brand": "Apple",
-          "category": "smartphones",
-          "imageSrc": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/2/1.jpg",
-            "https://cdn.dummyjson.com/product-images/2/2.jpg",
-            "https://cdn.dummyjson.com/product-images/2/3.jpg",
-            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-          ],
-          "user": 4,
-          "quantity": 1
-        }
-      ],
-      "selectedAddress": 1,
-      "paymentMethod": "cash",
-      "totalAmount": 899,
-      "totalItems": 1,
-      "id": 6
-    },
-    {
-      "user": [
-        {
-          "email": "karan3@gmail.com",
-          "password": "Prajapat@2003",
-          "id": 4,
-          "addresses": [
-            {
-              "fullname": "Karan",
-              "email": "karan@gmail.com",
-              "country": "United States",
-              "streetaddress": "xyz",
-              "city": "abc",
-              "region": "efg",
-              "postalcode": "ijk",
-              "phone": "1212121212"
-            }
-          ]
-        }
-      ],
-      "status": "pending",
-      "Items": [
-        {
-          "id": 2,
-          "name": "iPhone X",
-          "href": "productdetail",
-          "imagealt": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-          "price": 899,
-          "discountPercentage": 17.94,
-          "rating": 4.44,
-          "stock": 34,
-          "brand": "Apple",
-          "category": "smartphones",
-          "imageSrc": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/2/1.jpg",
-            "https://cdn.dummyjson.com/product-images/2/2.jpg",
-            "https://cdn.dummyjson.com/product-images/2/3.jpg",
-            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-          ],
-          "user": 4,
+          "user": 8,
           "quantity": 1
         }
       ],
@@ -2987,7 +2990,29 @@
       "paymentMethod": "cash",
       "totalAmount": 899,
       "totalItems": 1,
-      "id": 7
+      "addresses": [
+        {
+          "fullname": "Karan",
+          "email": "abc",
+          "country": "United States",
+          "streetaddress": "ijk",
+          "city": "lmn",
+          "region": "op",
+          "postalcode": "qrs",
+          "phone": "tu"
+        },
+        {
+          "fullname": "abcdefghijkl",
+          "email": "m",
+          "country": "United States",
+          "streetaddress": "o",
+          "city": "pq",
+          "region": "r",
+          "postalcode": "s",
+          "phone": "t"
+        }
+      ],
+      "id": 5
     }
   ]
 }

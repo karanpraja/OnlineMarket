@@ -2,7 +2,7 @@ import { serverjsx } from "../.."
 
 export function fetchLoggedInUserOrders(userId){
     return new Promise(async(resolve)=>{
-const response=await fetch(`${serverjsx}/orders?user.id=`+userId)
+const response=await fetch(`${serverjsx}/orders?user=`+userId)
 const data=await response.json()
 resolve({data})
     })

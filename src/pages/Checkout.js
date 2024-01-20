@@ -22,7 +22,7 @@ const CheckoutPage=()=>{
    const [selectedAddress,setSelectedAddress]=useState(null)
    const addresses=user[0].addresses
    console.log(addresses)
-   console.log(user[0])
+   console.log(user)
 
   
     const updateUser=(data)=>{
@@ -47,7 +47,9 @@ const CheckoutPage=()=>{
     }
     const handlerOrder=(e)=>{
       console.log('order')
-dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems}))
+      console.log(user)
+      const id=user[0].id
+dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems,user:id,addresses:user[0].addresses}))
 
     }
     const orderStatus=useSelector(selectOrderStatus)
