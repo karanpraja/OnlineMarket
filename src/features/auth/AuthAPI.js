@@ -16,14 +16,12 @@ export function fetchUserData(user) {
     // setTimeout(() => resolve({ data: amount }), 500)
   );
 }
-export function fetchLoggedInUserData(user) {
+export function loginUser(user) {
   const email=user.email
   const password=user.password
   return new Promise(async(resolve,reject) =>{
     const response=await fetch('http://localhost:8080/users?email='+email)
     const data=await response.json()
-    console.log(data)
-    console.log(data[0].password)
     if(data[0].email){
          if(data[0].password==password){
         resolve({data})
@@ -38,4 +36,18 @@ export function fetchLoggedInUserData(user) {
     // setTimeout(() => resolve({ data: amount }), 500)
   );
 }
+export function logoutUser(user) {
+  const email=user.email
+  const password=user.password
+  return new Promise(async(resolve,reject) =>{
+    const response=await fetch('http://localhost:8080/users/'+user[0].id)
+    const data=await response.json()
+  resolve({data:"User logged Out"})
+  //how to keep data in resolve
+  }
+    // setTimeout(() => resolve({ data: amount }), 500)
+  );
+}
+
+
 

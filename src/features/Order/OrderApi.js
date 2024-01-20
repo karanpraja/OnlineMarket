@@ -25,6 +25,7 @@ export function resetCart(id){
         const response1=await fetchCartItemsByUserId(id)
         // const data=await response.json()
         // console.log(data)
+        console.log(response1)
         const items=response1.data
         console.log(items)
 

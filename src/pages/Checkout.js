@@ -3,48 +3,40 @@ import { Link, Navigate, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import {  selectItems, updateCartUserAsync } from "../features/cart/CartSlice"
-import { fetchLoggedInUserDataAsync, selectLoggedInUser } from "../features/auth/AuthSlice"
+import { loginUserAsync, selectLoggedInUser } from "../features/auth/AuthSlice"
 import { useEffect, useState } from "react"
 import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
 
 const CheckoutPage=()=>{
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
   const dispatch=useDispatch()
-
-  useEffect(()=>{
-    dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
-  },[dispatch])
-
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm()
-    const Items=useSelector(selectItems)
+  const user=useSelector(selectLoggedInUser)
+  const Items=useSelector(selectItems)
     const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
     const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*item.price+amount,0)
-   const user=useSelector(selectLoggedInUser)
    const [paymentMethod,setPaymentMethod]=useState('cash')
    const [selectedAddress,setSelectedAddress]=useState(null)
    const addresses=user[0].addresses
    console.log(addresses)
-   console.log(user[0])
+   console.log(user)
 
-    const deleteItem=(e,id)=>{
-      dispatch(updateCartUserAsync({user:user,addresses:{addresses:addresses}}))
-    }
   
     const updateUser=(data)=>{
       console.log(data)
       console.log(user[0])
       if(user[0].addresses){
-        const addresses=[...user[0].addresses,data]
+        const addresses=[...user[0].addresses,data]//FOR ARRAY 
         dispatch(updateCartUserAsync({user:user,addresses:{addresses:addresses}}))
         console.log(user[0].addresses)
         
       }else{ 
           dispatch(updateCartUserAsync({...user[0],addresses:[data]}))
       }
-      dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+      dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
 
     }
     const handleAddress=(e,index)=>{
@@ -55,7 +47,9 @@ const CheckoutPage=()=>{
     }
     const handlerOrder=(e)=>{
       console.log('order')
-dispatch(OrderItemsbyUserAsync({user,Items,selectedAddress,paymentMethod,totalAmount,totalItems}))
+      console.log(user)
+      const id=user[0].id
+dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems,user:id,addresses:user[0].addresses}))
 
     }
     const orderStatus=useSelector(selectOrderStatus)
@@ -120,8 +114,7 @@ return(
                   name="country"
                   {...register('country',{required:'Please select country'})}
 
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                >
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                   <option>United States</option>
                   <option>Canada</option>
                   <option>Mexico</option>
@@ -381,15 +374,7 @@ return(
 
                                     </div>
 
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        onClick={e=>deleteItem(e,item.id)}
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                      >
-                                        Remove
-                                      </button>
-                                    </div>
+                                 
                                   </div>
                                 </div>
                               </li>

@@ -17,16 +17,29 @@ import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLoggedInUserDataAsync, selectLoggedInUser } from './features/auth/AuthSlice';
-import { fetchCartItemsByUserId } from './features/cart/CartAPI';
+import {   selectLoggedInUser } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
 import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
+import UserOrderPage from './pages/UserOrderPage';
+import UserProfilePage from './pages/UserProfilePage';
+import { fetchLoggedInUserOrders } from './features/User/UserApi';
+import { fetchLoggedInUserDataAsync, fetchLoggedInUserOrdersAsync } from './features/User/UserSlice';
+import ForgetPassPage from './pages/ForgetPassPage';
+import LogoutPage from './pages/LogoutPage';
+import AdminHome from './pages/AdminHome';
+import AdminAddProductFormPage from './pages/AddProductPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+
+    element:
+    // ( 
+      // <Protected>
+    <Home/>    
+      //</Protected> 
+    // )
   },
   {
     path: "login",
@@ -48,26 +61,57 @@ const router = createBrowserRouter([
   },
   {path:'checkorder/:id',
   element:<OrderPage/>
+  },
+  {
+    path:'userorders',
+    element:<UserOrderPage/>
+  },
+  {
+    path:'userprofile',
+    element:<UserProfilePage/>
+  },
+  {
+    path:'forgotpassword',
+    element:<ForgetPassPage/>
+  },
+  {
+    path:'logout',
+    element:<LogoutPage/>
+  },
+  {
+    path:'admin',
+    element:<AdminHome/>
+  },
+  {
+    path:'adminaddproduct',
+    element:<AdminAddProductFormPage/>
   }
 
 
 ]);
 
 function App() {
-  // const user=useSelector(selectLoggedInUser)
+  const user=useSelector(selectLoggedInUser)
+  console.log(user)
   const dispatch=useDispatch()
   const items=useSelector(selectProducts)
   useEffect(()=>{
-    // console.log([user,'app'])
-  //   if(user){
-  // dispatch(fetchCartItemsByUserIdAsync(user[0].id))
+    // console.log([user[0],'app'])
+  //   if(user[0]){
+  // dispatch(fetchCartItemsByUserIdAsync(user[0][0].id))
   //   }
-    const id='4'
-  dispatch(fetchLoggedInUserDataAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+    // const id=4
+    // console.log([user[0],'app'])
+    console.log(user)
+    if(user){
+      dispatch(fetchLoggedInUserDataAsync(user[0].id))
+      dispatch(fetchLoggedInUserOrdersAsync(user[0].id))
+      dispatch(fetchCartItemsByUserIdAsync(user[0].id))
+    }
+  // dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+
     
-  dispatch(fetchCartItemsByUserIdAsync(id))
-    
-},[dispatch,items
+},[dispatch,user,items
   // user
 ])
   return (

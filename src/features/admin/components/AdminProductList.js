@@ -16,7 +16,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { fetchAllProductsAsync, fetchBrandsAsync, fetchCategoriesAsync, fetchProductsbyFilterAsync, fetchProductsbySortAsync, selectBrands, selectCategories, selectProducts, selecttotalItems, } from "../ProductSlice";
+import {  fetchBrandsAsync, fetchCategoriesAsync, fetchProductsbyFilterAsync,  selectBrands, selectCategories, selectProducts, selecttotalItems, } from "../../Products/ProductSlice";
+// import { ITEMS_PER_PAGE } from "../../../const";
 import { ITEMS_PER_PAGE } from "../../../const";
 
 const sortOptions = [
@@ -32,7 +33,7 @@ function classNames(...classes) {
   }
 //
 
-function ProductList() {
+function AdminProductList() {
   const dispatch = useDispatch();
 const products=useSelector(selectProducts)
 const categories=useSelector(selectCategories)
@@ -80,7 +81,8 @@ const handleFilter=(e,section,option)=>{
          }
   }else{
         const index=newfilter[section.id].findIndex((el)=>(el===option.value))
-        newfilter[section.id].splice(index,1)//please use your brain properly 
+        newfilter[section.id].splice(index,1)
+        //please use your brain properly 
         //newfilter={c:{},d:{} but newfilter[section.id] is different
       }
   
@@ -402,13 +404,21 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                   {/* Product grid */}
                   <div className="lg:col-span-3">
                     {/* Your content */}
+
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl lg:px-8">
+                      <div className="flex">
+                        <Link to={'/adminaddproduct'}
+          className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Add Product
+        </Link >
+         </div>
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                           {products.map((product) => (
-                                    <Link to={`productdetail/${product.id}`} key={product.id}>
+                                    <Link to={`/productdetail/${product.id}`} key={product.id}>
 
-                            <div key={product.id} className="group relative rounded-md p-4 h-full border-solid border-2 border-gray-300   ">
+                            <div key={product.id} className="group relative rounded-md p-4 h-full border-solid border-2 border-gray-300 ">
                               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                 <img
                                   src={product.imageSrc}
@@ -445,8 +455,15 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                                </div>
                               </div>
                                
-                              
+                            
                             </div>
+                            <div  className="flex">
+                              <button
+          className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Edit Product
+        </button>
+                              </div>
                             </Link>
 
                           ))}
@@ -522,5 +539,5 @@ return(
 )
 }
 
-export default ProductList;
+export default AdminProductList;
 

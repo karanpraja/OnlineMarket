@@ -3,9 +3,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 //pagination
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectItems } from '../cart/CartSlice'
+import { Link, Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {  resetCartItemsAsync, selectItems } from '../cart/CartSlice'
+import { logoutUserAsync, selectLoggedInUser } from '../auth/AuthSlice'
 
 const user = {
   name: 'Tom Cook',
@@ -18,9 +19,12 @@ const navigation = [
   { name: 'Team', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
+const adminNavigation=[
+  { name: 'Admin', href: '/admin' }
+]
 const userNavigation = [
-  { name: 'Your Profile', href: '/checkout' },
-  { name: 'Settings', href: '/checkout' },
+  { name: 'Your Profile', href: '/userprofile' },
+  { name: 'Your Orders', href: '/userorders' },
   { name: 'Sign out', href: '/login' },
 ]
 
@@ -28,15 +32,23 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Navbar=({children})=>{
+const Navbar=({children,data})=>{
+  const LoggedInUser=useSelector(selectLoggedInUser)
   const Items=useSelector(selectItems)
+  const dispatch=useDispatch()
   let totalItems
   if(Items){
      totalItems=Items.reduce((total,item)=>item.quantity+total,0)
   }
+  // console.log(LoggedInUser)
+  // const role=LoggedInUser[0].role
+
+
   
 return(
     <div>
+      {/* {LoggedInUser.role==='admin'&&<Navigate to='/adminproductlist'></Navigate>} */}
+      {!LoggedInUser&&<Navigate to='/'></Navigate>}
 <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -55,10 +67,9 @@ return(
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
-                          <a
+                        {((LoggedInUser&&LoggedInUser[0].role==='admin')?(adminNavigation):(navigation)).map((item) =>(
+                          <Link to={item.href}
                             key={item.name}
-                            href={item.href}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -68,7 +79,7 @@ return(
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -113,13 +124,14 @@ return(
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <Link
-                                    to={item.href}
+                                    to={(LoggedInUser&&(item.name==='Sign out'))?('/logout'):(item.href)}
+                                    
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                    {item.name}
+                                     {(!LoggedInUser&&(item.name==='Sign out'))?"Sign in":(item.name)}
                                   </Link>
                                 )}
                               </Menu.Item>
@@ -164,7 +176,7 @@ return(
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt=""/>
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
@@ -204,7 +216,7 @@ return(
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+           { <h1 className="text-3xl font-bold tracking-tight text-gray-900">{data?data:'Dashboard'}</h1>}
           </div>
         </header>
         <main>

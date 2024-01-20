@@ -1834,8 +1834,8 @@ const products = [
   }
 ]
 
-// const brands =  [...new Set([...products.map(p=>p.brand)])]
-// console.log(brands)
+const brands =  [new Set([...products.map(p=>p.brand)])]
+console.log(brands)
 
 // let x=brands.map(c=>({value:c, label:c.split('-').join(' '),checked:false}))
 // console.log(x)
