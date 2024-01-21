@@ -59,7 +59,6 @@ setValue('phone',address.phone)
         data
       })
     }
-    
 return(<>
              {user&& <div className="flex  flex-col h-full overflow-y-scroll overflow-hidden  bg-white shadow-xl">
                 <div className="flex-1 h-full overflow-y-auto  overflow-hidden px-4 py-6  sm:px-6">
@@ -123,14 +122,14 @@ return(<>
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                Country
+              <label htmlFor="place" className="block text-sm font-medium leading-6 text-gray-900">
+                place
               </label>
               <div className="mt-2">
                 <select
-                  id="country"
-                  name="country"
-                  {...register('country',{required:'Please select country'})}
+                  id="place"
+                  name="place"
+                  {...register('place',{required:'Please select place'})}
 
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                   <option>United States</option>

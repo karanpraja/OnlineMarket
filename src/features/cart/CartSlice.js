@@ -123,7 +123,6 @@ export const cartSlice = createSlice({
       .addCase(updateCartUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.addresses=action.payload
-        console.log(state.user)
       })
       .addCase(resetCartItemsAsync.pending, (state) => {
         state.status = 'loading';
@@ -131,7 +130,6 @@ export const cartSlice = createSlice({
       .addCase(resetCartItemsAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items=null
-        console.log(state.user)
       })
 
   },

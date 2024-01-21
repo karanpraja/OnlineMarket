@@ -1,15 +1,51 @@
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import { selectBrands, selectCategories } from "../../Products/ProductSlice"
-import { updateProductsAsync } from "../AdminSlice"
+import { fetchProductbyIdAsync, selectBrands, selectCategories, selectProduct, updateProductByIdAsync } from "../../Products/ProductSlice"
+import { createProductAsync } from "../AdminSlice"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+// import { updateProductById } from "../../Products/ProductAPI"
 
 const AdminAddProductForm=()=>{
     const {
         register,
         handleSubmit,
         formState: { errors },
+
+        setValue,
+        reset
       } = useForm()
       const dispatch=useDispatch()
+      const params=useParams()
+      const id=params.id
+      useEffect(()=>{
+        console.log("lajsf")
+        
+      id&&dispatch(fetchProductbyIdAsync(id))
+      },[id,dispatch])
+      const product=useSelector(selectProduct)
+      // const [selectedProduct,setSelectedProduct]=useState(null)
+      
+      useEffect(()=>{
+        if(product&&selectProduct){
+          setValue('name',product.name)
+          setValue('imagealt',product.imagealt)
+          setValue('price',product.price)
+          setValue('discountPercentage',product.discountPercentage)
+          setValue('stock',product.stock)
+          setValue('brand',product.brand)
+          setValue('category',product.category)
+          setValue('imageSrc',product.imageSrc)
+          setValue('image1',product.images[0])
+          setValue('image2',product.images[1])
+          setValue('image3',product.images[2])
+          setValue('image4',product.images[3])
+        }
+      },[setValue,product,selectProduct])
+
+
+
+
       let brands=useSelector(selectBrands)
 brands=[...brands.map(b=>b.value)]
 let category=useSelector(selectCategories)
@@ -17,13 +53,20 @@ let category=useSelector(selectCategories)
 category=[...category.map(category=>category.value)]
 const updateProducts=(data)=>{
     console.log(data)
-    let parsedData={name:data.name,imagealt:data.imagealt,price:data.price,discountPercentage:data.discountPercentage,stock:data.stock,imageSrc:data.imageSrc,href:"productdetail",brand:data.brand,category:data.category}
+    let parsedData={name:data.name,imagealt:data.imagealt,price:+data.price,discountPercentage:+data.discountPercentage,stock:+data.stock,imageSrc:data.imageSrc,href:"productdetail",brand:data.brand,category:data.category}
     let images=[data.image1,data.image2,data.image3,data.image4]
     parsedData={...parsedData,images}
-dispatch(updateProductsAsync(parsedData))
+       id&&dispatch(updateProductByIdAsync([parsedData,id]))
+      !id&&dispatch(createProductAsync(parsedData))
+  reset()
+ }
+ const deleteHandler = (e) => {
+  console.log(e.target.value)
+  dispatch(updateProductByIdAsync([{delete:true},id]))
+  reset()
+// console.log(e.target.value)
+   }
 
-}
-      
 return(<div>
         {/* {
       "id": 3,
@@ -44,6 +87,7 @@ return(<div>
       "quantity": 1
     } */}
        <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit((data)=>{
+        // console.log(data.value)
         updateProducts(data)
        })}>
       <div className="space-y-12 my-10 ">
@@ -284,8 +328,12 @@ return(<div>
 
 
           <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pink-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-          Reset Product Detail
+        <button
+        type='submit'
+        value='delete' 
+onClick={e=>deleteHandler(e)}
+        className="rounded-md bg-red-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-pink-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Delete Product
         </button>
         <button
           type="submit"

@@ -10,7 +10,6 @@ export function fetchAllProducts() {
 
 export function fetchProductsbyFilter({filter,sort,pagination}) {///\
   //filter=['category':{'smartphones','laptops'}]
-  console.log('api')
 
   let queryString=''
   
@@ -63,11 +62,25 @@ export function fetchBrands() {
 export function fetchProductbyId(id) {
   return new Promise(async(resolve) =>{
     const response=await fetch(`http://localhost:8080/products/${id}`)
-    
+
     const data=await response.json()
     resolve({data})//how to keep data in resolve    
 }
   );
+}
+
+export function updateProductById(Data){
+console.log(Data[0])
+  return new Promise(async(resolve,react)=>{
+const response=await fetch(`http://localhost:8080/products/${Data[1]}`,{
+  method:'PATCH',
+  body:JSON.stringify(Data[0]),
+  headers:{
+    'Content-Type':'application/json'
+  }
+})
+
+  })
 }
 // export function fetchProductsbySort(option) {
 //   let queryString=''

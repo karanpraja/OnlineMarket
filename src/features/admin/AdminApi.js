@@ -1,6 +1,6 @@
 import { serverjsx } from "../.."
 
-export  function updateProducts(product){
+export  function createProduct(product){
 return new Promise(async(resolve,reject)=>{
     const response=await fetch(`${serverjsx}/products`,{
         method:'POST',

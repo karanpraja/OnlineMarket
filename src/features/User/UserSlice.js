@@ -18,7 +18,6 @@ export const fetchLoggedInUserDataAsync=createAsyncThunk(
     'user/fetchLoggedInUserData',
 async(userId)=>{
 const  response= await fetchLoggedInUserData(userId)
-console.log(response.data)
 return response.data
 });
 export const fetchUpdateLoggedInUserDataAsync=createAsyncThunk(

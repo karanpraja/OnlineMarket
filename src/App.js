@@ -80,11 +80,15 @@ const router = createBrowserRouter([
   },
   {
     path:'admin',
-    element:<AdminHome/>
+    element:<Protected><AdminHome/></Protected>
   },
   {
-    path:'adminaddproduct',
-    element:<AdminAddProductFormPage/>
+    path:'admin/adminaddproduct/edit/:id',
+    element:<Protected><AdminAddProductFormPage/></Protected>
+  },
+  {
+    path:'admin/adminaddproduct',
+    element:<Protected><AdminAddProductFormPage/></Protected>
   }
 
 
@@ -92,7 +96,6 @@ const router = createBrowserRouter([
 
 function App() {
   const user=useSelector(selectLoggedInUser)
-  console.log(user)
   const dispatch=useDispatch()
   const items=useSelector(selectProducts)
   useEffect(()=>{
@@ -102,7 +105,6 @@ function App() {
   //   }
     // const id=4
     // console.log([user[0],'app'])
-    console.log(user)
     if(user){
       dispatch(fetchLoggedInUserDataAsync(user[0].id))
       dispatch(fetchLoggedInUserOrdersAsync(user[0].id))
