@@ -22,7 +22,6 @@ function Cart() {
   const deleteItem=(e,id)=>{
    dispatch( deleteItemFromCartAsync(id))
   }
-
   // const [open, setOpen] = useState(true)
  return(
   <>

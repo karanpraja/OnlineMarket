@@ -44,6 +44,7 @@ const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 const [filter,setFilter]=useState({})/////
 const [sort,setSort]=useState({})/////
 const [page,setPage]=useState(1)
+
 const filters = [
   {
     id: "category",
@@ -408,23 +409,26 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                     <div className="bg-white">
                       <div className="mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl lg:px-8">
                       <div className="flex">
-                        <Link to={'/adminaddproduct'}
+                        <Link to={'/admin/adminaddproduct'}
           className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           Add Product
         </Link >
          </div>
-                        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 ">
                           {products.map((product) => (
-                                    <Link to={`/productdetail/${product.id}`} key={product.id}>
-
+                            <div>
                             <div key={product.id} className="group relative rounded-md p-4 h-full border-solid border-2 border-gray-300 ">
                               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                              <Link to={`/productdetail/${product.id}`} key={product.id}>
+
                                 <img
                                   src={product.imageSrc}
                                   alt={product.imageAlt}
                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                                 />
+                            </Link>
+
                               </div>
                               <div className="mt-4 flex justify-between">
                                 <div>
@@ -454,18 +458,16 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                                 </p>
                                </div>
                               </div>
-                               
-                            
+                              {product.delete&&<p className="text-red-400">Product deleted</p>}
                             </div>
-                            <div  className="flex">
-                              <button
-          className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Edit Product
-        </button>
+                          <div  className="flex">
+                            <Link to={`/admin/adminaddproduct/edit/${product.id}`}
+                            className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                           Edit Product
+                               </Link>
                               </div>
-                            </Link>
-
+                              </div>
                           ))}
                         </div>
                       </div>

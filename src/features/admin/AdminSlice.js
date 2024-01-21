@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { updateProducts } from "./AdminApi"
+import { createProduct } from "./AdminApi"
 
 const initialState={
     updatedProducts:null,
     status:'idle'
 }
-export const updateProductsAsync=createAsyncThunk('admin/updateProducts',
-async(product)=>{
-const response=await updateProducts(product)
+export const createProductAsync=createAsyncThunk('admin/createProduct',
+async({product,})=>{
+const response=await createProduct(product)
 return response.data
 })
 export const adminSlice=createSlice({
@@ -18,10 +18,10 @@ export const adminSlice=createSlice({
     },
     extraReducers:(builder)=>{
         builder
-        .addCase(updateProductsAsync.pending,(state)=>{
+        .addCase(createProductAsync.pending,(state)=>{
             state.status='loading'
         })
-        .addCase(updateProductsAsync.fulfilled,(action,state)=>{
+        .addCase(createProductAsync.fulfilled,(action,state)=>{
             state.status='loading'
             state.updatedProducts=action.payload
             console.log('Product Successfully added')

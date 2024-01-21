@@ -9,8 +9,6 @@ const Login=()=>{
   const error=useSelector(selectError)
   const user=useSelector(selectLoggedInUser)
   const onSubmit=data=>{
-    console.log('logindata')
-    console.log(data)
     dispatch(loginUserAsync({email:data.email,password:data.password}))
   }
   console.log(error)
