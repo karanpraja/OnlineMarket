@@ -1,19 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchLoggedInUserData, fetchLoggedInUserOrders, fetchUpdateLoggedInUserData } from "./UserApi";
+import { fetchLoggedInUserData ,fetchUpdateLoggedInUserData } from "./UserApi";
 const initialState={
-    userOrders:null,
     status:'idle',
     userInfo:null,
-    // userUpdate:null
 };
 
-export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
-    'user/fetchLoggedInUserOrders',
-    async(userId)=>{
-            const response=await fetchLoggedInUserOrders(userId)
-            return response.data
-        }
-        );
+
 export const fetchLoggedInUserDataAsync=createAsyncThunk(
     'user/fetchLoggedInUserData',
 async(userId)=>{
@@ -35,13 +27,7 @@ export const userSlice=createSlice({
 
     },
     extraReducers:(builder)=>{
-        builder.addCase(fetchLoggedInUserOrdersAsync.pending,(state)=>{
-       state.status='loading'
-        })
-        .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
-        state.status='idle'
-        state.userOrders=action.payload
-        })
+        builder
         .addCase(fetchLoggedInUserDataAsync.pending,(state)=>{
             state.status='loading'
          })
@@ -59,6 +45,5 @@ export const userSlice=createSlice({
     }
 
 })
-export const selectOrderbyLoggedInUser=state=>state.user.userOrders
 export const selectUserInfo=state=>state.user.userInfo
 export default userSlice.reducer;

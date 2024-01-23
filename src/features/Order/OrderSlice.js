@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { OrderItemsbyUser, resetCart } from './OrderApi';
-import { deleteItemFromCart } from '../cart/CartAPI';
+import { OrderItemsbyUser, UpdateOrders, fetchAllOrders, fetchLoggedInUserOrders, resetCart } from './OrderApi';
 
 const initialState = {
+  Orders:[],
   orderStatus: null,
   status: 'idle',
-  resetMessage:null
+  resetMessage:null,
+  totalOrders:0
+  
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -20,12 +22,30 @@ const response=await OrderItemsbyUser(order)
 return response.data
   }
 )
+export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
+  'order/fetchLoggedInUserOrders',
+  async(userId)=>{
+          const response=await fetchLoggedInUserOrders(userId)
+          return response.data
+      }
+      );
 
 export const resetCartAsync=createAsyncThunk(
   'order/resetCart',async(id)=>{
     const response=await resetCart(id)
     return response.data
   })
+  export const fetchAllOrdersAsync=createAsyncThunk(
+    
+    'order/fetchAllOrders',async({sort,pagination})=>{
+      const response=await fetchAllOrders({sort,pagination})
+      return response.data
+    })
+    export const UpdateOrdersAsync=createAsyncThunk(
+      'order/updateOrders',async(order)=>{
+        const response=await UpdateOrders(order)
+        return response.data
+      })
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -47,6 +67,13 @@ export const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    .addCase(fetchLoggedInUserOrdersAsync.pending,(state)=>{
+      state.status='loading'
+       })
+       .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
+       state.status='idle'
+       state.Orders.push(action.payload)
+       })
       .addCase(OrderItemsbyUserAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -62,9 +89,34 @@ export const orderSlice = createSlice({
         state.resetMessage=action.payload
         state.orderStatus=null
         console.log(action.payload)
+      }).addCase(fetchAllOrdersAsync.pending,(state)=>{
+        state.status='loading';
+      })
+      .addCase(fetchAllOrdersAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.Orders=action.payload.Orders
+        state.totalOrders=action.payload.totalOrders
+        // state.resetMessage=action.payload
+        // state.orderStatus=null
+        // console.log(action.payload)
+      }).addCase(UpdateOrdersAsync.pending,(state)=>{
+        state.status='loading';
+      })
+      .addCase(UpdateOrdersAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        console.log(action.payload)
+        const index=state.Orders.findIndex(order=>order.id===action.payload.id)
+        state.Orders[index]=action.payload
+        
+        // state.Orders=action.payload.Orders
+        // state.totalOrders=action.payload.totalOrders
+        // state.resetMessage=action.payload
+        // state.orderStatus=null
+        // console.log(action.payload)
       })
   },
 });
-
+export const selectOrderbyLoggedInUser=state=>state.order.Orders
 export  const selectOrderStatus=state=>state.order.orderStatus
+export const selecttotalOrders=state=>state.order.totalOrders
 export default orderSlice.reducer;

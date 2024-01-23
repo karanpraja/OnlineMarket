@@ -4,8 +4,9 @@ import { RadioGroup } from '@headlessui/react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductbyIdAsync, selectProduct } from '../ProductSlice'
-import { addToCartAsync } from '../../cart/CartSlice'
+import { addToCartAsync, selectItems } from '../../cart/CartSlice'
 import { selectLoggedInUser } from '../../auth/AuthSlice'
+import { discountedPrice } from '../../../const'
 // import { fetchProductbyId } from '../ProductAPI'
 const  colors=[
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -38,6 +39,7 @@ function classNames(...classes) {
   const [selectedColor, setSelectedColor] = useState(colors[1])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const user=useSelector(selectLoggedInUser)
+  const items=useSelector(selectItems)
   const dispatch=useDispatch()
 const params=useParams()
   useEffect(()=>{
@@ -46,12 +48,17 @@ const params=useParams()
  const product=useSelector(selectProduct)
  const handleSubmit=(event)=>{
   event.preventDefault()
-  console.log(user)
-  const newProduct=product
-  delete newProduct[newProduct.id]
-  if(user){
-  dispatch(addToCartAsync({...newProduct,user:user[0].id,quantity:1}))
+  if(items.findIndex(item=>item.productId===product.id)<0){
+    const newProduct={...product,user:user[0].id,quantity:1,productId:product.id}
+    delete newProduct['id']
+    if(user){
+    dispatch(addToCartAsync(newProduct))
+    }
+  }else{
+    console.log("Product Already Added, please change quantity from cart")
+
   }
+
   
  }
 
@@ -131,7 +138,7 @@ const params=useParams()
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900">{discountedPrice(product)}</p>
 
             {/* Reviews */}
             <div className="mt-6">
