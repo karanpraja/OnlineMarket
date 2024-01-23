@@ -55,7 +55,7 @@ const params=useParams()
     dispatch(addToCartAsync(newProduct))
     }
   }else{
-    console.log("Product Already Added, please change quantity from cart")
+    console.log("Product Already Added, please change quant from cart")
 
   }
 
