@@ -1,11 +1,12 @@
 import { Link, Navigate, useNavigate } from "react-router-dom"
 
-import { useForm } from "react-hook-form"
+import { set, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import {  selectItems, updateCartUserAsync } from "../features/cart/CartSlice"
-import { loginUserAsync, selectLoggedInUser } from "../features/auth/AuthSlice"
+import { loginUserAsync, selectAddresses, selectLoggedInUser } from "../features/auth/AuthSlice"
 import { useEffect, useState } from "react"
 import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
+import { discountedPrice } from "../const"
 
 const CheckoutPage=()=>{
   const {
@@ -16,13 +17,14 @@ const CheckoutPage=()=>{
   const dispatch=useDispatch()
   const user=useSelector(selectLoggedInUser)
   const Items=useSelector(selectItems)
-    const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
-    const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*item.price+amount,0)
-   const [paymentMethod,setPaymentMethod]=useState('cash')
-   const [selectedAddress,setSelectedAddress]=useState(null)
-   const addresses=user[0].addresses
-   console.log(addresses)
-   console.log(user)
+  const [paymentMethod,setPaymentMethod]=useState('cash')
+  const orderStatus=useSelector(selectOrderStatus)
+  const [selectedAddress,setSelectedAddress]=useState(-1)
+  const addresses=user[0].addresses
+  const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
+  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*(discountedPrice(item))+amount,0)
+  console.log(addresses)
+  console.log(user)
 
   
     const updateUser=(data)=>{
@@ -40,6 +42,7 @@ const CheckoutPage=()=>{
 
     }
     const handleAddress=(e,index)=>{
+      console.log(index)
       setSelectedAddress(index)
     }
     const handlePayment=(e)=>{
@@ -49,19 +52,21 @@ const CheckoutPage=()=>{
       console.log('order')
       console.log(user)
       const id=user[0].id
-dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems,user:id,addresses:user[0].addresses}))
+     
+        console.log(selectedAddress)
+        dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems,user:id,addresses:user[0].addresses}))
+        setSelectedAddress(null)
+      
 
     }
-    const orderStatus=useSelector(selectOrderStatus)
     console.log(orderStatus)
 return(
   <>
   {orderStatus&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
   {Items<1&&<Navigate to='/'></Navigate>} 
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
-      
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
-                <div className="lg:col-span-3 ">
+               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
+                    <div className="lg:col-span-3 ">
     <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit(updateUser)}>
       <div className="space-y-12 my-10 ">
         
@@ -178,12 +183,12 @@ return(
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+              <label  className="block text-sm font-medium leading-6 text-gray-900">
                 ZIP / Postal code
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
+                type="number"
                   name="postal-code"
                   id="postalcode"
                   {...register('postalcode',{required:'Please enter postalcode'})}
@@ -199,7 +204,7 @@ return(
               </label>
               <div className="mt-2">
                 <input
-                  type="text"
+                  type="number"
                   name="phone"
                   id="phone"
                   {...register('phone',{required:'Please enter phone'})}
@@ -223,19 +228,12 @@ return(
           Add
         </button>
       </div>
+      </div>
+      </div>
 
-
-
-
-
-
-
-
-
-
-        </div>
-
-        <div className="border-b border-gray-900/10 pb-12">
+      
+      </form>
+      <div className="border-b bg-white border-gray-900/10 pb-12">
           {/* <h2 className="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             We'll always let you know about important changes, but you pick what else you want to hear about.
@@ -255,7 +253,7 @@ return(
             <input
                     id="name"
                     name="addresses"
-                    onChange={e=>handleAddress(e,index)}
+                    onClick={e=>handleAddress(e,index)}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -267,12 +265,7 @@ return(
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p className="text-sm leading-6 text-gray-900">{address.city}</p>
             <p className="text-sm leading-6 text-gray-900">{address.postalcode}</p>
-            <button
-        type="button"
-        className="font-medium text-indigo-600 hover:text-indigo-500"
-      >
-        Remove
-      </button>
+   
           </div>
           
         </li>
@@ -292,7 +285,7 @@ return(
                     id="cash"
                     name="payments"
                     value={paymentMethod}
-                    onChange={e=>handlePayment(e)}
+                    onChange={e=>handlePayment(e )}
                     checked={paymentMethod==='cash'}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -320,12 +313,11 @@ return(
             </fieldset>
           </div>
         </div>
-      </div>
 
-     
-                   </form>
-                </div>
-                    <div className="lg:col-span-2 ">
+        
+                    </div>
+
+                    <div className="lg:col-span-2  ">
                   {/* cart  */}     
         <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
 
@@ -343,7 +335,7 @@ return(
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
                             {Items&&Items.map((item) => (
                               <li key={item.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-border-gray-200">
                                   <img
                                     src={item.imageSrc}
                                     alt={item.imageAlt}
@@ -357,7 +349,7 @@ return(
                                       <h3>
                                         <a href={item.href}>{item.name}</a>
                                       </h3>
-                                      <p className="ml-4">{item.price}</p>
+                                      <p className="ml-4">${discountedPrice(item)}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{item.color}</p>
                                   </div>
@@ -395,13 +387,16 @@ return(
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <div
-                        onClick={e=>handlerOrder(e)}
-                          // to="checkout"
+                        <button
+                        
+                        onClick={e=>{
+                          handlerOrder(e,selectedAddress)}
+                        }
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                          Order and Pay
-                        </div>
+                        </button>
+                        {/* {!selectedAddress?<p className="text-5red-500">Please select Address</p>:''} */}
                       </div>
                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         
@@ -409,10 +404,11 @@ return(
                     </div>
                   </div>
                 </div>
+                
              </div>
-            </div>
+                    </div>
+               </div>
           </div>
-             </div>
             </>
 )
 }

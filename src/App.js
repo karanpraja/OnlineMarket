@@ -23,12 +23,14 @@ import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserOrders } from './features/User/UserApi';
-import { fetchLoggedInUserDataAsync, fetchLoggedInUserOrdersAsync } from './features/User/UserSlice';
+import { fetchLoggedInUserDataAsync} from './features/User/UserSlice';
 import ForgetPassPage from './pages/ForgetPassPage';
 import LogoutPage from './pages/LogoutPage';
 import AdminHome from './pages/AdminHome';
 import AdminAddProductFormPage from './pages/AddProductPage';
+import AdminOrders from './features/admin/components/AdminOrders';
+import AdminOrdersPage from './pages/AdminOrdersPage';
+import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
 
 const router = createBrowserRouter([
   {
@@ -89,6 +91,10 @@ const router = createBrowserRouter([
   {
     path:'admin/adminaddproduct',
     element:<Protected><AdminAddProductFormPage/></Protected>
+  },
+  {
+    path:'admin/adminorders',
+    element:<Protected><AdminOrdersPage/></Protected>
   }
 
 

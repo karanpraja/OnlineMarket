@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {  selectLoggedInUser } from "../../auth/AuthSlice"
-import { fetchLoggedInUserDataAsync, fetchLoggedInUserOrdersAsync, selectOrderbyLoggedInUser } from "../UserSlice"
 import { selectItems } from "../../cart/CartSlice"
 import { Navigate } from "react-router-dom"
+import { selectOrderbyLoggedInUser } from "../../Order/OrderSlice"
 
 const UserOrders=(props)=>{
   const dispatch=useDispatch()

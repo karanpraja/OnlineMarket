@@ -4,8 +4,8 @@ import { selectLoggedInUser } from "../AuthSlice"
 
 const Protected=({children})=>{
 const user=useSelector(selectLoggedInUser)
-// console.log('Protected')
-if(user[0].role){
+console.log(user)
+if(user){
     if(user[0].role==='admin'){
     <Navigate to='/adminproductlist'></Navigate>
     }

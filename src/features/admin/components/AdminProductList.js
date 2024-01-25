@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
 import {  fetchBrandsAsync, fetchCategoriesAsync, fetchProductsbyFilterAsync,  selectBrands, selectCategories, selectProducts, selecttotalItems, } from "../../Products/ProductSlice";
 // import { ITEMS_PER_PAGE } from "../../../const";
-import { ITEMS_PER_PAGE } from "../../../const";
+import { ITEMS_PER_PAGE, discountedPrice } from "../../../const";
 
 const sortOptions = [
   { name: "Best Rating",_sort: "rating", _order: "desc", current: false },
@@ -454,11 +454,12 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                                   ${product.price}
                                   </p>
                                 <p className="text-sm font-medium text-gray-900">
-                                  ${Math.round(product.price-product.price*(product.discountPercentage/100))}
+                                  ${discountedPrice(product)}
                                 </p>
                                </div>
                               </div>
                               {product.delete&&<p className="text-red-400">Product deleted</p>}
+                              {product.stock<=0&&<p className="text-red-400">Product out of Stock</p>}
                             </div>
                           <div  className="flex">
                             <Link to={`/admin/adminaddproduct/edit/${product.id}`}

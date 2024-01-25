@@ -15,17 +15,25 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Products', href: '#', current: true },
+ 
+
 ]
 const adminNavigation=[
-  { name: 'Admin', href: '/admin' }
+  { name: 'Admin', href: '/admin' },
+  { name: 'AdminOrders', href: '/admin/adminorders' }
+
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/userprofile' },
   { name: 'Your Orders', href: '/userorders' },
   { name: 'Sign out', href: '/login' },
+]
+const AdminNavigation=[
+  { name: 'Admin Profile', href: '/userprofile' },
+  { name: 'Sign out', href: '/login' },
+  { name: 'AdminOrders', href: '/admin/adminorders' },
+
 ]
 
 function classNames(...classes) {
@@ -39,6 +47,11 @@ const Navbar=({children,data})=>{
   let totalItems
   if(Items){
      totalItems=Items.reduce((total,item)=>item.quantity+total,0)
+  }
+  let Role=null
+  if(LoggedInUser){
+    if(LoggedInUser[0].role){
+Role=LoggedInUser[0].role}
   }
   // console.log(LoggedInUser)
   // const role=LoggedInUser[0].role
@@ -120,7 +133,7 @@ return(
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
+                            {(Role?AdminNavigation:userNavigation).map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <Link
@@ -216,7 +229,7 @@ return(
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-           { <h1 className="text-3xl font-bold tracking-tight text-gray-900">{data?data:'Dashboard'}</h1>}
+           { <h1 className="text-3xl font-bold tracking-tight text-gray-900">{data?data:'E-Commerce'}</h1>}
           </div>
         </header>
         <main>

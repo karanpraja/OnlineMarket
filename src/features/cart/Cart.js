@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, Navigate } from 'react-router-dom';
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from './CartSlice';
+import { discountedPrice } from '../../const';
 
 function Cart() {
   const dispatch=useDispatch()
@@ -10,12 +11,13 @@ function Cart() {
   // const [totalItems,setTotalItems]=useState(0)
   // const [totalAmount,setTotalAmount]=useState(0)
   const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
-  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*item.price+amount,0)
+  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*discountedPrice(item)+amount,0)
   console.log(totalItems)
   console.log(totalAmount)
 
   const updateCart=(e,Item)=>{
     const Index=Items.findIndex((e)=>(e.id==Item.id))
+    
     dispatch(updateCartAsync({...Items[Index],quantity:+e.target.value}))
    
   }
@@ -62,7 +64,7 @@ function Cart() {
                                       <h3>
                                         {Item.name}
                                       </h3>
-                                      <p className="ml-4">${Item.price}</p>
+                                      <p className="ml-4">${discountedPrice(Item)}</p>
                                     </div>
                                     {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                   </div>

@@ -11,17 +11,18 @@ const AdminAddProductForm=()=>{
         register,
         handleSubmit,
         formState: { errors },
-
         setValue,
         reset
       } = useForm()
       const dispatch=useDispatch()
       const params=useParams()
       const id=params.id
+     
       useEffect(()=>{
         console.log("lajsf")
         
       id&&dispatch(fetchProductbyIdAsync(id))
+      !id&&reset()
       },[id,dispatch])
       const product=useSelector(selectProduct)
       // const [selectedProduct,setSelectedProduct]=useState(null)
@@ -53,11 +54,11 @@ let category=useSelector(selectCategories)
 category=[...category.map(category=>category.value)]
 const updateProducts=(data)=>{
     console.log(data)
-    let parsedData={name:data.name,imagealt:data.imagealt,price:+data.price,discountPercentage:+data.discountPercentage,stock:+data.stock,imageSrc:data.imageSrc,href:"productdetail",brand:data.brand,category:data.category}
+    let parsedData={name:data.name,imagealt:data.imagealt,price:+data.price,discountPercentage:+data.discountPercentage,stock:+data.stock,imageSrc:data.imageSrc,rating:+data.rating,href:"productdetail",brand:data.brand,category:data.category}
     let images=[data.image1,data.image2,data.image3,data.image4]
     parsedData={...parsedData,images}
        id&&dispatch(updateProductByIdAsync([parsedData,id]))
-      !id&&dispatch(createProductAsync(parsedData))
+      id&&dispatch(createProductAsync(parsedData))
   reset()
  }
  const deleteHandler = (e) => {
@@ -136,8 +137,8 @@ return(<div>
                 <input
                   id="price"
                   name="price"
-                  type="number"
                   {...register('price',{required:'Please enter price' ,})}
+                  type="number"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.price&&<p className="text-red-500">{errors.price.message}</p>}
@@ -176,6 +177,22 @@ return(<div>
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 {errors.stock&&<p className="text-red-500">{errors.stock.message}</p>}
+
+              </div>
+            </div>
+            <div className="sm:col-span-3">
+              <label  className="block text-sm font-medium leading-6 text-gray-900">
+             rating
+              </label>
+              <div className="mt-2">
+                <input
+                  id="rating"
+                  name="rating"
+                  type="number"
+                  {...register('rating',{required:'Please enter valid rating' ,min:0,max:5})}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                {errors.rating&&<p className="text-red-500">{errors.rating.message}</p>}
 
               </div>
             </div>
