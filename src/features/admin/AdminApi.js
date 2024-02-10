@@ -1,6 +1,7 @@
 import { serverjsx } from "../.."
 
 export  function createProduct(product){
+    console.log(product)
 return new Promise(async(resolve,reject)=>{
     const response=await fetch(`${serverjsx}/products`,{
         method:'POST',

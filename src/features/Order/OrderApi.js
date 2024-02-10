@@ -1,7 +1,4 @@
-import { useDispatch } from "react-redux";
 import { serverjsx } from "../..";
-import { deleteItemFromCart, fetchCartItemsByUserId } from "../cart/CartAPI";
-import { deleteItemFromCartAsync, fetchCartItemsByUserIdAsync } from "../cart/CartSlice";
 
 export function OrderItemsbyUser(order){
     return new Promise(async (resolve,reject)=>{
@@ -12,29 +9,26 @@ export function OrderItemsbyUser(order){
                 'Content-Type':'application/json'
             }
         })
-        resolve({data:"Order placed successfully!!"})
+        const data=await response.json()
+        
+        resolve({data})
         
     })
 }
 
-export function resetCart(id){
+export function resetCart(){
     console.log('resetCart')
     return new Promise(async (resolve,reject)=>{
     console.log('resetCart')
-
-        const response1=await fetchCartItemsByUserId(id)
-        // const data=await response.json()
-        // console.log(data)
-        console.log(response1)
-        const items=response1.data
-        console.log(items)
-
-for(let item of items ){
-    console.log(item)
-await deleteItemFromCart(item.id)
-
-}
-resolve({data:"All cart items cleared!"})
+        const response=await fetch(`${serverjsx}/cart/items/id`,{
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const noOfItemsRemoved=await response.json()
+        console.log(noOfItemsRemoved)
+resolve({data:`All ${noOfItemsRemoved} cart items cleared!`})
 reject({data:"Opertion failed"})
         
         
@@ -79,7 +73,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   }
   export function fetchLoggedInUserOrders(userId){
     return new Promise(async(resolve)=>{
-const response=await fetch(`${serverjsx}/orders?user=`+userId)
+const response=await fetch(`${serverjsx}/orders/id`)
 const data=await response.json()
 resolve({data})
     })

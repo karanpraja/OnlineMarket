@@ -1,7 +1,7 @@
 // A mock function to mimic making an async request for data
-export function fetchUserData(user) {
+export function createUser(user) {
   return new Promise(async(resolve) =>{
-    const response=await fetch('http://localhost:8080/users',{
+    const response=await fetch('http://localhost:8080/users/signup',{
       method:"POST",
       body:JSON.stringify(user),
       headers:{
@@ -11,37 +11,39 @@ export function fetchUserData(user) {
     const data=await response.json()
     console.log(data)
     resolve({data})//how to keep data in resolve
-        
   }
     // setTimeout(() => resolve({ data: amount }), 500)
   );
 }
 export function loginUser(user) {
-  const email=user.email
-  const password=user.password
   return new Promise(async(resolve,reject) =>{
-    const response=await fetch('http://localhost:8080/users?email='+email)
-    const data=await response.json()
-    if(data[0].email){
-         if(data[0].password==password){
-        resolve({data})
-         }else{
-        reject({message:"wrong password"})
-         }
-    }else{
-      reject({message:"Wrong credentials"})
-    }
-  //how to keep data in resolve
+    try{
+
+const response=await fetch("http://localhost:8080/users/login",{
+  method:'POST',
+  body:JSON.stringify(user),
+  headers:{
+    'Content-Type':'application/json'
   }
-    // setTimeout(() => resolve({ data: amount }), 500)
-  );
+})
+if(response.ok){
+const data=await response.json()
+resolve({data}) 
+}else{
+  const error= await response.text()
+  console.log(error)
+  reject(error)
 }
-export function logoutUser(user) {
-  const email=user.email
-  const password=user.password
+    }catch(error){
+      console.log(error)
+reject(error)
+    }})
+}
+export function logoutUser() {
   return new Promise(async(resolve,reject) =>{
-    const response=await fetch('http://localhost:8080/users/'+user[0].id)
+    const response=await fetch('http://localhost:8080/users/logout')
     const data=await response.json()
+    console.log("logout")
   resolve({data:"User logged Out"})
   //how to keep data in resolve
   }

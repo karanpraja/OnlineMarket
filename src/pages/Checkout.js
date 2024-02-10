@@ -1,12 +1,12 @@
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import {  Navigate} from "react-router-dom"
 
-import { set, useForm } from "react-hook-form"
+import {  useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import {  selectItems, updateCartUserAsync } from "../features/cart/CartSlice"
-import { loginUserAsync, selectAddresses, selectLoggedInUser } from "../features/auth/AuthSlice"
-import { useEffect, useState } from "react"
+import {  selectItems } from "../features/cart/CartSlice"
+import {  useState } from "react"
 import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
 import { discountedPrice } from "../const"
+import { fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../features/User/UserSlice"
 
 const CheckoutPage=()=>{
   const {
@@ -15,30 +15,27 @@ const CheckoutPage=()=>{
     formState: { errors },
   } = useForm()
   const dispatch=useDispatch()
-  const user=useSelector(selectLoggedInUser)
+  const userInfo=useSelector(selectUserInfo)
   const Items=useSelector(selectItems)
   const [paymentMethod,setPaymentMethod]=useState('cash')
   const orderStatus=useSelector(selectOrderStatus)
   const [selectedAddress,setSelectedAddress]=useState(-1)
-  const addresses=user[0].addresses
+  const addresses=userInfo.addresses
   const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
-  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*(discountedPrice(item))+amount,0)
-  console.log(addresses)
-  console.log(user)
+  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*(discountedPrice(item.product))+amount,0)
+  // console.log(addresses)
+  // console.log(userInfo)
 
   
     const updateUser=(data)=>{
-      console.log(data)
-      console.log(user[0])
-      if(user[0].addresses){
-        const addresses=[...user[0].addresses,data]//FOR ARRAY 
-        dispatch(updateCartUserAsync({user:user,addresses:{addresses:addresses}}))
-        console.log(user[0].addresses)
-        
-      }else{ 
-          dispatch(updateCartUserAsync({...user[0],addresses:[data]}))
+      console.log(userInfo)
+      if(userInfo.addresses){
+        const addresses=[...userInfo.addresses,data]//FOR ARRAY 
+        dispatch(fetchUpdateLoggedInUserDataAsync({...userInfo,addresses:addresses}))
+        console.log(userInfo)
+        console.log(userInfo.addresses)
       }
-      dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
+      // dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
 
     }
     const handleAddress=(e,index)=>{
@@ -50,11 +47,11 @@ const CheckoutPage=()=>{
     }
     const handlerOrder=(e)=>{
       console.log('order')
-      console.log(user)
-      const id=user[0].id
-     
+      console.log(userInfo)
+      const id=userInfo.id
+     const addressSetByUser=userInfo.addresses[selectedAddress]
         console.log(selectedAddress)
-        dispatch(OrderItemsbyUserAsync({user,status:"pending",Items,selectedAddress,paymentMethod,totalAmount,totalItems,user:id,addresses:user[0].addresses}))
+        dispatch(OrderItemsbyUserAsync({status:"pending",Items,paymentMethod,totalAmount,totalItems,user:id,address:addressSetByUser}))
         setSelectedAddress(null)
       
 
@@ -334,11 +331,11 @@ return(
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
                             {Items&&Items.map((item) => (
-                              <li key={item.id} className="flex py-6">
+                              <li key={item.product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-border-gray-200">
                                   <img
-                                    src={item.imageSrc}
-                                    alt={item.imageAlt}
+                                    src={item.product.imageSrc}
+                                    alt={item.product.imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -347,26 +344,16 @@ return(
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={item.href}>{item.name}</a>
+                                        <a href={item.product.href}>{item.product.name}</a>
                                       </h3>
-                                      <p className="ml-4">${discountedPrice(item)}</p>
+                                      <p className="ml-4">${discountedPrice(item.product)}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{item.color}</p>
+                                    <p className="mt-1 text-sm text-gray-500">{item.product.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <div>
-                                    <p className="text-gray-500">Qty </p>
-                                    <select defaultValue={item.quantity}>
-                                      <option>1</option>
-                                      <option>2</option>
-                                      <option>3</option>
-                                      <option>4</option>
-
-                                    </select>
-
+                                    <p className="text-gray-500">Qty:{item.quantity} </p>
                                     </div>
-
-                                 
                                   </div>
                                 </div>
                               </li>

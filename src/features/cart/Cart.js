@@ -10,15 +10,21 @@ function Cart() {
   const Items=useSelector(selectItems)
   // const [totalItems,setTotalItems]=useState(0)
   // const [totalAmount,setTotalAmount]=useState(0)
-  const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
-  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*discountedPrice(item)+amount,0)
+  console.log(Items)
+  const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)//important
+  const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*discountedPrice(item.product)+amount,0)//important
   console.log(totalItems)
   console.log(totalAmount)
 
-  const updateCart=(e,Item)=>{
-    const Index=Items.findIndex((e)=>(e.id==Item.id))
-    
-    dispatch(updateCartAsync({...Items[Index],quantity:+e.target.value}))
+  const updateCart=(e,id)=>{
+    console.log(Items)
+    console.log(id)
+    const Index=Items.findIndex((e)=>(e._id==id))
+    console.log(Index)
+    let item={...Items[Index],quantity:+e.target.value}
+    item.product=item.productId  
+    console.log(item)
+    dispatch(updateCartAsync(item))
    
   }
   const deleteItem=(e,id)=>{
@@ -52,8 +58,8 @@ function Cart() {
                               <li key={Item.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={Item.imageSrc}
-                                    alt={Item.imageAlt}
+                                    src={Item.product.imageSrc}
+                                    alt={Item.product.imageAlt}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -62,16 +68,16 @@ function Cart() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        {Item.name}
+                                        {Item.product.name}
                                       </h3>
-                                      <p className="ml-4">${discountedPrice(Item)}</p>
+                                      <p className="ml-4">${discountedPrice(Item.product)}</p>
                                     </div>
                                     {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <div>
                                     <p className="text-gray-500">Qty </p>
-                                    <select defaultValue={Item.quantity} onChange={e=>updateCart(e,Item)}>
+                                    <select value={Item.quantity} onChange={e=>updateCart(e,Item._id)}>
                                       <option value='1'>1</option>
                                       <option value='2'>2</option>
                                       <option value='3'>3</option>
@@ -84,7 +90,7 @@ function Cart() {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        onClick={e=>deleteItem(e,Item.id)}
+                                        onClick={e=>deleteItem(e,Item._id)}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
                                         Remove
@@ -143,3 +149,18 @@ function Cart() {
   );
 }
 export default Cart;
+
+
+
+
+
+
+
+
+
+// {
+//   "user": "65bb325d4e672302dcba878e",
+//   "productId": "65b3e708939c98d0c7a0258d",
+//   "product": "65b3e708939c98d0c7a0258d",
+//   "quantity": 5
+// }

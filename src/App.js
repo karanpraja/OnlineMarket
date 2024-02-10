@@ -3,7 +3,6 @@ import './App.css';
 import Home from './pages/Home';
 
 // import * as React from "react";
-import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,7 +10,6 @@ import {
 import "./index.css";
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-import Cart from './features/cart/Cart';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
@@ -23,12 +21,11 @@ import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserDataAsync} from './features/User/UserSlice';
+import { fetchLoggedInUserDataAsync, removeUserInfoAsync} from './features/User/UserSlice';
 import ForgetPassPage from './pages/ForgetPassPage';
 import LogoutPage from './pages/LogoutPage';
 import AdminHome from './pages/AdminHome';
 import AdminAddProductFormPage from './pages/AddProductPage';
-import AdminOrders from './features/admin/components/AdminOrders';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
 
@@ -101,25 +98,28 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const user=useSelector(selectLoggedInUser)
+  const userToken=useSelector(selectLoggedInUser)
+  console.log(userToken)
   const dispatch=useDispatch()
   const items=useSelector(selectProducts)
   useEffect(()=>{
-    // console.log([user[0],'app'])
-  //   if(user[0]){
-  // dispatch(fetchCartItemsByUserIdAsync(user[0][0].id))
+    // console.log([userToken[0],'app'])
+  //   if(userToken[0]){
+  // dispatch(fetchCartItemsByUserIdAsync(userToken[0][0].id))
   //   }
     // const id=4
-    // console.log([user[0],'app'])
-    if(user){
-      dispatch(fetchLoggedInUserDataAsync(user[0].id))
-      dispatch(fetchLoggedInUserOrdersAsync(user[0].id))
-      dispatch(fetchCartItemsByUserIdAsync(user[0].id))
+    // console.log([userToken[0],'app'])
+    if(userToken){
+      dispatch(fetchLoggedInUserDataAsync())
+      dispatch(fetchLoggedInUserOrdersAsync())
+      dispatch(fetchCartItemsByUserIdAsync())
+    }else{
+      dispatch(removeUserInfoAsync())
     }
   // dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
 
     
-},[dispatch,user,items
+},[dispatch,userToken,items
   // user
 ])
   return (

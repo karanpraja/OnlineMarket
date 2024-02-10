@@ -3,7 +3,7 @@ import { OrderItemsbyUser, UpdateOrders, fetchAllOrders, fetchLoggedInUserOrders
 
 const initialState = {
   Orders:[],
-  orderStatus: null,
+  orderByUser: null,
   status: 'idle',
   resetMessage:null,
   totalOrders:0
@@ -17,6 +17,7 @@ const initialState = {
 // typically used to make async requests.
 export const OrderItemsbyUserAsync=createAsyncThunk(
   "order/OrderItemsbyUser",async(order)=>{
+    console.log(order)
 const response=await OrderItemsbyUser(order)
 // const data=await response.json()
 return response.data
@@ -24,15 +25,15 @@ return response.data
 )
 export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
   'order/fetchLoggedInUserOrders',
-  async(userId)=>{
-          const response=await fetchLoggedInUserOrders(userId)
+  async()=>{
+          const response=await fetchLoggedInUserOrders()
           return response.data
       }
       );
 
 export const resetCartAsync=createAsyncThunk(
-  'order/resetCart',async(id)=>{
-    const response=await resetCart(id)
+  'order/resetCart',async()=>{
+    const response=await resetCart()
     return response.data
   })
   export const fetchAllOrdersAsync=createAsyncThunk(
@@ -72,14 +73,14 @@ export const orderSlice = createSlice({
        })
        .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
        state.status='idle'
-       state.Orders.push(action.payload)
+       state.Orders=action.payload
        })
       .addCase(OrderItemsbyUserAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(OrderItemsbyUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.orderStatus=action.payload;
+        state.orderByUser=action.payload;
       })
       .addCase(resetCartAsync.pending,(state)=>{
         state.status='loading';
@@ -87,7 +88,7 @@ export const orderSlice = createSlice({
       .addCase(resetCartAsync.fulfilled,(state,action)=>{
         state.status='idle';
         state.resetMessage=action.payload
-        state.orderStatus=null
+        // state.orderByUser=null
         console.log(action.payload)
       }).addCase(fetchAllOrdersAsync.pending,(state)=>{
         state.status='loading';
@@ -97,7 +98,7 @@ export const orderSlice = createSlice({
         state.Orders=action.payload.Orders
         state.totalOrders=action.payload.totalOrders
         // state.resetMessage=action.payload
-        // state.orderStatus=null
+        // state.orderByUser=null
         // console.log(action.payload)
       }).addCase(UpdateOrdersAsync.pending,(state)=>{
         state.status='loading';
@@ -111,12 +112,12 @@ export const orderSlice = createSlice({
         // state.Orders=action.payload.Orders
         // state.totalOrders=action.payload.totalOrders
         // state.resetMessage=action.payload
-        // state.orderStatus=null
+        // state.orderByUser=null
         // console.log(action.payload)
       })
   },
 });
 export const selectOrderbyLoggedInUser=state=>state.order.Orders
-export  const selectOrderStatus=state=>state.order.orderStatus
+export  const selectOrderStatus=state=>state.order.orderByUser
 export const selecttotalOrders=state=>state.order.totalOrders
 export default orderSlice.reducer;

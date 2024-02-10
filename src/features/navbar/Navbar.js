@@ -2,11 +2,10 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 //pagination
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { Link, Navigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import {  resetCartItemsAsync, selectItems } from '../cart/CartSlice'
-import { logoutUserAsync, selectLoggedInUser } from '../auth/AuthSlice'
+import {  useSelector } from 'react-redux'
+import {   selectItems } from '../cart/CartSlice'
+import { selectUserInfo } from '../User/UserSlice'
 
 const user = {
   name: 'Tom Cook',
@@ -41,27 +40,26 @@ function classNames(...classes) {
 }
 
 const Navbar=({children,data})=>{
-  const LoggedInUser=useSelector(selectLoggedInUser)
+  const LoggedInUserInfo=useSelector(selectUserInfo)
   const Items=useSelector(selectItems)
-  const dispatch=useDispatch()
   let totalItems
   if(Items){
      totalItems=Items.reduce((total,item)=>item.quantity+total,0)
   }
   let Role=null
-  if(LoggedInUser){
-    if(LoggedInUser[0].role){
-Role=LoggedInUser[0].role}
+  if(LoggedInUserInfo){
+    if(LoggedInUserInfo.role){
+Role=LoggedInUserInfo.role}
   }
   // console.log(LoggedInUser)
-  // const role=LoggedInUser[0].role
+  // const role=LoggedInUser.role
 
 
   
 return(
     <div>
       {/* {LoggedInUser.role==='admin'&&<Navigate to='/adminproductlist'></Navigate>} */}
-      {!LoggedInUser&&<Navigate to='/'></Navigate>}
+      {!LoggedInUserInfo&&<Navigate to='/'></Navigate>}
 <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -80,7 +78,7 @@ return(
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {((LoggedInUser&&LoggedInUser[0].role==='admin')?(adminNavigation):(navigation)).map((item) =>(
+                        {((LoggedInUserInfo&&LoggedInUserInfo.role==='admin')?(adminNavigation):(navigation)).map((item) =>(
                           <Link to={item.href}
                             key={item.name}
                             className={classNames(
@@ -133,18 +131,18 @@ return(
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {(Role?AdminNavigation:userNavigation).map((item) => (
+                            {(Role==='admin'?AdminNavigation:userNavigation).map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <Link
-                                    to={(LoggedInUser&&(item.name==='Sign out'))?('/logout'):(item.href)}
+                                    to={(LoggedInUserInfo&&(item.name==='Sign out'))?('/logout'):(item.href)}
                                     
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                     {(!LoggedInUser&&(item.name==='Sign out'))?"Sign in":(item.name)}
+                                     {(!LoggedInUserInfo&&(item.name==='Sign out'))?"Sign in":(item.name)}
                                   </Link>
                                 )}
                               </Menu.Item>
@@ -171,23 +169,23 @@ return(
 
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block rounded-md px-3 py-2 text-base font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
+                {((LoggedInUserInfo&&LoggedInUserInfo.role==='admin')?(adminNavigation):(navigation)).map((item) =>(
+                          <Link to={item.href}
+                            key={item.name}
+                            className={classNames(
+                              item.current
+                                ? 'bg-gray-900 text-white'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                              'rounded-md px-3 py-2 text-sm font-medium'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
                 </div>
-                <div className="border-t border-gray-700 pb-3 pt-4">
-                  <div className="flex items-center px-5">
+                <div className="border-t border-gray-700 ">
+                  <div className="grid items-center mb-0">
                     <div className="flex-shrink-0">
                       <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt=""/>
                     </div>
@@ -195,31 +193,38 @@ return(
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
                       <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
                     </div>
-                    <Link to='cart'>
+                    <div >
 
-                    <button
+                    <Link
+                    to='/cart'
                       type="button"
-                      className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
-                      <span className="absolute -inset-1.5" />
+                      <span className="absolute-inset-1.5" />
                       <span className="sr-only">View notifications</span>
                       <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                       
-                    </button>
-                    <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"></span>
                     </Link>
+                    {totalItems&&<span class="inline-flex items-center rounded-md bg-blue-50 mb-8 -ml-3 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 ">{totalItems}</span>}
+                    </div>
                   </div>
-                  <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
+                  <div className="grid mt-3 space-y-1 px-2">
+                  {(Role==='admin'?AdminNavigation:userNavigation).map((item) => (
+                              <Disclosure.Button key={item.name}>
+                                {({ active }) => (
+                                  <Link
+                                    to={(LoggedInUserInfo&&(item.name==='Sign out'))?('/logout'):(item.href)}
+                                    
+                                    key={item.name}
                         as="a"
                         href={item.href}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
+                                  >
+                                     {(!LoggedInUserInfo&&(item.name==='Sign out'))?"Sign in":(item.name)}
+                                  </Link>
+                                )}
+                              </Disclosure.Button>
+                            ))}
                   </div>
                 </div>
               </Disclosure.Panel>

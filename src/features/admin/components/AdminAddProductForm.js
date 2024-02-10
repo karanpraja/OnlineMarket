@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchProductbyIdAsync, selectBrands, selectCategories, selectProduct, updateProductByIdAsync } from "../../Products/ProductSlice"
 import { createProductAsync } from "../AdminSlice"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 // import { updateProductById } from "../../Products/ProductAPI"
 
 const AdminAddProductForm=()=>{
@@ -57,9 +57,10 @@ const updateProducts=(data)=>{
     let parsedData={name:data.name,imagealt:data.imagealt,price:+data.price,discountPercentage:+data.discountPercentage,stock:+data.stock,imageSrc:data.imageSrc,rating:+data.rating,href:"productdetail",brand:data.brand,category:data.category}
     let images=[data.image1,data.image2,data.image3,data.image4]
     parsedData={...parsedData,images}
-       id&&dispatch(updateProductByIdAsync([parsedData,id]))
-      id&&dispatch(createProductAsync(parsedData))
-  reset()
+       id&&dispatch(updateProductByIdAsync({product:parsedData,id:id}))
+       console.log(parsedData)
+      !id&&dispatch(createProductAsync(parsedData))
+  // reset()
  }
  const deleteHandler = (e) => {
   console.log(e.target.value)
