@@ -1,24 +1,25 @@
-import { serverjsx } from "../..";
+  import { serverjsx } from "../..";
 
 
 // A mock function to mimic making an async request for data
 export function addToCart(product) {
   console.log(serverjsx)
-  return new Promise(async(resolve) =>{
+  return new Promise(async(resolve,reject) =>{
     const response=await fetch(`${serverjsx}/cart`,{
       method:"POST",
       body:JSON.stringify(product),
       headers:{
-        'Content-Type': 'application/json'      }
+        'Content-Type': 'application/json'}
     })
     const data=await response.json()
+    console.log(data)
     resolve({data})//how to keep data in resolve
   });}
 
 
-  export function fetchCartItemsByUserId(id) {
+  export function fetchCartItemsByUserId() {
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/cart?user=${id}`)
+      const response=await fetch(`${serverjsx}/cart/id`)
       const data=await response.json()
       resolve({data})//how to keep data in resolve
     });}
@@ -38,9 +39,11 @@ export function addToCart(product) {
 export function updateCart(item) {
   console.log(serverjsx)
   console.log("updateCart")
-  console.log(item)
+  const id=item._id
+delete item['_id']
+console.log(item)
   return new Promise(async(resolve) =>{
-    const response=await fetch(`${serverjsx}/cart/${item.id}`,{
+    const response=await fetch(`${serverjsx}/cart/${id}`,{
       method:"PATCH",
       body:JSON.stringify(item),
       headers:{
@@ -49,16 +52,17 @@ export function updateCart(item) {
     })
     const data=await response.json()
     resolve({data})//how to keep data in resolve
-  });}
+  });
+}
 
   
 
-  export function updateCartUser(data1) {
-    console.log(data1)
+  export function updateCartUser(user) {
+    console.log(user)
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/users/${data1.user[0].id}`,{
+      const response=await fetch(`${serverjsx}/user/${user.id}`,{
         method:"PATCH",
-        body:JSON.stringify(data1.addresses),
+        body:JSON.stringify(user),
         headers:{
           'Content-Type': 'application/json'
         }
@@ -69,7 +73,7 @@ export function updateCart(item) {
   
 export function deleteItemFromCart(id) {
   return new Promise(async(resolve) =>{
-    const response=await fetch(`${serverjsx}/cart/${id}`,{
+    const response=await fetch(`${serverjsx}/cart/item/${id}`,{
       method:"DELETE",
       headers:{
         'Content-Type': 'application/json'
@@ -78,7 +82,7 @@ export function deleteItemFromCart(id) {
     
     // const data=await response.json()
     resolve({data:{id:id}})//how to keep data in resolve
-  });}
+  })}
   export function deleteAddressfromUser(id) {
     return new Promise(async(resolve) =>{
       const response=await fetch(`${serverjsx}/users?${id}`,{

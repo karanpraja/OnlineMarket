@@ -70,11 +70,10 @@ export function fetchProductbyId(id) {
 }
 
 export function updateProductById(Data){
-console.log(Data[0])
   return new Promise(async(resolve,react)=>{
-const response=await fetch(`http://localhost:8080/products/${Data[1]}`,{
+const response=await fetch(`http://localhost:8080/products/${Data.id}`,{
   method:'PATCH',
-  body:JSON.stringify(Data[0]),
+  body:JSON.stringify(Data.product),
   headers:{
     'Content-Type':'application/json'
   }

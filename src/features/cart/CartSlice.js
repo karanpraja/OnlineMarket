@@ -4,7 +4,7 @@ import { addToCart, deleteItemFromCart, fetchCartItemsByUserId, updateCart, upda
 const initialState = {
   items: [],
   status: 'idle',
-  user:[]
+  userInfo:[]
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -22,9 +22,9 @@ export const addToCartAsync= createAsyncThunk(
 );
 export const fetchCartItemsByUserIdAsync= createAsyncThunk(
   'cart/fetchItemsByUserId',
-  async (user) => {
+  async () => {
 
-    const response = await fetchCartItemsByUserId(user);
+    const response = await fetchCartItemsByUserId();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -32,7 +32,6 @@ export const fetchCartItemsByUserIdAsync= createAsyncThunk(
 export const updateCartAsync= createAsyncThunk(
   'cart/updateCart',
   async (item) => {
-    console.log(item)
     const response = await updateCart(item);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
@@ -49,10 +48,11 @@ export const deleteItemFromCartAsync= createAsyncThunk(
 );
 export const updateCartUserAsync= createAsyncThunk(
   'cart/updateCartUser',
-  async (data) => {
+  async (user) => {
     console.log('updateCartUserAsync')
+    console.log(user)
     
-    const response = await updateCartUser(data);
+    const response = await updateCartUser(user);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -97,6 +97,7 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchCartItemsByUserIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
+        console.log(action.payload)
         state.items= action.payload;
 
       })
@@ -122,7 +123,7 @@ export const cartSlice = createSlice({
       })
       .addCase(updateCartUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.addresses=action.payload
+        state.userInfo=action.payload
       })
       .addCase(resetCartItemsAsync.pending, (state) => {
         state.status = 'loading';
@@ -138,6 +139,6 @@ export const cartSlice = createSlice({
 
 export const selectCart = (state) => state.cart.cart;
 export const selectItems = (state) => state.cart.items;
-export const selectCartUser=(state)=>state.cart.user
+export const selectCartUser=(state)=>state.cart.userInfo
 
 export default cartSlice.reducer;

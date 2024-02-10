@@ -1,10 +1,8 @@
 import { useForm } from "react-hook-form"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {  selectLoggedInUser } from "../../auth/AuthSlice"
 // import { fetchLoggedInUserData, fetchLoggedInUserOrders, fetchUpdateLoggedInUserData } from "../UserApi"
 import {  fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../UserSlice"
-import { Navigate } from "react-router-dom"
 
 
 const UserProfile=()=>{
@@ -16,19 +14,19 @@ const UserProfile=()=>{
     formState: { errors },
   } = useForm()
     const dispatch=useDispatch()
-    const user=useSelector(selectUserInfo)
-    console.log(user)
+    const userInfo=useSelector(selectUserInfo)
+    console.log(userInfo)
     const [selectedAddressIndex,setSelectedAddressIndex]=useState(-1)
     const [showAddress,setShowAddress]=useState(false)
     const removeHandler=(e,index)=>{
-const newAddress={...user,addresses:[...user.addresses]}//
+const newAddress={...userInfo,addresses:[...userInfo.addresses]}//we have used this cz we can't directly mutate state
 newAddress.addresses.splice(index,1)
 console.log(newAddress)
 dispatch(fetchUpdateLoggedInUserDataAsync(newAddress))
     }
     const handleForm=(e,index)=>{
 setSelectedAddressIndex(index)
-const address=user.addresses[index]
+const address=userInfo.addresses[index]
 console.log(address)
 setValue('fullname',address.fullname)
 setValue('email',address.email)
@@ -43,14 +41,14 @@ setValue('phone',address.phone)
     const editForm=(data,index)=>{
       console.log(data)
       console.log(index)
-      const newAddress={...user,addresses:[...user.addresses]}//
+      const newAddress={...userInfo,addresses:[...userInfo.addresses]}//
       newAddress.addresses.splice(index,1,data)
       console.log(newAddress)
       dispatch(fetchUpdateLoggedInUserDataAsync(newAddress)) 
       setSelectedAddressIndex(-1)
     }
     const handleAddAddress=(data)=>{
-      const newAddress={...user,addresses:[...user.addresses]}//
+      const newAddress={...userInfo,addresses:[...userInfo.addresses]}//
       newAddress.addresses.push(data)
       console.log(newAddress)
       dispatch(fetchUpdateLoggedInUserDataAsync(newAddress)) 
@@ -60,12 +58,12 @@ setValue('phone',address.phone)
       })
     }
 return(<>
-             {user&& <div className="flex  flex-col h-full overflow-y-scroll overflow-hidden  bg-white shadow-xl">
+             {userInfo&& <div className="flex  flex-col h-full overflow-y-scroll overflow-hidden  bg-white shadow-xl">
                 <div className="flex-1 h-full overflow-y-auto  overflow-hidden px-4 py-6  sm:px-6">
                   <div className="flex h-full items-start justify-between">
                     <h1 className="text-lg font-medium text-gray-900">User</h1>
                   </div>
-                  <h2>UserEmail:<span className="text-red-500">{user.email}</span></h2>
+                  <h2>UserEmail:<span className="text-red-500">{userInfo.email}</span></h2>
 
                   <div className="mt-8">
                     <div className="flow-root my-10">
@@ -255,7 +253,7 @@ return(<>
   <h2>Saved Addresses</h2>
 </div>
                       <ul role="list" className=" divide-gray-200">
-                        {(user.addresses.length>0)?(user.addresses.map((address,index) => (  <div>
+                        {(userInfo.addresses.length>0)?(userInfo.addresses.map((address,index) => (  <div>
                         {selectedAddressIndex===index&&  <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit((data)=>{editForm(data,index)})} >
       <div className="space-y-12 my-10 ">
         

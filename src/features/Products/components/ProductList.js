@@ -15,7 +15,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/24/solid";
-import { fetchAllProductsAsync, fetchBrandsAsync, fetchCategoriesAsync, fetchProductsbyFilterAsync, fetchProductsbySortAsync, selectBrands, selectCategories, selectProducts, selecttotalItems, } from "../ProductSlice";
+import {  fetchBrandsAsync, fetchCategoriesAsync, fetchProductsbyFilterAsync,  selectCategories, selectProducts, selecttotalItems,selectBrands } from "../ProductSlice";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../const";
 import Pagination from "../../common/Pagination";
 
@@ -128,7 +128,7 @@ dispatch(fetchBrandsAsync())
   );
 }
 
-const MobileFilters=({handleFilter,filters,sortHandler,products,mobileFiltersOpen,setMobileFiltersOpen})=>{
+const MobileFilters=({handleFilter,filters,mobileFiltersOpen,setMobileFiltersOpen})=>{
 
 return(
   <div>
@@ -403,14 +403,14 @@ const DesktopFilters=({setMobileFiltersOpen,products,handleFilter,filters,sortHa
                   <div className="lg:col-span-3">
                     {/* Your content */}
                     <div className="bg-white">
-                      <div className="mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl lg:px-8">
+                      <div className="mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl lg:px-8" >
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                           {products.map((product) => (
                             <>
                                    
                            {!product.delete&& <Link to={`productdetail/${product.id}`} key={product.id}>
  <div key={product.id} className="group relative rounded-md p-4 h-full border-solid border-2 border-gray-300   ">
-                              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                              <div key={product.id} className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                 <img
                                   src={product.imageSrc}
                                   alt={product.imageAlt}

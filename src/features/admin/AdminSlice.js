@@ -6,7 +6,8 @@ const initialState={
     status:'idle'
 }
 export const createProductAsync=createAsyncThunk('admin/createProduct',
-async({product,})=>{
+async(product)=>{
+    console.log(product)
 const response=await createProduct(product)
 return response.data
 })

@@ -1,20 +1,20 @@
 import { Link, Navigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserDataAsync, selectLoggedInUser } from "../AuthSlice";
+import { createUserAsync, selectLoggedInUser } from "../AuthSlice";
 
 const SignUp=()=>{
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const user=useSelector(selectLoggedInUser)
+  const { register, handleSubmit,  formState: { errors } } = useForm();
+  const userToken=useSelector(selectLoggedInUser)
   const dispatch=useDispatch()
   const onSubmit = data => {
-dispatch(fetchUserDataAsync({email:data.email,password:data.password, addresses:[]}))
+dispatch(createUserAsync({email:data.email,password:data.password, addresses:[]}))
     console.log(data)
   };
 
 return(
 <>
-{user&&<Navigate to='/'></Navigate>}
+{userToken&&<Navigate to='/'></Navigate>}
     <div>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">

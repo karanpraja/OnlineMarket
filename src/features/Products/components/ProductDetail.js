@@ -7,6 +7,7 @@ import { fetchProductbyIdAsync, selectProduct } from '../ProductSlice'
 import { addToCartAsync, selectItems } from '../../cart/CartSlice'
 import { selectLoggedInUser } from '../../auth/AuthSlice'
 import { discountedPrice } from '../../../const'
+import { selectUserInfo } from '../../User/UserSlice'
 // import { fetchProductbyId } from '../ProductAPI'
 const  colors=[
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -38,7 +39,7 @@ function classNames(...classes) {
  function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[1])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
-  const user=useSelector(selectLoggedInUser)
+  const userInfo=useSelector(selectUserInfo)
   const items=useSelector(selectItems)
   const dispatch=useDispatch()
 const params=useParams()
@@ -49,13 +50,14 @@ const params=useParams()
  const handleSubmit=(event)=>{
   event.preventDefault()
   if(items.findIndex(item=>item.productId===product.id)<0){
-    const newProduct={...product,user:user[0].id,quantity:1,productId:product.id}
+    const newProduct={product:product.id,user:userInfo.id,quantity:1,productId:product.id}
     delete newProduct['id']
-    if(user){
+    console.log(newProduct)
+    if(userInfo){
     dispatch(addToCartAsync(newProduct))
     }
   }else{
-    console.log("Product Already Added, please change quant from cart")
+    console.log("Product Already Added, please change quantity from cart")
 
   }
 

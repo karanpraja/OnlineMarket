@@ -4,18 +4,19 @@ import { loginUserAsync, selectError, selectLoggedInUser } from "../AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login=()=>{
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch=useDispatch()
   const error=useSelector(selectError)
-  const user=useSelector(selectLoggedInUser)
+  const userToken=useSelector(selectLoggedInUser)
+  // console.log(user)
   const onSubmit=data=>{
     dispatch(loginUserAsync({email:data.email,password:data.password}))
   }
-  console.log(error)
+  // console.log(error)
   
 return(
   <>
-  {user&&<Navigate to='/'></Navigate>}
+  {userToken&&<Navigate to='/'></Navigate>}
     <div>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
