@@ -3,7 +3,8 @@ import {  selectOrderStatus } from "./OrderSlice"
 import { Link, Navigate} from "react-router-dom"
 import { useEffect } from "react"
 import { selectUserChecked } from "../auth/AuthSlice"
-import { resetCartAsync } from "../cart/CartSlice"
+import { resetCartAsync, selectCartLoaded } from "../cart/CartSlice"
+import userEvent from "@testing-library/user-event"
 
 const OrderPage=()=>{
 let orderStatus=useSelector(selectOrderStatus)
@@ -11,9 +12,8 @@ let orderStatus=useSelector(selectOrderStatus)
 const dispatch=useDispatch()
 // const resetMessage=useSelector(selectOrderStatus)
 console.log(orderStatus)
-const isUserChecked=useSelector(selectUserChecked)
-
-
+const isCartLoaded=useSelector(selectCartLoaded)
+const userChecked=useSelector(selectUserChecked)
 
 useEffect(()=>{
   console.log("handleReset")
@@ -21,7 +21,7 @@ useEffect(()=>{
 },[dispatch])
 return(
     <>
-{!orderStatus&&!isUserChecked&&<Navigate to='/'></Navigate>}
+{/* {!userChecked&&<Navigate to='/'></Navigate>} */}
  {orderStatus&&<main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
         <p className="text-base font-semibold text-indigo-600">Order Status</p>

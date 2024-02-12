@@ -70,7 +70,7 @@ export const orderSlice = createSlice({
        .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
        state.status='idle'
        state.Orders=action.payload
-      //  state.orderByUser=null
+       state.orderByUser=null
        })
       .addCase(OrderItemsbyUserAsync.pending, (state) => {
         state.status = 'loading';

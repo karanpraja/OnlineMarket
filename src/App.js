@@ -29,6 +29,7 @@ import AdminAddProductFormPage from './pages/AddProductPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
 import { checkUser } from './features/auth/AuthAPI';
+import Stripe from './pages/Stripe';
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
   {
     path:'admin/adminorders',
     element:<Protected><AdminOrdersPage/></Protected>
+  },
+  {
+    path:'stripecheckout',
+    element:<Protected><Stripe/></Protected>
   }
 
 
