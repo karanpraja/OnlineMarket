@@ -11,9 +11,10 @@ resolve({data})
 export function removeUserInfo(){
 
     return new Promise(async(resolve,reject)=>{
-  const response=await fetch(`${serverjsx}/user/rm`)
-  const data=await response.json()
-  resolve({data})
+//   const response=await fetch(`${serverjsx}/user/rm`)
+//   const data=await response.json()
+  let data1="Successfull"
+  resolve(data1)
       })
   }
 

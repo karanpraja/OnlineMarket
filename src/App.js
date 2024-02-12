@@ -15,7 +15,7 @@ import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
 import { useDispatch, useSelector } from 'react-redux';
-import {   selectLoggedInUser } from './features/auth/AuthSlice';
+import {   checkUserAsync, selectLoggedInUser, selectUserChecked } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
 import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
@@ -28,6 +28,7 @@ import AdminHome from './pages/AdminHome';
 import AdminAddProductFormPage from './pages/AddProductPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
+import { checkUser } from './features/auth/AuthAPI';
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,10 @@ function App() {
   console.log(userToken)
   const dispatch=useDispatch()
   const items=useSelector(selectProducts)
+  const userChecked=useSelector(selectUserChecked)
+  useEffect(()=>{
+dispatch(checkUserAsync())
+  },[dispatch])
   useEffect(()=>{
     // console.log([userToken[0],'app'])
   //   if(userToken[0]){
@@ -113,9 +118,10 @@ function App() {
       dispatch(fetchLoggedInUserDataAsync())
       dispatch(fetchLoggedInUserOrdersAsync())
       dispatch(fetchCartItemsByUserIdAsync())
-    }else{
-      dispatch(removeUserInfoAsync())
     }
+    // else{
+    //   dispatch(removeUserInfoAsync())
+    // }
   // dispatch(loginUserAsync({email:'karan3@gmail.com',password:'Prajapat@2003'}))
 
     
@@ -124,7 +130,9 @@ function App() {
 ])
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      {userChecked&&
+      <RouterProvider router={router}/>
+      } 
     </div>
   );
 }

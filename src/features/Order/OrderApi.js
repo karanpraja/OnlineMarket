@@ -16,24 +16,7 @@ export function OrderItemsbyUser(order){
     })
 }
 
-export function resetCart(){
-    console.log('resetCart')
-    return new Promise(async (resolve,reject)=>{
-    console.log('resetCart')
-        const response=await fetch(`${serverjsx}/cart/items/id`,{
-            method:'DELETE',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
-        const noOfItemsRemoved=await response.json()
-        console.log(noOfItemsRemoved)
-resolve({data:`All ${noOfItemsRemoved} cart items cleared!`})
-reject({data:"Opertion failed"})
-        
-        
-    })
-}
+
 // A mock function to mimic making an async request for data
 
 export function  fetchAllOrders({sort,pagination}) {///\

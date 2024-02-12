@@ -1,3 +1,5 @@
+import { serverjsx } from "../..";
+
 // A mock function to mimic making an async request for data
 export function createUser(user) {
   return new Promise(async(resolve) =>{
@@ -39,12 +41,29 @@ resolve({data})
 reject(error)
     }})
 }
+export function checkUser(){
+  return new Promise(async(resolve,reject)=>{
+try{
+    const response=await fetch(`${serverjsx}/users/check`)
+    if(response.ok){
+      const data=await response.json()
+resolve({data})
+
+    }else{
+      const error=await response.text()
+      reject(error)
+    }
+  }catch(err){
+      reject(err)
+    }
+  })
+}
 export function logoutUser() {
   return new Promise(async(resolve,reject) =>{
     const response=await fetch('http://localhost:8080/users/logout')
     const data=await response.json()
     console.log("logout")
-  resolve({data:"User logged Out"})
+  resolve(data)
   //how to keep data in resolve
   }
     // setTimeout(() => resolve({ data: amount }), 500)

@@ -2,12 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Link, Navigate } from 'react-router-dom';
-import { deleteItemFromCartAsync, selectItems, updateCartAsync } from './CartSlice';
+import { deleteItemFromCartAsync, selectCartLoaded, selectItems, updateCartAsync } from './CartSlice';
 import { discountedPrice } from '../../const';
 
 function Cart() {
   const dispatch=useDispatch()
   const Items=useSelector(selectItems)
+  const isCartLoaded=useSelector(selectCartLoaded)
   // const [totalItems,setTotalItems]=useState(0)
   // const [totalAmount,setTotalAmount]=useState(0)
   console.log(Items)
@@ -31,9 +32,14 @@ function Cart() {
    dispatch( deleteItemFromCartAsync(id))
   }
   // const [open, setOpen] = useState(true)
+  if(!Items.length){
+// console.log(object)
+  }
+  console.log({isCartLoaded:isCartLoaded,ItemsLength:Items.length})
+  console.log(((Items.length===0)&&(!isCartLoaded)))  
  return(
   <>
-  {Items<1&&<Navigate to='/'></Navigate>}
+  {(Items.length===0)&&(isCartLoaded)&&<Navigate to='/'></Navigate>}
     <div>
     
 
@@ -54,7 +60,7 @@ function Cart() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {Items&&Items.map((Item) => (
+                            {Items.length?Items.map((Item) => (
                               <li key={Item.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
@@ -99,7 +105,7 @@ function Cart() {
                                   </div>
                                 </div>
                               </li>
-                            ))}
+                            )):<p className='text-red-400'>Please add items to cart!</p>}
                           </ul>
                         </div>
                       </div>

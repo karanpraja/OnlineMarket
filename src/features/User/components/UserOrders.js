@@ -1,12 +1,14 @@
 import {  useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
 import { selectOrderbyLoggedInUser } from "../../Order/OrderSlice"
+import { selectUserChecked } from "../../auth/AuthSlice"
 
 const UserOrders=()=>{
   const Orders=useSelector(selectOrderbyLoggedInUser)
+  const isUserChecked=useSelector(selectUserChecked)
     console.log(Orders)
     
-return(<>                                                                                                  {!Orders&&<Navigate to='/'></Navigate>}            
+return(<>                                                                                                  {!Orders&&!isUserChecked&&<Navigate to='/'></Navigate>}            
               <div className="flex  flex-col overflow-y-scroll overflow-hidden  bg-white shadow-xl">
                 <div className="flex-1 overflow-y-auto  overflow-hidden px-4 py-6  sm:px-6">
                   <div className="flex items-start justify-between">
@@ -71,7 +73,7 @@ return(<>                                                                       
                               <div className="flex justify-between">
   <h2>Shipping Address</h2>
 </div>
-                          <li key={order.id} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
+                          {order.address.length&&<li key={order.id} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
           <div className="flex min-w-0 gap-x-4 ">
             {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={address.imageUrl} alt="" /> */}
             {/* <input  id="name" name="addresses"  type="radio"  className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"/> */}
@@ -84,7 +86,7 @@ return(<>                                                                       
             <p className="text-sm leading-6 text-gray-900">{order.address[0].city}</p>
             <p className="text-sm leading-6 text-gray-900">{order.address[0].postalcode}</p>
           </div>
-        </li>
+        </li>}
                           </li>
 
                         ))}

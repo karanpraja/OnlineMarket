@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductbyIdAsync, selectProduct } from '../ProductSlice'
 import { addToCartAsync, selectItems } from '../../cart/CartSlice'
-import { selectLoggedInUser } from '../../auth/AuthSlice'
+// import { selectLoggedInUser } from '../../auth/AuthSlice'
 import { discountedPrice } from '../../../const'
 import { selectUserInfo } from '../../User/UserSlice'
+import { selectUserChecked } from '../../auth/AuthSlice'
 // import { fetchProductbyId } from '../ProductAPI'
 const  colors=[
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -41,6 +42,7 @@ function classNames(...classes) {
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const userInfo=useSelector(selectUserInfo)
   const items=useSelector(selectItems)
+  const isUserChecked=useSelector(selectUserChecked)
   const dispatch=useDispatch()
 const params=useParams()
   useEffect(()=>{
@@ -60,13 +62,12 @@ const params=useParams()
     console.log("Product Already Added, please change quantity from cart")
 
   }
-
-  
  }
 
 
   return (
     <div className="bg-white">
+      {!isUserChecked&&<Navigate to='/'></Navigate>}
       {product&&<div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
