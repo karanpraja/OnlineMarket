@@ -2,11 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { OrderItemsbyUser, UpdateOrders, fetchAllOrders, fetchLoggedInUserOrders, resetCart } from './OrderApi';
 
 const initialState = {
-  Orders:[],
+  Orders:null,
   orderByUser: null,
   status: 'idle',
   resetMessage:null,
-  totalOrders:0
+  totalOrders:0,
+  isItemOrdered:false
   
 };
 
@@ -31,11 +32,6 @@ export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
       }
       );
 
-export const resetCartAsync=createAsyncThunk(
-  'order/resetCart',async()=>{
-    const response=await resetCart()
-    return response.data
-  })
   export const fetchAllOrdersAsync=createAsyncThunk(
     
     'order/fetchAllOrders',async({sort,pagination})=>{
@@ -74,6 +70,7 @@ export const orderSlice = createSlice({
        .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
        state.status='idle'
        state.Orders=action.payload
+      //  state.orderByUser=null
        })
       .addCase(OrderItemsbyUserAsync.pending, (state) => {
         state.status = 'loading';
@@ -81,16 +78,9 @@ export const orderSlice = createSlice({
       .addCase(OrderItemsbyUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.orderByUser=action.payload;
+        state.isItemOrdered=true;
       })
-      .addCase(resetCartAsync.pending,(state)=>{
-        state.status='loading';
-      })
-      .addCase(resetCartAsync.fulfilled,(state,action)=>{
-        state.status='idle';
-        state.resetMessage=action.payload
-        // state.orderByUser=null
-        console.log(action.payload)
-      }).addCase(fetchAllOrdersAsync.pending,(state)=>{
+     .addCase(fetchAllOrdersAsync.pending,(state)=>{
         state.status='loading';
       })
       .addCase(fetchAllOrdersAsync.fulfilled,(state,action)=>{

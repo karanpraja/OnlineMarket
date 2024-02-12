@@ -7,6 +7,7 @@ import {  useState } from "react"
 import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
 import { discountedPrice } from "../const"
 import { fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../features/User/UserSlice"
+import { selectUserChecked } from "../features/auth/AuthSlice"
 
 const CheckoutPage=()=>{
   const {
@@ -20,11 +21,12 @@ const CheckoutPage=()=>{
   const [paymentMethod,setPaymentMethod]=useState('cash')
   const orderStatus=useSelector(selectOrderStatus)
   const [selectedAddress,setSelectedAddress]=useState(-1)
-  const addresses=userInfo.addresses
+  const isUserChecked=useSelector(selectUserChecked)
+  // const addresses=userInfo.addresses
   const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
   const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*(discountedPrice(item.product))+amount,0)
   // console.log(addresses)
-  // console.log(userInfo)
+  console.log(userInfo)
 
   
     const updateUser=(data)=>{
@@ -60,8 +62,8 @@ const CheckoutPage=()=>{
 return(
   <>
   {orderStatus&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
-  {Items<1&&<Navigate to='/'></Navigate>} 
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
+  {/* {!Items.length&&!&&<Navigate to='/'></Navigate>}  */}
+    {userInfo&&userInfo.addresses&&<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
                <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
                     <div className="lg:col-span-3 ">
     <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit(updateUser)}>
@@ -243,14 +245,15 @@ return(
                 
                 {/* <div className="relative flex gap-x-3"> */}
                 <ul role="list"  className="mt-3">
-      {addresses&&addresses.map((address,index) => (
+      {userInfo.addresses.length?userInfo.addresses.map((address,index) => (
         <li key={index} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
+        
           <div className="flex min-w-0 gap-x-4 ">
             {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={address.imageUrl} alt="" /> */}
             <input
                     id="name"
                     name="addresses"
-                    onClick={e=>handleAddress(e,index)}
+                    onClick={e=>{handleAddress(e,index)}}
                     type="radio"
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
@@ -268,9 +271,9 @@ return(
         </li>
         
     
-      ))}
+      )):<p className="text-green-600">Please add address</p>}
     </ul>
-                
+          {selectedAddress==-1&&<p className="text-red-500">Please select address</p>}
               </div>
             </fieldset>
             <fieldset>
@@ -373,18 +376,21 @@ return(
                         <p>{totalItems}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div className="mt-6">
+                      <div className="mt-6 grid">
                         <button
                         
-                        onClick={e=>{
+                      onClick={e=>{
                           handlerOrder(e,selectedAddress)}
-                        }
+                      }
+                          
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                          Order and Pay
                         </button>
                         {/* {!selectedAddress?<p className="text-5red-500">Please select Address</p>:''} */}
                       </div>
+          {selectedAddress==-1&&<p className="text-red-500">Please select address</p>}
+
                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         
                       </div>
@@ -395,7 +401,7 @@ return(
              </div>
                     </div>
                </div>
-          </div>
+          </div>}
             </>
 )
 }

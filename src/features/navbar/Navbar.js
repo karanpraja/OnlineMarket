@@ -6,6 +6,7 @@ import { Link, Navigate } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
 import {   selectItems } from '../cart/CartSlice'
 import { selectUserInfo } from '../User/UserSlice'
+import { selectLoggedInUser, selectUserChecked } from '../auth/AuthSlice'
 
 const user = {
   name: 'Tom Cook',
@@ -32,7 +33,6 @@ const AdminNavigation=[
   { name: 'Admin Profile', href: '/userprofile' },
   { name: 'Sign out', href: '/login' },
   { name: 'AdminOrders', href: '/admin/adminorders' },
-
 ]
 
 function classNames(...classes) {
@@ -41,7 +41,11 @@ function classNames(...classes) {
 
 const Navbar=({children,data})=>{
   const LoggedInUserInfo=useSelector(selectUserInfo)
+  const isUserChecked=useSelector(selectUserChecked)
+  const userToken=useSelector(selectLoggedInUser)
   const Items=useSelector(selectItems)
+  console.log("Navbar")
+  console.log({Token:userToken,userInfo:LoggedInUserInfo})
   let totalItems
   if(Items){
      totalItems=Items.reduce((total,item)=>item.quantity+total,0)
@@ -59,7 +63,7 @@ Role=LoggedInUserInfo.role}
 return(
     <div>
       {/* {LoggedInUser.role==='admin'&&<Navigate to='/adminproductlist'></Navigate>} */}
-      {!LoggedInUserInfo&&<Navigate to='/'></Navigate>}
+      {!isUserChecked&&!LoggedInUserInfo&&<Navigate to='/'></Navigate>}
 <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -78,7 +82,7 @@ return(
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {((LoggedInUserInfo&&LoggedInUserInfo.role==='admin')?(adminNavigation):(navigation)).map((item) =>(
+                        {((userToken&&Role==='admin')?(adminNavigation):(navigation)).map((item) =>(
                           <Link to={item.href}
                             key={item.name}
                             className={classNames(

@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addToCart, deleteItemFromCart, fetchCartItemsByUserId, updateCart, updateCartUser } from './CartAPI';
+import { addToCart, deleteItemFromCart, fetchCartItemsByUserId, resetCart, updateCart, updateCartUser } from './CartAPI';
 
 const initialState = {
+  isCartLoaded:false,
   items: [],
   status: 'idle',
   userInfo:[]
@@ -57,13 +58,17 @@ export const updateCartUserAsync= createAsyncThunk(
     return response.data;
   }
 );
-export const resetCartItemsAsync=createAsyncThunk('cart/resetCart',
+export const dumpCartAsync=createAsyncThunk('cart/resetCart',
   async()=>{
     const data="reset cart"
 return data
   }
 )
-
+export const resetCartAsync=createAsyncThunk(
+  'order/resetCart',async()=>{
+    const response=await resetCart()
+    return response.data
+  })
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -91,14 +96,22 @@ export const cartSlice = createSlice({
       .addCase(addToCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items.push( action.payload);
+        state.isCartLoaded=true
       })
       .addCase(fetchCartItemsByUserIdAsync.pending, (state) => {
+        
         state.status = 'loading';
       })
       .addCase(fetchCartItemsByUserIdAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         console.log(action.payload)
         state.items= action.payload;
+        state.isCartLoaded=true
+
+      })
+      .addCase(fetchCartItemsByUserIdAsync.rejected, (state, action) => {
+        state.status = 'idle';
+        state.isCartLoaded=true
 
       })
       .addCase(updateCartAsync.pending, (state) => {
@@ -125,13 +138,21 @@ export const cartSlice = createSlice({
         state.status = 'idle';
         state.userInfo=action.payload
       })
-      .addCase(resetCartItemsAsync.pending, (state) => {
+      .addCase(dumpCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(resetCartItemsAsync.fulfilled, (state, action) => {
+      .addCase(dumpCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items=null
       })
+      .addCase(resetCartAsync.pending,(state)=>{
+        state.status='loading';
+      })
+      .addCase(resetCartAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.resetMessage=action.payload
+        state.isItemOrdered=false
+        console.log(action.payload)})
 
   },
 });
@@ -140,5 +161,6 @@ export const cartSlice = createSlice({
 export const selectCart = (state) => state.cart.cart;
 export const selectItems = (state) => state.cart.items;
 export const selectCartUser=(state)=>state.cart.userInfo
+export const selectCartLoaded=(state)=>state.cart.isCartLoaded
 
 export default cartSlice.reducer;

@@ -4,7 +4,7 @@ import Navbar from "../features/navbar/Navbar"
 const Home=()=>{
 return(
     <Navbar>
-        <ProductList></ProductList>
+        <ProductList />
     </Navbar>
 )
 }

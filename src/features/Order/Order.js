@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
-import { resetCartAsync, selectOrderStatus } from "./OrderSlice"
-import { Link} from "react-router-dom"
+import {  selectOrderStatus } from "./OrderSlice"
+import { Link, Navigate} from "react-router-dom"
 import { useEffect } from "react"
+import { selectUserChecked } from "../auth/AuthSlice"
+import { resetCartAsync } from "../cart/CartSlice"
 
 const OrderPage=()=>{
 let orderStatus=useSelector(selectOrderStatus)
@@ -9,6 +11,8 @@ let orderStatus=useSelector(selectOrderStatus)
 const dispatch=useDispatch()
 // const resetMessage=useSelector(selectOrderStatus)
 console.log(orderStatus)
+const isUserChecked=useSelector(selectUserChecked)
+
 
 
 useEffect(()=>{
@@ -17,7 +21,7 @@ useEffect(()=>{
 },[dispatch])
 return(
     <>
-{/* {!orderStatus.id&&<Navigate to='/'></Navigate>} */}
+{!orderStatus&&!isUserChecked&&<Navigate to='/'></Navigate>}
  {orderStatus&&<main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="text-center">
         <p className="text-base font-semibold text-indigo-600">Order Status</p>
