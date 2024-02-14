@@ -30,6 +30,7 @@ import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
 import { checkUser } from './features/auth/AuthAPI';
 import Stripe from './pages/Stripe';
+import ErrorPage from './pages/404Page';
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
   {
     path:'stripecheckout',
     element:<Protected><Stripe/></Protected>
+  },
+  {
+    path:'errorpage',
+    element:<ErrorPage/>
   }
 
 

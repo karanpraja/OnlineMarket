@@ -4,11 +4,13 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import { selectOrderStatus } from "../features/Order/OrderSlice";
+import { useSelector } from "react-redux";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
+  const OrderByUser=useSelector(selectOrderStatus)
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,10 +18,11 @@ export default function CheckoutForm() {
     if (!stripe) {
       return;
     }
-
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
+     const clientSecret = new URLSearchParams(window.location.search).get(
+       "payment_intent_client_secret"
     );
+    console.log({clientSecret:clientSecret})
+
 
     if (!clientSecret) {
       return;
@@ -58,7 +61,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: `http://localhost:3000/checkorder/${OrderByUser.id}`,
       },
     });
 

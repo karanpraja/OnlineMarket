@@ -1,5 +1,8 @@
-const errorPage=()=>{
+import { Link } from "react-router-dom"
+
+const ErrorPage=()=>{
     
+
 return(
     <div>
  <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -23,4 +26,4 @@ return(
 </div>
 )
 }
-export default errorPage
+export default ErrorPage

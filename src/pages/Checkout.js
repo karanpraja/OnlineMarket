@@ -18,7 +18,7 @@ const CheckoutPage=()=>{
   const dispatch=useDispatch()
   const userInfo=useSelector(selectUserInfo)
   const Items=useSelector(selectItems)
-  const [paymentMethod,setPaymentMethod]=useState('cash')
+  const [paymentMethod,setPaymentMethod]=useState('online')
   const orderStatus=useSelector(selectOrderStatus)
   const [selectedAddress,setSelectedAddress]=useState(-1)
   // const addresses=userInfo.addresses
@@ -65,7 +65,7 @@ return(
   <>
   {(Items.length===0)||(!isUserChecked)&&<Navigate to='/'></Navigate>} 
   {orderStatus&&orderStatus.paymentMethod==="cash"&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
-  {orderStatus&&orderStatus.paymentMethod==="card"&&<Navigate to={`/stripecheckout`}></Navigate>}
+  {orderStatus&&orderStatus.paymentMethod==="online"&&<Navigate to={`/stripecheckout`} replace={true}></Navigate>}
 
     {userInfo&&userInfo.addresses&&<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
                <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
@@ -288,7 +288,7 @@ return(
                   <input
                     id="cash"
                     name="payments"
-                    value={paymentMethod}
+                    value='cash'
                     onChange={e=>handlePayment(e )}
                     checked={paymentMethod==='cash'}
                     type="radio"
