@@ -78,3 +78,21 @@ export function UpdateOrders(order){
         
     })
 }
+
+export function createPaymentIntent({totalAmount,id}){
+    console.log(totalAmount,id)
+    return new Promise(async(resolve,reject)=>{
+        console.log("api")
+        const response=await fetch(`http://localhost:8080/create-payment-intent`,{
+            method:'POST',
+            body:JSON.stringify({totalAmount:100,id:"id_lkk1kjIIJLK"}),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        const data=await response.json()
+        // const clientSecret=data.clientSecret
+        console.log(data)
+        resolve({data})
+    })
+}
