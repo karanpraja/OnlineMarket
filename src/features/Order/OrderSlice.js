@@ -45,9 +45,9 @@ export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
         return response.data
       })
       export const createPaymentIntentAsync=createAsyncThunk(
-        'order/createPaymentIntent',async({totalAmount,id})=>{
+        'order/createPaymentIntent',async(item)=>{
           console.log("slice")
-          const response=await createPaymentIntent({totalAmount,id})
+          const response=await createPaymentIntent(item)
           console.log(response.data)
           return response.data
         })

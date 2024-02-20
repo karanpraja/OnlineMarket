@@ -55,7 +55,7 @@ const CheckoutPage=()=>{
      const addressSetByUser=userInfo.addresses[selectedAddress]
         console.log(selectedAddress)
         dispatch(OrderItemsbyUserAsync({status:"pending",Items,paymentMethod,totalAmount,totalItems,user:id,address:addressSetByUser}))
-        dispatch(createPaymentIntentAsync({totalAmount,id}))
+        // dispatch(createPaymentIntentAsync({totalAmount,id}))
         setSelectedAddress(null)
     }
     console.log(orderStatus)

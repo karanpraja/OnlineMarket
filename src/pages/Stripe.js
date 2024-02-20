@@ -98,11 +98,11 @@
 
 ////////////////////////////////perbuilt
 import React, { useState, useEffect } from "react";
-import { createPaymentIntent } from "../features/Order/OrderApi";
-import { createPaymentIntentAsync, selectlink } from "../features/Order/OrderSlice";
+import { OrderItemsbyUser, createPaymentIntent } from "../features/Order/OrderApi";
+import { createPaymentIntentAsync, selectOrderStatus, selectlink } from "../features/Order/OrderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
-// import "./App.css";
+import "../Stripe.css";
 
 // const ProductDisplay = (props) => (
 //   <section>
@@ -134,6 +134,8 @@ export default function Stripe() {
   const [message, setMessage] = useState("");
 const dispatch=useDispatch()
 const link=useSelector(selectlink)
+const orderByUser=useSelector(selectOrderStatus)
+console.log(orderByUser)
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -153,12 +155,12 @@ const link=useSelector(selectlink)
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log("createPaymentIntent")
-dispatch(createPaymentIntentAsync({totalAmount:100,id:"id_121abVSDcvs"}))
+dispatch(createPaymentIntentAsync({totalAmount:orderByUser.totalAmount,id:orderByUser.id,quantity:orderByUser.totalItems}))
   }
 console.log({link:link})
 
 if(link){
-  // window.location.replace('https://codefrontend.com');
+  window.location.replace(link);
   return <>Will redirect in 3 seconds...</>;
 }
 // console.log({link:link})
@@ -167,7 +169,7 @@ if(link){
   ) : (
     <>
     {/* {link&&<Navigate to={`/${link}`}/>} */}
-      <section>
+      <section className="Stripe">
     <div className="product">
       <img
         src="https://i.imgur.com/EHyR2nP.png"
