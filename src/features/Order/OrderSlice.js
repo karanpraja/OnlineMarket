@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { OrderItemsbyUser, UpdateOrders, fetchAllOrders, fetchLoggedInUserOrders, resetCart } from './OrderApi';
+import { OrderItemsbyUser, UpdateOrders, createPaymentIntent, fetchAllOrders, fetchLoggedInUserOrders, resetCart } from './OrderApi';
 
 const initialState = {
   Orders:null,
@@ -7,7 +7,8 @@ const initialState = {
   status: 'idle',
   resetMessage:null,
   totalOrders:0,
-  isItemOrdered:false
+  isItemOrdered:false,
+  link:null
   
 };
 
@@ -43,6 +44,13 @@ export const fetchLoggedInUserOrdersAsync=createAsyncThunk(
         const response=await UpdateOrders(order)
         return response.data
       })
+      export const createPaymentIntentAsync=createAsyncThunk(
+        'order/createPaymentIntent',async(item)=>{
+          console.log("slice")
+          const response=await createPaymentIntent(item)
+          console.log(response.data)
+          return response.data
+        })
 export const orderSlice = createSlice({
   name: 'order',
   initialState,
@@ -66,19 +74,25 @@ export const orderSlice = createSlice({
     builder
     .addCase(fetchLoggedInUserOrdersAsync.pending,(state)=>{
       state.status='loading'
+      state.link=null
+
        })
        .addCase(fetchLoggedInUserOrdersAsync.fulfilled,(state,action)=>{
        state.status='idle'
        state.Orders=action.payload
-      //  state.orderByUser=null
+       state.link=null
+       state.orderByUser=null
        })
       .addCase(OrderItemsbyUserAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = 'loading'
+        state.link=null
+
       })
       .addCase(OrderItemsbyUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.orderByUser=action.payload;
         state.isItemOrdered=true;
+        state.link=null
       })
      .addCase(fetchAllOrdersAsync.pending,(state)=>{
         state.status='loading';
@@ -104,10 +118,19 @@ export const orderSlice = createSlice({
         // state.resetMessage=action.payload
         // state.orderByUser=null
         // console.log(action.payload)
+      }).addCase(createPaymentIntentAsync.pending,(state)=>{
+        state.link=null
+        state.status='loading';
+      })
+      .addCase(createPaymentIntentAsync.fulfilled,(state,action)=>{
+        state.status='idle';
+        state.link=action.payload
       })
   },
 });
 export const selectOrderbyLoggedInUser=state=>state.order.Orders
 export  const selectOrderStatus=state=>state.order.orderByUser
 export const selecttotalOrders=state=>state.order.totalOrders
+export const selectlink=state=>state.order.link
+
 export default orderSlice.reducer;

@@ -14,7 +14,7 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import {   checkUserAsync, selectLoggedInUser, selectUserChecked } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
 import OrderPage from './pages/CheckOrderPage';
@@ -29,6 +29,8 @@ import AdminAddProductFormPage from './pages/AddProductPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
 import { checkUser } from './features/auth/AuthAPI';
+import Stripe from './pages/Stripe';
+import ErrorPage from './pages/404Page';
 
 const router = createBrowserRouter([
   {
@@ -93,6 +95,14 @@ const router = createBrowserRouter([
   {
     path:'admin/adminorders',
     element:<Protected><AdminOrdersPage/></Protected>
+  },
+  {
+    path:'stripecheckout/:id',
+    element:<Protected><Stripe/></Protected>
+  },
+  {
+    path:'errorpage',
+    element:<ErrorPage/>
   }
 
 
@@ -131,7 +141,9 @@ dispatch(checkUserAsync())
   return (
     <div className="App">
       {userChecked&&
+      // <Provider template={AlertTemplate} {...options}>
       <RouterProvider router={router}/>
+      // </Provider>
       } 
     </div>
   );

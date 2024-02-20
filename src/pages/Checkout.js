@@ -2,9 +2,9 @@ import {  Navigate} from "react-router-dom"
 
 import {  useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import {  selectItems } from "../features/cart/CartSlice"
+import {  selectCartLoaded, selectItems } from "../features/cart/CartSlice"
 import {  useState } from "react"
-import { OrderItemsbyUserAsync, selectOrderStatus } from "../features/Order/OrderSlice"
+import { OrderItemsbyUserAsync, createPaymentIntentAsync, selectOrderStatus } from "../features/Order/OrderSlice"
 import { discountedPrice } from "../const"
 import { fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../features/User/UserSlice"
 import { selectUserChecked } from "../features/auth/AuthSlice"
@@ -18,11 +18,12 @@ const CheckoutPage=()=>{
   const dispatch=useDispatch()
   const userInfo=useSelector(selectUserInfo)
   const Items=useSelector(selectItems)
-  const [paymentMethod,setPaymentMethod]=useState('cash')
+  const [paymentMethod,setPaymentMethod]=useState('online')
   const orderStatus=useSelector(selectOrderStatus)
   const [selectedAddress,setSelectedAddress]=useState(-1)
-  const isUserChecked=useSelector(selectUserChecked)
+  // const clientSecret=useSelector(selectClientSecret)
   // const addresses=userInfo.addresses
+  const isCartLoaded=useSelector(selectCartLoaded)
   const totalItems=Items&&Items.reduce((total,item)=>item.quantity+total,0)
   const totalAmount=Items&&Items.reduce((amount,item)=>item.quantity*(discountedPrice(item.product))+amount,0)
   // console.log(addresses)
@@ -54,15 +55,19 @@ const CheckoutPage=()=>{
      const addressSetByUser=userInfo.addresses[selectedAddress]
         console.log(selectedAddress)
         dispatch(OrderItemsbyUserAsync({status:"pending",Items,paymentMethod,totalAmount,totalItems,user:id,address:addressSetByUser}))
+        // dispatch(createPaymentIntentAsync({totalAmount,id}))
         setSelectedAddress(null)
-      
-
     }
     console.log(orderStatus)
+    console.log(isCartLoaded)
+    const isUserChecked=useSelector(selectUserChecked)
+    // console.log(clientSecret)
 return(
   <>
-  {orderStatus&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
-  {/* {!Items.length&&!&&<Navigate to='/'></Navigate>}  */}
+  {(Items.length===0)||(!isUserChecked)&&<Navigate to='/'></Navigate>} 
+  {orderStatus&&orderStatus.paymentMethod==="cash"&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
+  {orderStatus&&orderStatus.paymentMethod==="online"&&<Navigate to={`/stripecheckout/id`} replace={true}></Navigate>}
+
     {userInfo&&userInfo.addresses&&<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"> 
                <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5	grid-auto-flow: row">
                     <div className="lg:col-span-3 ">
@@ -284,7 +289,7 @@ return(
                   <input
                     id="cash"
                     name="payments"
-                    value={paymentMethod}
+                    value='cash'
                     onChange={e=>handlePayment(e )}
                     checked={paymentMethod==='cash'}
                     type="radio"
