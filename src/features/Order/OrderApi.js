@@ -45,7 +45,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   
   
     return new Promise(async(resolve) =>{
-      const response=await fetch('http://localhost:8080/orders?'+queryString)
+      const response=await fetch(`${serverjsx}/orders?`+queryString)
       const data=await response.json()
       const totalOrders= await response.headers.get('X-Total-Count')
       resolve({data:{Orders:data,totalOrders:+totalOrders}})//how to keep data in resolve
@@ -83,7 +83,7 @@ export function createPaymentIntent(item){
     console.log({createPaymentIntentItem:item})
     return new Promise(async(resolve,reject)=>{
         console.log("api")
-        const response=await fetch(`http://localhost:8080/create-payment-intent`,{
+        const response=await fetch(`${serverjsx}/create-payment-intent`,{
             method:'POST',
             body:JSON.stringify(item),
             headers:{
