@@ -5,7 +5,7 @@
 export function addToCart(product) {
   console.log(serverjsx)
   return new Promise(async(resolve,reject) =>{
-    const response=await fetch(`${serverjsx}/cart`,{
+    const response=await fetch(`/cart`,{
       method:"POST",
       body:JSON.stringify(product),
       headers:{
@@ -19,7 +19,7 @@ export function addToCart(product) {
 
   export function fetchCartItemsByUserId() {
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/cart/id`)
+      const response=await fetch(`/cart/id`)
       const data=await response.json()
       resolve({data})//how to keep data in resolve
     });}
@@ -43,7 +43,7 @@ export function updateCart(item) {
 delete item['_id']
 console.log(item)
   return new Promise(async(resolve) =>{
-    const response=await fetch(`${serverjsx}/cart/${id}`,{
+    const response=await fetch(`/cart/${id}`,{
       method:"PATCH",
       body:JSON.stringify(item),
       headers:{
@@ -60,7 +60,7 @@ console.log(item)
   export function updateCartUser(user) {
     console.log(user)
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/user/${user.id}`,{
+      const response=await fetch(`/user/${user.id}`,{
         method:"PATCH",
         body:JSON.stringify(user),
         headers:{
@@ -73,7 +73,7 @@ console.log(item)
   
 export function deleteItemFromCart(id) {
   return new Promise(async(resolve) =>{
-    const response=await fetch(`${serverjsx}/cart/item/${id}`,{
+    const response=await fetch(`/cart/item/${id}`,{
       method:"DELETE",
       headers:{
         'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ export function deleteItemFromCart(id) {
   })}
   export function deleteAddressfromUser(id) {
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/users?${id}`,{
+      const response=await fetch(`/users?${id}`,{
         method:"DELETE",
         headers:{
           'content-type': 'application/json'
@@ -99,7 +99,7 @@ export function deleteItemFromCart(id) {
       console.log('resetCart')
       return new Promise(async (resolve,reject)=>{
       console.log('resetCart')
-          const response=await fetch(`${serverjsx}/cart/items/id`,{
+          const response=await fetch(`/cart/items/id`,{
               method:'DELETE',
               headers:{
                   'Content-Type':'application/json'

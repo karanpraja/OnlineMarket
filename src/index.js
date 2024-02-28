@@ -5,11 +5,11 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-
+// import PORT from '../.env'
 const container = document.getElementById('root');
 const root = createRoot(container);
-export const serverjsx='http://localhost:8080'
-
+console.log({indexjs:process.env.REACT_APP_PORT})
+export const serverjsx=''
 root.render(
   <React.StrictMode>
     <Provider store={store}>

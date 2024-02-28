@@ -109,6 +109,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  console.log({port:process.env.REACT_APP_PORT})
   const userToken=useSelector(selectLoggedInUser)
   console.log(userToken)
   const dispatch=useDispatch()

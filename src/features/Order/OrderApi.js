@@ -2,7 +2,7 @@ import { serverjsx } from "../..";
 
 export function OrderItemsbyUser(order){
     return new Promise(async (resolve,reject)=>{
-        const response=await fetch(`${serverjsx}/orders`,{
+        const response=await fetch(`/orders`,{
             method:'POST',
             body:JSON.stringify(order),
             headers:{
@@ -45,7 +45,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   
   
     return new Promise(async(resolve) =>{
-      const response=await fetch('http://localhost:8080/orders?'+queryString)
+      const response=await fetch(`/orders?`+queryString)
       const data=await response.json()
       const totalOrders= await response.headers.get('X-Total-Count')
       resolve({data:{Orders:data,totalOrders:+totalOrders}})//how to keep data in resolve
@@ -56,7 +56,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   }
   export function fetchLoggedInUserOrders(userId){
     return new Promise(async(resolve)=>{
-const response=await fetch(`${serverjsx}/orders/id`)
+const response=await fetch(`/orders/id`)
 const data=await response.json()
 resolve({data})
     })
@@ -65,7 +65,7 @@ resolve({data})
 
 export function UpdateOrders(order){
     return new Promise(async (resolve,reject)=>{
-        const response=await fetch(`${serverjsx}/orders/`+order.id,{
+        const response=await fetch(`/orders/`+order.id,{
             method:'PATCH',
             body:JSON.stringify({status:order.status}),
             headers:{
@@ -83,7 +83,7 @@ export function createPaymentIntent(item){
     console.log({createPaymentIntentItem:item})
     return new Promise(async(resolve,reject)=>{
         console.log("api")
-        const response=await fetch(`http://localhost:8080/create-payment-intent`,{
+        const response=await fetch(`/create-payment-intent`,{
             method:'POST',
             body:JSON.stringify(item),
             headers:{
