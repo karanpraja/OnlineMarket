@@ -3,7 +3,7 @@ import { serverjsx } from "../..";
 // A mock function to mimic making an async request for data
 export function createUser(user) {
   return new Promise(async(resolve) =>{
-    const response=await fetch(`${serverjsx}/users/signup`,{
+    const response=await fetch(`/users/signup`,{
       method:"POST",
       body:JSON.stringify(user),
       headers:{
@@ -21,7 +21,7 @@ export function loginUser(user) {
   return new Promise(async(resolve,reject) =>{
     try{
 
-const response=await fetch(`${serverjsx}/users/login`,{
+const response=await fetch(`/users/login`,{
   method:'POST',
   body:JSON.stringify(user),
   headers:{
@@ -44,7 +44,7 @@ reject(error)
 export function checkUser(){
   return new Promise(async(resolve,reject)=>{
 try{
-    const response=await fetch(`${serverjsx}/users/check`)
+    const response=await fetch(`/users/check`)
     if(response.ok){
       const data=await response.json()
 resolve({data})
@@ -60,7 +60,7 @@ resolve({data})
 }
 export function logoutUser() {
   return new Promise(async(resolve,reject) =>{
-    const response=await fetch(`${serverjsx}/users/logout`)
+    const response=await fetch(`/users/logout`)
     const data=await response.json()
     console.log("logout")
   resolve(data)
