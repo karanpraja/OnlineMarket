@@ -1,9 +1,9 @@
 import { serverjsx } from "../..";
-
+import axios from 'axios';
 // A mock function to mimic making an async request for data
 export function createUser(user) {
   return new Promise(async(resolve) =>{
-    const response=await fetch(`/users/signup`,{
+    const response=await fetch(`${serverjsx}/users/signup`,{
       method:"POST",
       body:JSON.stringify(user),
       headers:{
@@ -20,10 +20,24 @@ export function createUser(user) {
 export function loginUser(user) {
   return new Promise(async(resolve,reject) =>{
     try{
+      // axios.post(`${serverjsx}/users/login`, user,{withCredentials:true})
+      // .then(
+      //   function (response) {
+      //     const data =response.data
+      // console.log({axiosresp:response});
+      //   resolve({data}) 
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      //   reject(error);
+      // });
 
-const response=await fetch(`/users/login`,{
+const response=await fetch(`${serverjsx}/users/login`,{
   method:'POST',
   body:JSON.stringify(user),
+  // crossDomain: true,
+  credentials: "include",
+  // withCredentials: true,
   headers:{
     'Content-Type':'application/json'
   }
@@ -44,7 +58,7 @@ reject(error)
 export function checkUser(){
   return new Promise(async(resolve,reject)=>{
 try{
-    const response=await fetch(`/users/check`)
+    const response=await fetch(`${serverjsx}/users/check`)
     if(response.ok){
       const data=await response.json()
 resolve({data})
@@ -60,7 +74,7 @@ resolve({data})
 }
 export function logoutUser() {
   return new Promise(async(resolve,reject) =>{
-    const response=await fetch(`/users/logout`)
+    const response=await fetch(`${serverjsx}/users/logout`,{credentials: 'include'})
     const data=await response.json()
     console.log("logout")
   resolve(data)

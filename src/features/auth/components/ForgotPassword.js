@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form";
-import { selectError } from "../AuthSlice";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 
 const ForgetPassword=()=>{
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  // const error=useSelector(selectError)
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
 return(<div>
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

@@ -8,8 +8,8 @@ import './index.css';
 // import PORT from '../.env'
 const container = document.getElementById('root');
 const root = createRoot(container);
-console.log({indexjs:process.env.REACT_APP_PORT})
-export const serverjsx=''
+console.log({indexjs:})
+export const serverjsx=process.env.REACT_APP_PORT
 root.render(
   <React.StrictMode>
     <Provider store={store}>

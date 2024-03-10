@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { logoutUserAsync, selectLoggedInUser, selectuser } from "../AuthSlice"
+import { logoutUserAsync, selectLoggedInUser } from "../AuthSlice"
 import { Navigate } from "react-router-dom"
 import { removeUserInfoAsync } from "../../User/UserSlice"
 import { dumpCartAsync } from "../../cart/CartSlice"
@@ -15,7 +15,7 @@ const LogOut=()=>{
             dispatch(logoutUserAsync())
             dispatch(removeUserInfoAsync())
             dispatch(dumpCartAsync())
-    },[userToken])
+    },[userToken,dispatch])
 return(<div>
 <Navigate to='/'></Navigate>
 </div>)

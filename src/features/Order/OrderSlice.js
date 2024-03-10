@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { OrderItemsbyUser, UpdateOrders, createPaymentIntent, fetchAllOrders, fetchLoggedInUserOrders, resetCart } from './OrderApi';
+import { OrderItemsbyUser, UpdateOrders, createPaymentIntent, fetchAllOrders, fetchLoggedInUserOrders } from './OrderApi';
 
 const initialState = {
   Orders:null,

@@ -31,7 +31,6 @@ const  highlights= [
   'Pre-washed & pre-shrunk',
   'Ultra-soft 100% cotton',
 ]
-const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -207,9 +206,9 @@ const params=useParams()
               <div className="mt-10">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                  <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                  <p className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                     Size guide
-                  </a>
+                  </p>
                 </div>
 
                 <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">

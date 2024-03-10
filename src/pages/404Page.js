@@ -17,9 +17,9 @@ return(
           >
             Go back home
           </Link>
-          <a href="#" className="text-sm font-semibold text-gray-900">
+          <p className="text-sm font-semibold text-gray-900">
             Contact support <span aria-hidden="true">&rarr;</span>
-          </a>
+          </p>
         </div>
       </div>
     </main>

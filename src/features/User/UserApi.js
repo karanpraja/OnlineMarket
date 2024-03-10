@@ -3,7 +3,7 @@ import { serverjsx } from "../.."
 export function fetchLoggedInUserData(){
 
   return new Promise(async(resolve,reject)=>{
-const response=await fetch(`/user/own`)
+const response=await fetch(`${serverjsx}/user/own`)
 const data=await response.json()
 resolve({data})
     })
@@ -21,7 +21,7 @@ export function removeUserInfo(){
 export function fetchUpdateLoggedInUserData(user){
     const userId=user.id
     return new Promise(async(resolve,reject)=>{
-const response=await fetch(`/user/`+userId,{
+const response=await fetch(`${serverjsx}/user/`+userId,{
     method:'PATCH',
     body:JSON.stringify(user),
     headers:{
