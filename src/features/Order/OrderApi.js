@@ -2,7 +2,7 @@ import { serverjsx } from "../..";
 
 export function OrderItemsbyUser(order){
     return new Promise(async (resolve,reject)=>{
-        const response=await fetch(`/orders`,{
+        const response=await fetch(`${serverjsx}/orders`,{
             method:'POST',
             body:JSON.stringify(order),
             headers:{
@@ -20,20 +20,9 @@ export function OrderItemsbyUser(order){
 // A mock function to mimic making an async request for data
 
 export function  fetchAllOrders({sort,pagination}) {///\
-    //filter=['category':{'smartphones','laptops'}]
   
     let queryString=''
     
-    // for(let key in filter)
-    // {
-    //   const category=filter[key]
-    //   if(category.length){
-    //   const lastCategoryValue=category[category.length-1]
-  
-    //   console.log(lastCategoryValue+"lkjkl")
-    //   queryString+=`${key}=${lastCategoryValue}&`
-    //   }
-    // }
     for(let key in sort)
     {
     queryString+=`${key}=${sort[key]}&`
@@ -45,7 +34,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   
   
     return new Promise(async(resolve) =>{
-      const response=await fetch(`/orders?`+queryString)
+      const response=await fetch(`${serverjsx}/orders?`+queryString)
       const data=await response.json()
       const totalOrders= await response.headers.get('X-Total-Count')
       resolve({data:{Orders:data,totalOrders:+totalOrders}})//how to keep data in resolve
@@ -56,7 +45,7 @@ export function  fetchAllOrders({sort,pagination}) {///\
   }
   export function fetchLoggedInUserOrders(userId){
     return new Promise(async(resolve)=>{
-const response=await fetch(`/orders/id`)
+const response=await fetch(`${serverjsx}/orders/id`)
 const data=await response.json()
 resolve({data})
     })
@@ -65,7 +54,7 @@ resolve({data})
 
 export function UpdateOrders(order){
     return new Promise(async (resolve,reject)=>{
-        const response=await fetch(`/orders/`+order.id,{
+        const response=await fetch(`${serverjsx}/orders/`+order.id,{
             method:'PATCH',
             body:JSON.stringify({status:order.status}),
             headers:{
@@ -83,7 +72,7 @@ export function createPaymentIntent(item){
     console.log({createPaymentIntentItem:item})
     return new Promise(async(resolve,reject)=>{
         console.log("api")
-        const response=await fetch(`/create-payment-intent`,{
+        const response=await fetch(`${serverjsx}/create-payment-intent`,{
             method:'POST',
             body:JSON.stringify(item),
             headers:{

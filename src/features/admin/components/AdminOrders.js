@@ -12,7 +12,7 @@ import {
   ArrowUpIcon,
   EyeIcon,
 } from "@heroicons/react/24/outline";
-import { PencilIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
+import {  PencilSquareIcon } from "@heroicons/react/20/solid";
 import Pagination from "../../common/Pagination";
 
 const AdminOrders = () => {

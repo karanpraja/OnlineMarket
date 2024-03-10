@@ -4,7 +4,7 @@ import {  useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import {  selectCartLoaded, selectItems } from "../features/cart/CartSlice"
 import {  useState } from "react"
-import { OrderItemsbyUserAsync, createPaymentIntentAsync, selectOrderStatus } from "../features/Order/OrderSlice"
+import { OrderItemsbyUserAsync,  selectOrderStatus } from "../features/Order/OrderSlice"
 import { discountedPrice } from "../const"
 import { fetchUpdateLoggedInUserDataAsync, selectUserInfo } from "../features/User/UserSlice"
 import { selectUserChecked } from "../features/auth/AuthSlice"
@@ -64,7 +64,7 @@ const CheckoutPage=()=>{
     // console.log(clientSecret)
 return(
   <>
-  {(Items.length===0)||(!isUserChecked)&&<Navigate to='/'></Navigate>} 
+  {((Items.length===0)||(!isUserChecked))&&<Navigate to='/'></Navigate>} 
   {orderStatus&&orderStatus.paymentMethod==="cash"&&<Navigate to={`/checkorder/${totalItems}`}></Navigate>}
   {orderStatus&&orderStatus.paymentMethod==="online"&&<Navigate to={`/stripecheckout/id`} replace={true}></Navigate>}
 
@@ -278,7 +278,7 @@ return(
     
       )):<p className="text-green-600">Please add address</p>}
     </ul>
-          {selectedAddress==-1&&<p className="text-red-500">Please select address</p>}
+          {selectedAddress===-1&&<p className="text-red-500">Please select address</p>}
               </div>
             </fieldset>
             <fieldset>

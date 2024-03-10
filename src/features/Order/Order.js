@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import {  selectOrderStatus } from "./OrderSlice"
-import { Link, Navigate, useParams} from "react-router-dom"
+import { Link useParams} from "react-router-dom"
 import { useEffect } from "react"
 import { selectUserChecked } from "../auth/AuthSlice"
 import { resetCartAsync, selectCartLoaded } from "../cart/CartSlice"
-import userEvent from "@testing-library/user-event"
 
 const OrderPage=()=>{
 let orderStatus=useSelector(selectOrderStatus)
@@ -14,8 +13,6 @@ console.log({orderstatus:orderStatus})
 const dispatch=useDispatch()
 // const resetMessage=useSelector(selectOrderStatus)
 console.log(orderStatus)
-const isCartLoaded=useSelector(selectCartLoaded)
-const userChecked=useSelector(selectUserChecked)
 
 useEffect(()=>{
   console.log("handleReset")
@@ -37,9 +34,9 @@ return(
           >
             Go back home
           </Link>
-          <a href="#" className="text-sm font-semibold text-gray-900">
+          <p  className="text-sm font-semibold text-gray-900">
             Contact support <span aria-hidden="true">&rarr;</span>
-          </a>
+          </p>
         </div>
       </div>
     </main>}

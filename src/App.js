@@ -14,21 +14,20 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Protected from './features/auth/components/Protected';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import {   checkUserAsync, selectLoggedInUser, selectUserChecked } from './features/auth/AuthSlice';
 import { fetchCartItemsByUserIdAsync } from './features/cart/CartSlice';
 import OrderPage from './pages/CheckOrderPage';
 import { selectProducts } from './features/Products/ProductSlice';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserDataAsync, removeUserInfoAsync} from './features/User/UserSlice';
+import { fetchLoggedInUserDataAsync} from './features/User/UserSlice';
 import ForgetPassPage from './pages/ForgetPassPage';
 import LogoutPage from './pages/LogoutPage';
 import AdminHome from './pages/AdminHome';
 import AdminAddProductFormPage from './pages/AddProductPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { fetchLoggedInUserOrdersAsync } from './features/Order/OrderSlice';
-import { checkUser } from './features/auth/AuthAPI';
 import Stripe from './pages/Stripe';
 import ErrorPage from './pages/404Page';
 
@@ -36,13 +35,8 @@ const router = createBrowserRouter([
   {
     path: "/",
 
-    element:
-    // ( 
-      // <Protected>
-    <Home/>    
-      //</Protected> 
-    // )
-  },
+    element:    <Home/>    
+    },
   {
     path: "login",
     element: <LoginPage/>,
