@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import {  selectOrderStatus } from "./OrderSlice"
-import { Link useParams} from "react-router-dom"
+import { Link ,useParams} from "react-router-dom"
 import { useEffect } from "react"
-import { selectUserChecked } from "../auth/AuthSlice"
-import { resetCartAsync, selectCartLoaded } from "../cart/CartSlice"
+import { resetCartAsync } from "../cart/CartSlice"
 
 const OrderPage=()=>{
 let orderStatus=useSelector(selectOrderStatus)
