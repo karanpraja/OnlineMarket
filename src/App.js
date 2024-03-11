@@ -22,7 +22,7 @@ import { selectProducts } from './features/Products/ProductSlice';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
 import { fetchLoggedInUserDataAsync} from './features/User/UserSlice';
-import ForgetPassPage from './pages/ForgetPassPage';
+// import ForgetPassPage from './pages/ForgetPassPage';
 import LogoutPage from './pages/LogoutPage';
 import AdminHome from './pages/AdminHome';
 import AdminAddProductFormPage from './pages/AddProductPage';
