@@ -85,7 +85,7 @@ export function deleteItemFromCart(id) {
   })}
   export function deleteAddressfromUser(id) {
     return new Promise(async(resolve) =>{
-      const response=await fetch(`${serverjsx}/users?${id}`,{
+      await fetch(`${serverjsx}/users?${id}`,{
         method:"DELETE",
         headers:{
           'content-type': 'application/json'
