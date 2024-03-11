@@ -20,7 +20,7 @@ function Cart() {
   const updateCart=(e,id)=>{
     console.log(Items)
     console.log(id)
-    const Index=Items.findIndex((e)=>(e._id==id))
+    const Index=Items.findIndex((e)=>(e._id===id))
     console.log(Index)
     let item={...Items[Index],quantity:+e.target.value}
     item.product=item.productId  
@@ -59,7 +59,7 @@ function Cart() {
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                          <ul  className="-my-6 divide-y divide-gray-200">
                             {Items.length?Items.map((Item) => (
                               <li key={Item.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
