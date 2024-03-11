@@ -66,10 +66,10 @@ const router = createBrowserRouter([
     path:'userprofile',
     element:<UserProfilePage/>
   },
-  {
-    path:'forgotpassword',
-    element:<ForgetPassPage/>
-  },
+  // {
+  //   path:'forgotpassword',
+  //   element:<ForgetPassPage/>
+  // },
   {
     path:'logout',
     element:<LogoutPage/>
