@@ -69,7 +69,7 @@ const params=useParams()
       {!isUserChecked&&<Navigate to='/'></Navigate>}
       {product&&<div className="pt-6">
         <nav aria-label="Breadcrumb">
-          <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+          <ul role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             {product.breadcrumbs&&product.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
@@ -94,7 +94,7 @@ const params=useParams()
                 {product.name}
               </a>
             </li>
-          </ol>
+          </ul>
         </nav>
 
         {/* Image gallery */}
@@ -151,7 +151,7 @@ const params=useParams()
                     <StarIcon
                       key={product.rating}
                       className={classNames(
-                        product.rating > product.rating ? 'text-gray-900' : 'text-gray-200',
+                        product.rating > 1 ? 'text-gray-900' : 'text-gray-200',
                         'h-5 w-5 flex-shrink-0'
                       )}
                       aria-hidden="true"
@@ -288,7 +288,7 @@ const params=useParams()
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
               <div className="mt-4">
-                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                <ul  className="list-disc space-y-2 pl-4 text-sm">
                   {highlights&&highlights.map((highlight) => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>

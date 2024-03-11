@@ -18,7 +18,7 @@ return(<>                                                                       
 
                   <div className="mt-8">
                     <div className="flow-root">
-                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                    <ul  className="-my-6 divide-y divide-gray-200">
                       
                         {Orders&&Orders.map((order,index) => (
                                 <li key={index} className="grid py-6 ">

@@ -249,7 +249,7 @@ return(
               <div className="mt-6 space-y-6">
                 
                 {/* <div className="relative flex gap-x-3"> */}
-                <ul role="list"  className="mt-3">
+                <ul className="mt-3">
       {userInfo.addresses.length?userInfo.addresses.map((address,index) => (
         <li key={index} className="flex justify-between gap-x-6 py-5 p-5 border-2 border-gray-200 m-3">
         
@@ -337,7 +337,7 @@ return(
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                          <ul  className="-my-6 divide-y divide-gray-200">
                             {Items&&Items.map((item) => (
                               <li key={item.product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-border-gray-200">
@@ -394,7 +394,7 @@ return(
                         </button>
                         {/* {!selectedAddress?<p className="text-5red-500">Please select Address</p>:''} */}
                       </div>
-          {selectedAddress==-1&&<p className="text-red-500">Please select address</p>}
+          {selectedAddress===-1&&<p className="text-red-500">Please select address</p>}
 
                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         

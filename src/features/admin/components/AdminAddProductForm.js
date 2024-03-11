@@ -23,7 +23,7 @@ const AdminAddProductForm=()=>{
         
       id&&dispatch(fetchProductbyIdAsync(id))
       !id&&reset()
-      },[id,dispatch])
+      },[id,dispatch,reset])
       const product=useSelector(selectProduct)
       // const [selectedProduct,setSelectedProduct]=useState(null)
       
@@ -42,7 +42,7 @@ const AdminAddProductForm=()=>{
           setValue('image3',product.images[2])
           setValue('image4',product.images[3])
         }
-      },[setValue,product,selectProduct])
+      },[setValue,product])
 
 
 

@@ -252,7 +252,7 @@ return(<>
                     <div className="flex justify-between">
   <h2>Saved Addresses</h2>
 </div>
-                      <ul role="list" className=" divide-gray-200">
+                      <ul  className=" divide-gray-200">
                         {(userInfo.addresses.length>0)?(userInfo.addresses.map((address,index) => (  <div>
                         {selectedAddressIndex===index&&  <form className="mb-10 bg-white mt-12 py-4 px-4" noValidate  onSubmit={handleSubmit((data)=>{editForm(data,index)})} >
       <div className="space-y-12 my-10 ">
