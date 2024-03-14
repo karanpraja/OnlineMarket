@@ -1,5 +1,5 @@
 import { serverjsx } from "../..";
-import axios from 'axios';
+// import axios from 'axios';
 // A mock function to mimic making an async request for data
 export function createUser(user) {
   return new Promise(async(resolve) =>{
