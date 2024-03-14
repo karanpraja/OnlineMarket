@@ -99,7 +99,7 @@ export function deleteItemFromCart(id) {
       console.log('resetCart')
       return new Promise(async (resolve,reject)=>{
       console.log('resetCart')
-          const response=await fetch(`${serverjsx}g76
+          const response=await fetch(`${serverjsx}
           /cart/items/id`,{
               method:'DELETE',
               headers:{
@@ -107,7 +107,7 @@ export function deleteItemFromCart(id) {
               }
           })
           const noOfItemsRemoved=await response.json()
-          console.log(noOfItemsRemoved)
+          console.log({noOfItemsRemoved:noOfItemsRemoved})
   resolve({data:`All ${noOfItemsRemoved} cart items cleared!`})
   reject({data:"Opertion failed"})
           
