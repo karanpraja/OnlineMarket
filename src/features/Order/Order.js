@@ -4,7 +4,7 @@ import { Link ,useParams} from "react-router-dom"
 import { useEffect } from "react"
 import { resetCartAsync } from "../cart/CartSlice"
 
-const OrderPage=()=>{
+const  OrderPage=()=>{
 let orderStatus=useSelector(selectOrderStatus)
 const params=useParams()
 const id=params.id
