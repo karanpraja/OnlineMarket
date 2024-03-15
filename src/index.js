@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 // import PORT from '../.env'
 const container = document.getElementById('root');
+console.log({container:container})
 const root = createRoot(container);
 export const serverjsx=process.env.REACT_APP_PORT
 root.render(
