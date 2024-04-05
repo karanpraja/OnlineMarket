@@ -108,17 +108,11 @@ function App() {
   console.log(userToken)
   const dispatch=useDispatch()
   const items=useSelector(selectProducts)
-  const userChecked=useSelector(selectUserChecked)
+  let userChecked=useSelector(selectUserChecked)
   useEffect(()=>{
 dispatch(checkUserAsync())
   },[dispatch])
   useEffect(()=>{
-    // console.log([userToken[0],'app'])
-  //   if(userToken[0]){
-  // dispatch(fetchCartItemsByUserIdAsync(userToken[0][0].id))
-  //   }
-    // const id=4
-    // console.log([userToken[0],'app'])
     if(userToken){
       dispatch(fetchLoggedInUserDataAsync())
       dispatch(fetchLoggedInUserOrdersAsync())
@@ -136,9 +130,7 @@ dispatch(checkUserAsync())
   return (
     <div className="App">
       {userChecked&&
-      // <Provider template={AlertTemplate} {...options}>
       <RouterProvider router={router}/>
-      // </Provider>
       } 
     </div>
   );
