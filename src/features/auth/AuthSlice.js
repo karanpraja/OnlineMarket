@@ -87,6 +87,7 @@ export const authSlice = createSlice({
       .addCase(loginUserAsync.pending, (state) => {
         state.status = 'loading';
         // state.isAuthenticated = false
+        
 
       })
       .addCase(loginUserAsync.fulfilled, (state, action) => {
@@ -94,11 +95,14 @@ export const authSlice = createSlice({
         state.status = 'idle';
         state.loggedInUserToken = action.payload.token;
         // state.isAuthenticated = true
+        // state.isUserChecked=true
+
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
         console.log(action.error)
         state.status = 'idle';
         state.error = action.error;
+        // state.isUserChecked=true
         // state.isAuthenticated = false
       })
       .addCase(logoutUserAsync.pending, (state) => {
@@ -122,11 +126,7 @@ state.status='loading'
                 state.status='loading'
                 state.error=action.payload
                 state.isUserChecked=true
-})
-                
-        
-
-  },
+})},
 });
 
 
